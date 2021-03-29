@@ -1,0 +1,32 @@
+---
+title: "Proposal"
+author: "Kerstin Swanson, John Barmen, Braedon Giblin, Yufei Huang, Emma Smykalski"
+date: "3/29/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Team members who actively participated:
+
+
+
+## Link to dataset
+
+
+
+## Overview of dataset
+
+```{r}
+
+```
+
+
+
+
+
+## Plan for exploratory analysis
+
+Questions:
