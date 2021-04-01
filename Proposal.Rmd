@@ -18,26 +18,42 @@ Emma Smykalski
 
 
 ## Link to dataset
+Since we curated our own variables, this is the link to our specific dataset:
+https://github.com/JohnBarmen/DS202_FinalProject/blob/main/usa_00002.dat
 
-
+Full data website:
+https://usa.ipums.org/usa/index.shtml
 
 ## Overview of dataset
 
 ```{r}
-
+library(ipumsr)
+ddi <- read_ipums_ddi("usa_00002.xml")
+data <- read_ipums_micro(ddi)
 ```
 
 
+We collected data from IPUMS USA, which has a wide array of data from past censuses and American 
+Community Surveys. The data ranges from 1790 to 2010. We selected a subset of variables to focus on our topic of Work/Life Balance in America.
 
+
+We chose variables (between the dates of 1980-present) such as age, sex, income, state, number of children, marital status, hours spent per week at work, transportation time to work, job classifcation, and more. 
+
+
+
+https://ipums.org/projects/ipums-usa
+
+Sarah Flood, Miriam King, Renae Rodgers, Steven Ruggles and J. Robert Warren. Integrated Public Use Microdata Series, Current Population Survey: Version 8.0 [dataset]. Minneapolis, MN: IPUMS, 2020. https://doi.org/10.18128/D030.V8.0
 
 
 ## Plan for exploratory analysis
 
 Questions:  
 -- How has the family breadwinner role changed over time?  
--- How does state effect the relationship between work/life balance? (Factoring in time commuting to and from work.) 
+-- How does state affect the relationship between work/life balance? (Factoring in time commuting to and from work.) 
 -- Does gender play a role in work/life balance?  
--- How is happiness effected by hours worked and commute time?  
+-- How many hours does the average American work per week? How has that changed over time? 
+-- What types of jobs typically require longer commutes and longer work weeks?
 -- How has the American work life balance changed in regards to income, marriage rates, and kids or dependents?  
 -- What variables in our data set are significantly changed overtime when we predict income or family income?  
 -- Are there any changes in the economic center cities and their proportion? Is this related to the changes in their life and work balance?  
