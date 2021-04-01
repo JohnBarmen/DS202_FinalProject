@@ -10,7 +10,11 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Team members who actively participated:
-
+John Barmen  
+Kerstin Swanson  
+Braedon Giblin  
+Yufei Huang  
+Emma Smykalski  
 
 
 ## Link to dataset
@@ -29,4 +33,14 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Plan for exploratory analysis
 
-Questions:
+Questions:  
+-- How has the family breadwinner role changed over time?  
+-- How does state effect the relationship between work/life balance? (Factoring in time commuting to and from work.) 
+-- Does gender play a role in work/life balance?  
+-- How is happiness effected by hours worked and commute time?  
+-- How has the American work life balance changed in regards to income, marriage rates, and kids or dependents?  
+-- What variables in our data set are significantly changed overtime when we predict income or family income?  
+-- Are there any changes in the economic center cities and their proportion? Is this related to the changes in their life and work balance?  
+
+
+
