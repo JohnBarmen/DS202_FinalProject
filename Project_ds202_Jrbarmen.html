@@ -197,7 +197,240 @@ summary {
 
 <div id="intro" class="section level3">
 <h3>Intro</h3>
-<p>I had the following question “How has the American work life balance changed in regards to income, marriage rates, and kids or dependents?”. Before veiwing or exploring the data i belive that work life balence is very dependant on those 3 variables. To explore the data I will fit several models and created related plots for income, marriage rates, and kids or dependents in regards to work life balence. Then I will inspect each variable on its own against work life. And lastly i will investigate if these actually were the most relivent variables and repeat anything that needs to be redone based on those findings.</p>
+<p>I had the following question “How has the American work life balance changed in regards to income, marriage rates, and kids or dependents?”. Before viewing or exploring the data i believe that work life balance is very dependent on those 3 variables. To explore the data I will fit several models and created related plots for income, marriage rates, and kids or dependents in regards to work life balance. Then I will inspect each variable on its own against work life. And lastly i will investigate if these actually were the most relevant variables and repeat anything that needs to be redone based on those findings.</p>
+</div>
+<div id="exploration" class="section level3">
+<h3>Exploration</h3>
+<pre class="r"><code>model0 &lt;- lm(hours~., data = data2)
+summary(model0)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = hours ~ ., data = data2)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -55.531 -20.961   0.076  15.126  86.279 
+## 
+## Coefficients:
+##                Estimate Std. Error  t value Pr(&gt;|t|)    
+## (Intercept)   1.246e+02  4.735e+00   26.317   &lt;2e-16 ***
+## dependants    3.270e+00  2.420e-02  135.089   &lt;2e-16 ***
+## incomesolo   -2.106e-06  6.658e-09 -316.290   &lt;2e-16 ***
+## incomefamily -7.866e-07  1.319e-08  -59.641   &lt;2e-16 ***
+## marrital     -3.087e-01  3.696e-02   -8.353   &lt;2e-16 ***
+## year         -5.057e-02  2.357e-03  -21.455   &lt;2e-16 ***
+## married       1.924e+00  1.628e-01   11.816   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 18.65 on 761183 degrees of freedom
+## Multiple R-squared:  0.2459, Adjusted R-squared:  0.2458 
+## F-statistic: 4.136e+04 on 6 and 761183 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>n=dim(data2)[1]
+regfit = regsubsets(hours~., data=data2, nbest=1, nvmax=9)
+regfit.sum = summary(regfit)
+regfit.sum</code></pre>
+<pre><code>## Subset selection object
+## Call: regsubsets.formula(hours ~ ., data = data2, nbest = 1, nvmax = 9)
+## 6 Variables  (and intercept)
+##              Forced in Forced out
+## dependants       FALSE      FALSE
+## incomesolo       FALSE      FALSE
+## incomefamily     FALSE      FALSE
+## marrital         FALSE      FALSE
+## year             FALSE      FALSE
+## married          FALSE      FALSE
+## 1 subsets of each size up to 6
+## Selection Algorithm: exhaustive
+##          dependants incomesolo incomefamily marrital year married
+## 1  ( 1 ) &quot; &quot;        &quot;*&quot;        &quot; &quot;          &quot; &quot;      &quot; &quot;  &quot; &quot;    
+## 2  ( 1 ) &quot;*&quot;        &quot;*&quot;        &quot; &quot;          &quot; &quot;      &quot; &quot;  &quot; &quot;    
+## 3  ( 1 ) &quot;*&quot;        &quot;*&quot;        &quot; &quot;          &quot;*&quot;      &quot; &quot;  &quot; &quot;    
+## 4  ( 1 ) &quot;*&quot;        &quot;*&quot;        &quot;*&quot;          &quot; &quot;      &quot; &quot;  &quot;*&quot;    
+## 5  ( 1 ) &quot;*&quot;        &quot;*&quot;        &quot;*&quot;          &quot; &quot;      &quot;*&quot;  &quot;*&quot;    
+## 6  ( 1 ) &quot;*&quot;        &quot;*&quot;        &quot;*&quot;          &quot;*&quot;      &quot;*&quot;  &quot;*&quot;</code></pre>
+<pre class="r"><code>p=rowSums(regfit.sum$which)
+adjr2=regfit.sum$adjr2
+cp=regfit.sum$cp
+rss=regfit.sum$rss
+AIC=n*log(rss/n)+2*p
+BIC=n*log(rss/n)+(p)*log(n)
+table &lt;- cbind(p,rss,adjr2,cp,AIC,BIC)
+minAIC = min(AIC)
+minBIC = min(BIC)
+maxAdjr2 = max(adjr2)
+minCP = min(cp)
+table</code></pre>
+<pre><code>##   p       rss     adjr2          cp     AIC     BIC
+## 1 2 278554824 0.2065107 39704.33248 4492918 4492941
+## 2 3 268066740 0.2363859  9551.38847 4463707 4463741
+## 3 4 266234563 0.2416041  4285.58251 4458488 4458534
+## 4 5 264928398 0.2453238   532.14424 4454746 4454804
+## 5 6 264768627 0.2457780    74.77785 4454289 4454359
+## 6 7 264744358 0.2458461     7.00000 4454222 4454302</code></pre>
+<pre class="r"><code>minAIC</code></pre>
+<pre><code>## [1] 4454222</code></pre>
+<pre class="r"><code>minBIC</code></pre>
+<pre><code>## [1] 4454302</code></pre>
+<pre class="r"><code>maxAdjr2</code></pre>
+<pre><code>## [1] 0.2458461</code></pre>
+<pre class="r"><code>minCP</code></pre>
+<pre><code>## [1] 7</code></pre>
+<p>AIC - 6<br />
+BIC - 6<br />
+<span class="math inline">\(R^2\)</span> - 6 CP - 6<br />
+what this tells me is that all 6 of the current variables are incredibly important predictors of Hours worked, but we still don’t know if they are the best of <em>all</em> the variables available.</p>
+<pre class="r"><code>n2=dim(data)[1]
+regfit2 = regsubsets(UHRSWORK~., data=data, nbest=1, nvmax=24)</code></pre>
+<pre><code>## Warning in leaps.setup(x, y, wt = wt, nbest = nbest, nvmax = nvmax, force.in =
+## force.in, : 1 linear dependencies found</code></pre>
+<pre><code>## Reordering variables and trying again:</code></pre>
+<pre class="r"><code>regfit2.sum = summary(regfit2)
+regfit2.sum</code></pre>
+<pre><code>## Subset selection object
+## Call: regsubsets.formula(UHRSWORK ~ ., data = data, nbest = 1, nvmax = 24)
+## 25 Variables  (and intercept)
+##           Forced in Forced out
+## YEAR          FALSE      FALSE
+## SERIAL        FALSE      FALSE
+## HHWT          FALSE      FALSE
+## STRATA        FALSE      FALSE
+## OWNERSHP      FALSE      FALSE
+## OWNERSHPD     FALSE      FALSE
+## MORTGAGE      FALSE      FALSE
+## VALUEH        FALSE      FALSE
+## PERNUM        FALSE      FALSE
+## PERWT         FALSE      FALSE
+## NCHILD        FALSE      FALSE
+## SEX           FALSE      FALSE
+## AGE           FALSE      FALSE
+## MARST         FALSE      FALSE
+## EMPSTAT       FALSE      FALSE
+## EMPSTATD      FALSE      FALSE
+## CLASSWKR      FALSE      FALSE
+## CLASSWKRD     FALSE      FALSE
+## INCTOT        FALSE      FALSE
+## FTOTINC       FALSE      FALSE
+## PWSTATE2      FALSE      FALSE
+## PWCITY        FALSE      FALSE
+## TRANWORK      FALSE      FALSE
+## TRANTIME      FALSE      FALSE
+## CLUSTER       FALSE      FALSE
+## 1 subsets of each size up to 24
+## Selection Algorithm: exhaustive
+##           YEAR SERIAL HHWT CLUSTER STRATA OWNERSHP OWNERSHPD MORTGAGE VALUEH
+## 1  ( 1 )  &quot; &quot;  &quot; &quot;    &quot; &quot;  &quot; &quot;     &quot; &quot;    &quot; &quot;      &quot; &quot;       &quot; &quot;      &quot; &quot;   
+## 2  ( 1 )  &quot; &quot;  &quot; &quot;    &quot; &quot;  &quot; &quot;     &quot; &quot;    &quot; &quot;      &quot; &quot;       &quot; &quot;      &quot; &quot;   
+## 3  ( 1 )  &quot; &quot;  &quot; &quot;    &quot; &quot;  &quot; &quot;     &quot; &quot;    &quot; &quot;      &quot; &quot;       &quot; &quot;      &quot; &quot;   
+## 4  ( 1 )  &quot; &quot;  &quot; &quot;    &quot; &quot;  &quot; &quot;     &quot; &quot;    &quot; &quot;      &quot; &quot;       &quot; &quot;      &quot; &quot;   
+## 5  ( 1 )  &quot; &quot;  &quot; &quot;    &quot; &quot;  &quot; &quot;     &quot; &quot;    &quot; &quot;      &quot; &quot;       &quot; &quot;      &quot; &quot;   
+## 6  ( 1 )  &quot; &quot;  &quot; &quot;    &quot; &quot;  &quot; &quot;     &quot; &quot;    &quot; &quot;      &quot; &quot;       &quot; &quot;      &quot; &quot;   
+## 7  ( 1 )  &quot; &quot;  &quot; &quot;    &quot; &quot;  &quot; &quot;     &quot; &quot;    &quot; &quot;      &quot; &quot;       &quot; &quot;      &quot; &quot;   
+## 8  ( 1 )  &quot; &quot;  &quot; &quot;    &quot; &quot;  &quot; &quot;     &quot; &quot;    &quot; &quot;      &quot; &quot;       &quot; &quot;      &quot; &quot;   
+## 9  ( 1 )  &quot; &quot;  &quot; &quot;    &quot; &quot;  &quot; &quot;     &quot; &quot;    &quot; &quot;      &quot; &quot;       &quot; &quot;      &quot; &quot;   
+## 10  ( 1 ) &quot; &quot;  &quot; &quot;    &quot; &quot;  &quot; &quot;     &quot; &quot;    &quot; &quot;      &quot; &quot;       &quot; &quot;      &quot; &quot;   
+## 11  ( 1 ) &quot; &quot;  &quot; &quot;    &quot; &quot;  &quot; &quot;     &quot; &quot;    &quot; &quot;      &quot; &quot;       &quot; &quot;      &quot; &quot;   
+## 12  ( 1 ) &quot; &quot;  &quot; &quot;    &quot; &quot;  &quot; &quot;     &quot; &quot;    &quot; &quot;      &quot; &quot;       &quot; &quot;      &quot; &quot;   
+## 13  ( 1 ) &quot; &quot;  &quot; &quot;    &quot; &quot;  &quot;*&quot;     &quot; &quot;    &quot; &quot;      &quot; &quot;       &quot; &quot;      &quot; &quot;   
+## 14  ( 1 ) &quot; &quot;  &quot; &quot;    &quot; &quot;  &quot; &quot;     &quot; &quot;    &quot; &quot;      &quot; &quot;       &quot;*&quot;      &quot;*&quot;   
+## 15  ( 1 ) &quot; &quot;  &quot; &quot;    &quot; &quot;  &quot;*&quot;     &quot; &quot;    &quot; &quot;      &quot; &quot;       &quot;*&quot;      &quot;*&quot;   
+## 16  ( 1 ) &quot; &quot;  &quot; &quot;    &quot; &quot;  &quot;*&quot;     &quot; &quot;    &quot; &quot;      &quot; &quot;       &quot;*&quot;      &quot;*&quot;   
+## 17  ( 1 ) &quot;*&quot;  &quot;*&quot;    &quot; &quot;  &quot; &quot;     &quot; &quot;    &quot; &quot;      &quot; &quot;       &quot;*&quot;      &quot;*&quot;   
+## 18  ( 1 ) &quot;*&quot;  &quot; &quot;    &quot; &quot;  &quot;*&quot;     &quot; &quot;    &quot;*&quot;      &quot;*&quot;       &quot;*&quot;      &quot;*&quot;   
+## 19  ( 1 ) &quot;*&quot;  &quot;*&quot;    &quot; &quot;  &quot; &quot;     &quot; &quot;    &quot;*&quot;      &quot;*&quot;       &quot;*&quot;      &quot;*&quot;   
+## 20  ( 1 ) &quot;*&quot;  &quot;*&quot;    &quot;*&quot;  &quot; &quot;     &quot; &quot;    &quot;*&quot;      &quot;*&quot;       &quot;*&quot;      &quot;*&quot;   
+## 21  ( 1 ) &quot;*&quot;  &quot;*&quot;    &quot;*&quot;  &quot; &quot;     &quot; &quot;    &quot;*&quot;      &quot;*&quot;       &quot;*&quot;      &quot;*&quot;   
+## 22  ( 1 ) &quot; &quot;  &quot;*&quot;    &quot;*&quot;  &quot;*&quot;     &quot; &quot;    &quot;*&quot;      &quot;*&quot;       &quot;*&quot;      &quot;*&quot;   
+## 23  ( 1 ) &quot;*&quot;  &quot;*&quot;    &quot;*&quot;  &quot; &quot;     &quot; &quot;    &quot;*&quot;      &quot;*&quot;       &quot;*&quot;      &quot;*&quot;   
+## 24  ( 1 ) &quot;*&quot;  &quot;*&quot;    &quot;*&quot;  &quot; &quot;     &quot;*&quot;    &quot;*&quot;      &quot;*&quot;       &quot;*&quot;      &quot;*&quot;   
+##           PERNUM PERWT NCHILD SEX AGE MARST EMPSTAT EMPSTATD CLASSWKR CLASSWKRD
+## 1  ( 1 )  &quot; &quot;    &quot; &quot;   &quot; &quot;    &quot; &quot; &quot; &quot; &quot; &quot;   &quot; &quot;     &quot; &quot;      &quot; &quot;      &quot;*&quot;      
+## 2  ( 1 )  &quot; &quot;    &quot; &quot;   &quot; &quot;    &quot; &quot; &quot; &quot; &quot; &quot;   &quot; &quot;     &quot; &quot;      &quot; &quot;      &quot;*&quot;      
+## 3  ( 1 )  &quot; &quot;    &quot; &quot;   &quot; &quot;    &quot; &quot; &quot; &quot; &quot; &quot;   &quot;*&quot;     &quot; &quot;      &quot; &quot;      &quot;*&quot;      
+## 4  ( 1 )  &quot; &quot;    &quot; &quot;   &quot; &quot;    &quot;*&quot; &quot; &quot; &quot; &quot;   &quot;*&quot;     &quot; &quot;      &quot; &quot;      &quot;*&quot;      
+## 5  ( 1 )  &quot; &quot;    &quot; &quot;   &quot; &quot;    &quot;*&quot; &quot; &quot; &quot;*&quot;   &quot;*&quot;     &quot; &quot;      &quot;*&quot;      &quot; &quot;      
+## 6  ( 1 )  &quot;*&quot;    &quot; &quot;   &quot; &quot;    &quot;*&quot; &quot; &quot; &quot; &quot;   &quot;*&quot;     &quot; &quot;      &quot; &quot;      &quot;*&quot;      
+## 7  ( 1 )  &quot;*&quot;    &quot; &quot;   &quot; &quot;    &quot;*&quot; &quot; &quot; &quot;*&quot;   &quot;*&quot;     &quot; &quot;      &quot;*&quot;      &quot; &quot;      
+## 8  ( 1 )  &quot;*&quot;    &quot; &quot;   &quot; &quot;    &quot;*&quot; &quot; &quot; &quot;*&quot;   &quot;*&quot;     &quot; &quot;      &quot;*&quot;      &quot; &quot;      
+## 9  ( 1 )  &quot;*&quot;    &quot; &quot;   &quot; &quot;    &quot;*&quot; &quot; &quot; &quot;*&quot;   &quot;*&quot;     &quot; &quot;      &quot;*&quot;      &quot; &quot;      
+## 10  ( 1 ) &quot;*&quot;    &quot; &quot;   &quot;*&quot;    &quot;*&quot; &quot; &quot; &quot;*&quot;   &quot;*&quot;     &quot; &quot;      &quot;*&quot;      &quot; &quot;      
+## 11  ( 1 ) &quot;*&quot;    &quot; &quot;   &quot;*&quot;    &quot;*&quot; &quot; &quot; &quot;*&quot;   &quot;*&quot;     &quot;*&quot;      &quot;*&quot;      &quot; &quot;      
+## 12  ( 1 ) &quot;*&quot;    &quot; &quot;   &quot;*&quot;    &quot;*&quot; &quot; &quot; &quot;*&quot;   &quot;*&quot;     &quot;*&quot;      &quot;*&quot;      &quot;*&quot;      
+## 13  ( 1 ) &quot;*&quot;    &quot; &quot;   &quot;*&quot;    &quot;*&quot; &quot; &quot; &quot;*&quot;   &quot;*&quot;     &quot;*&quot;      &quot;*&quot;      &quot;*&quot;      
+## 14  ( 1 ) &quot;*&quot;    &quot; &quot;   &quot;*&quot;    &quot;*&quot; &quot; &quot; &quot;*&quot;   &quot;*&quot;     &quot;*&quot;      &quot;*&quot;      &quot;*&quot;      
+## 15  ( 1 ) &quot;*&quot;    &quot; &quot;   &quot;*&quot;    &quot;*&quot; &quot; &quot; &quot;*&quot;   &quot;*&quot;     &quot;*&quot;      &quot;*&quot;      &quot;*&quot;      
+## 16  ( 1 ) &quot;*&quot;    &quot;*&quot;   &quot;*&quot;    &quot;*&quot; &quot; &quot; &quot;*&quot;   &quot;*&quot;     &quot;*&quot;      &quot;*&quot;      &quot;*&quot;      
+## 17  ( 1 ) &quot;*&quot;    &quot;*&quot;   &quot;*&quot;    &quot;*&quot; &quot; &quot; &quot;*&quot;   &quot;*&quot;     &quot;*&quot;      &quot;*&quot;      &quot;*&quot;      
+## 18  ( 1 ) &quot;*&quot;    &quot; &quot;   &quot;*&quot;    &quot;*&quot; &quot; &quot; &quot;*&quot;   &quot;*&quot;     &quot;*&quot;      &quot;*&quot;      &quot;*&quot;      
+## 19  ( 1 ) &quot;*&quot;    &quot;*&quot;   &quot;*&quot;    &quot;*&quot; &quot; &quot; &quot;*&quot;   &quot;*&quot;     &quot;*&quot;      &quot;*&quot;      &quot;*&quot;      
+## 20  ( 1 ) &quot;*&quot;    &quot;*&quot;   &quot;*&quot;    &quot;*&quot; &quot; &quot; &quot;*&quot;   &quot;*&quot;     &quot;*&quot;      &quot;*&quot;      &quot;*&quot;      
+## 21  ( 1 ) &quot;*&quot;    &quot;*&quot;   &quot;*&quot;    &quot;*&quot; &quot; &quot; &quot;*&quot;   &quot;*&quot;     &quot;*&quot;      &quot;*&quot;      &quot;*&quot;      
+## 22  ( 1 ) &quot;*&quot;    &quot;*&quot;   &quot;*&quot;    &quot;*&quot; &quot; &quot; &quot;*&quot;   &quot;*&quot;     &quot;*&quot;      &quot;*&quot;      &quot;*&quot;      
+## 23  ( 1 ) &quot;*&quot;    &quot;*&quot;   &quot;*&quot;    &quot;*&quot; &quot;*&quot; &quot;*&quot;   &quot;*&quot;     &quot;*&quot;      &quot;*&quot;      &quot;*&quot;      
+## 24  ( 1 ) &quot;*&quot;    &quot;*&quot;   &quot;*&quot;    &quot;*&quot; &quot;*&quot; &quot;*&quot;   &quot;*&quot;     &quot;*&quot;      &quot;*&quot;      &quot;*&quot;      
+##           INCTOT FTOTINC PWSTATE2 PWCITY TRANWORK TRANTIME
+## 1  ( 1 )  &quot; &quot;    &quot; &quot;     &quot; &quot;      &quot; &quot;    &quot; &quot;      &quot; &quot;     
+## 2  ( 1 )  &quot; &quot;    &quot; &quot;     &quot;*&quot;      &quot; &quot;    &quot; &quot;      &quot; &quot;     
+## 3  ( 1 )  &quot;*&quot;    &quot; &quot;     &quot; &quot;      &quot; &quot;    &quot; &quot;      &quot; &quot;     
+## 4  ( 1 )  &quot;*&quot;    &quot; &quot;     &quot; &quot;      &quot; &quot;    &quot; &quot;      &quot; &quot;     
+## 5  ( 1 )  &quot;*&quot;    &quot; &quot;     &quot; &quot;      &quot; &quot;    &quot; &quot;      &quot; &quot;     
+## 6  ( 1 )  &quot;*&quot;    &quot; &quot;     &quot; &quot;      &quot; &quot;    &quot; &quot;      &quot;*&quot;     
+## 7  ( 1 )  &quot;*&quot;    &quot; &quot;     &quot; &quot;      &quot; &quot;    &quot; &quot;      &quot;*&quot;     
+## 8  ( 1 )  &quot;*&quot;    &quot; &quot;     &quot;*&quot;      &quot; &quot;    &quot; &quot;      &quot;*&quot;     
+## 9  ( 1 )  &quot;*&quot;    &quot; &quot;     &quot;*&quot;      &quot; &quot;    &quot;*&quot;      &quot;*&quot;     
+## 10  ( 1 ) &quot;*&quot;    &quot; &quot;     &quot;*&quot;      &quot; &quot;    &quot;*&quot;      &quot;*&quot;     
+## 11  ( 1 ) &quot;*&quot;    &quot; &quot;     &quot;*&quot;      &quot; &quot;    &quot;*&quot;      &quot;*&quot;     
+## 12  ( 1 ) &quot;*&quot;    &quot; &quot;     &quot;*&quot;      &quot; &quot;    &quot;*&quot;      &quot;*&quot;     
+## 13  ( 1 ) &quot;*&quot;    &quot; &quot;     &quot;*&quot;      &quot; &quot;    &quot;*&quot;      &quot;*&quot;     
+## 14  ( 1 ) &quot;*&quot;    &quot; &quot;     &quot;*&quot;      &quot; &quot;    &quot;*&quot;      &quot;*&quot;     
+## 15  ( 1 ) &quot;*&quot;    &quot; &quot;     &quot;*&quot;      &quot; &quot;    &quot;*&quot;      &quot;*&quot;     
+## 16  ( 1 ) &quot;*&quot;    &quot; &quot;     &quot;*&quot;      &quot; &quot;    &quot;*&quot;      &quot;*&quot;     
+## 17  ( 1 ) &quot;*&quot;    &quot; &quot;     &quot;*&quot;      &quot; &quot;    &quot;*&quot;      &quot;*&quot;     
+## 18  ( 1 ) &quot;*&quot;    &quot; &quot;     &quot;*&quot;      &quot; &quot;    &quot;*&quot;      &quot;*&quot;     
+## 19  ( 1 ) &quot;*&quot;    &quot; &quot;     &quot;*&quot;      &quot; &quot;    &quot;*&quot;      &quot;*&quot;     
+## 20  ( 1 ) &quot;*&quot;    &quot; &quot;     &quot;*&quot;      &quot; &quot;    &quot;*&quot;      &quot;*&quot;     
+## 21  ( 1 ) &quot;*&quot;    &quot; &quot;     &quot;*&quot;      &quot;*&quot;    &quot;*&quot;      &quot;*&quot;     
+## 22  ( 1 ) &quot;*&quot;    &quot;*&quot;     &quot;*&quot;      &quot;*&quot;    &quot;*&quot;      &quot;*&quot;     
+## 23  ( 1 ) &quot;*&quot;    &quot;*&quot;     &quot;*&quot;      &quot;*&quot;    &quot;*&quot;      &quot;*&quot;     
+## 24  ( 1 ) &quot;*&quot;    &quot;*&quot;     &quot;*&quot;      &quot;*&quot;    &quot;*&quot;      &quot;*&quot;</code></pre>
+<pre class="r"><code>p2=rowSums(regfit2.sum$which)
+adjr22=regfit2.sum$adjr2
+cp2=regfit2.sum$cp
+rss2=regfit2.sum$rss
+AIC2=n*log(rss2/n)+2*p2
+BIC2=n*log(rss2/n)+(p2)*log(n2)
+table2 &lt;- cbind(p2,rss2,adjr22,cp2,AIC2,BIC2)
+minAIC2 = min(AIC2)
+minBIC2 = min(BIC2)
+maxAdjr22 = max(adjr22)
+minCP2 = min(cp2)
+table2</code></pre>
+<pre><code>##    p2     rss2    adjr22          cp2    AIC2    BIC2
+## 1   2 65757719 0.5743071 160337.27832 3394036 3394059
+## 2   3 58105765 0.6238421 102734.30577 3299869 3299904
+## 3   4 48917280 0.6833245  33564.10742 3168844 3168890
+## 4   5 47658050 0.6914754  24086.45015 3148995 3149053
+## 5   6 46741468 0.6974082  17188.28738 3134215 3134284
+## 6   7 46017974 0.7020910  11743.72617 3122343 3122423
+## 7   8 45508318 0.7053895   7908.96160 3113867 3113960
+## 8   9 45158857 0.7076510   5280.17207 3108001 3108105
+## 9  10 44939513 0.7090701   3630.91788 3104297 3104413
+## 10 11 44817358 0.7098600   2713.31956 3102227 3102354
+## 11 12 44703231 0.7105980   1856.15686 3100288 3100427
+## 12 13 44628220 0.7110828   1293.46122 3099012 3099162
+## 13 14 44594705 0.7112989   1043.15962 3098442 3098604
+## 14 15 44542902 0.7116334    655.18162 3097560 3097733
+## 15 16 44505579 0.7118741    376.20288 3096923 3097108
+## 16 17 44493073 0.7119542    284.05500 3096712 3096908
+## 17 18 44485111 0.7120049    226.11722 3096577 3096785
+## 18 19 44474178 0.7120748    145.81167 3096392 3096612
+## 19 20 44461229 0.7121578     50.32989 3096173 3096403
+## 20 21 44459100 0.7121707     36.30161 3096138 3096381
+## 21 22 44457346 0.7121812     25.09805 3096110 3096364
+## 22 23 44456576 0.7121854     21.30181 3096099 3096364
+## 23 24 44456415 0.7121855     22.09377 3096098 3096375
+## 24 25 44456403 0.7121848     24.00000 3096100 3096389</code></pre>
+<p>This second look tells us that some variables such as TRAINTIME or the time to take the train to work, CLASSWKRD or the type of job worked, are very strong predictors of the amount of time spent each week working. TRAINTIME consistently is a valued predictor where as more predictors are added CLASSWKRD loses some relivence. Therefore I will add TRAINTIME into the current model.</p>
 </div>
 
 

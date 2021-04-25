@@ -11,5 +11,126 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Intro
   
-I had the following question "How has the American work life balance changed in regards to income, marriage rates, and kids or dependents?". Before veiwing or exploring the data i belive that work life balence is very dependant on those 3 variables. To explore the data I will fit several models and created related plots for income, marriage rates, and kids or dependents in regards to work life balence. Then I will inspect each variable on its own against work life. And lastly i will investigate if these actually were the most relivent variables and repeat anything that needs to be redone based on those findings.  
+I had the following question "How has the American work life balance changed in regards to income, marriage rates, and kids or dependents?". Before viewing or exploring the data i believe that work life balance is very dependent on those 3 variables. To explore the data I will fit several models and created related plots for income, marriage rates, and kids or dependents in regards to work life balance. Then I will inspect each variable on its own against work life. And lastly i will investigate if these actually were the most relevant variables and repeat anything that needs to be redone based on those findings.  
+
+### Exploration
+
+```{r setup2, include=FALSE}
+library(glmnet)
+library(ISLR)
+library(leaps)
+library(dplyr)
+library(car)
+library(ggplot2)
+library(ipumsr)
+ddi <- read_ipums_ddi("usa_00002.xml")
+data <- read_ipums_micro(ddi)
+data2 <- data %>%
+  select(UHRSWORK, NCHILD, INCTOT, FTOTINC,MARST, YEAR) %>%
+  rename(hours = UHRSWORK,
+         dependants = NCHILD,
+         incomesolo = INCTOT,
+         incomefamily = FTOTINC,
+         marrital = MARST,
+         year = YEAR)
+data2 <- na.omit(data2)
+data2$married <- ifelse(data2$marrital<=2, 1, 0) # 1 married, 0 not married
+data2
+```
+
+```{r Explore1}
+model0 <- lm(hours~., data = data2)
+summary(model0)
+
+
+```
+
+```{r Explore2}
+n=dim(data2)[1]
+regfit = regsubsets(hours~., data=data2, nbest=1, nvmax=9)
+regfit.sum = summary(regfit)
+regfit.sum
+p=rowSums(regfit.sum$which)
+adjr2=regfit.sum$adjr2
+cp=regfit.sum$cp
+rss=regfit.sum$rss
+AIC=n*log(rss/n)+2*p
+BIC=n*log(rss/n)+(p)*log(n)
+table <- cbind(p,rss,adjr2,cp,AIC,BIC)
+minAIC = min(AIC)
+minBIC = min(BIC)
+maxAdjr2 = max(adjr2)
+minCP = min(cp)
+table
+minAIC
+minBIC
+maxAdjr2
+minCP
+```
+AIC - 6  
+BIC - 6  
+$R^2$ - 6 
+CP - 6  
+what this tells me is that all 6 of the current variables are incredibly important predictors of Hours worked, but we still don't know if they are the best of _all_ the variables available.  
+
+```{r explore 3}
+n2=dim(data)[1]
+regfit2 = regsubsets(UHRSWORK~., data=data, nbest=1, nvmax=24)
+regfit2.sum = summary(regfit2)
+regfit2.sum
+p2=rowSums(regfit2.sum$which)
+adjr22=regfit2.sum$adjr2
+cp2=regfit2.sum$cp
+rss2=regfit2.sum$rss
+AIC2=n*log(rss2/n)+2*p2
+BIC2=n*log(rss2/n)+(p2)*log(n2)
+table2 <- cbind(p2,rss2,adjr22,cp2,AIC2,BIC2)
+minAIC2 = min(AIC2)
+minBIC2 = min(BIC2)
+maxAdjr22 = max(adjr22)
+minCP2 = min(cp2)
+table2
+```
+This second look tells us that some variables such as TRAINTIME or the time to take the train to work, CLASSWKRD or the type of job worked, are very strong predictors of the amount of time spent each week working. TRAINTIME consistently is a valued predictor where as more predictors are added CLASSWKRD loses some relivence. Therefore I will add TRAINTIME into the current model.  
+
+```{r modelupdate, include=FALSE}
+data2 <- data %>%
+  select(UHRSWORK, NCHILD, INCTOT, FTOTINC,MARST, YEAR, TRANTIME) %>%
+  rename(hours = UHRSWORK,
+         dependants = NCHILD,
+         incomesolo = INCTOT,
+         incomefamily = FTOTINC,
+         marrital = MARST,
+         year = YEAR,
+         traintime = TRANTIME)
+data2 <- na.omit(data2)
+data2$married <- ifelse(data2$marrital<=2, 1, 0) # 1 married, 0 not married
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
