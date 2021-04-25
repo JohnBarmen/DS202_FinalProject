@@ -38,8 +38,8 @@ library(data.table)
 ```{r}
 tbl <- data %>% 
   filter(EMPSTAT == 1) %>% 
-  group_by(SEX) %>% 
-  mutate(SEX = if_else(SEX==1, "Male", "Female")) %>% 
+   mutate(Sex = if_else(SEX==1, "Male", "Female")) %>% 
+  group_by(Sex) %>% 
   summarise("Average Hours per Week" = mean(UHRSWORK), "Average Travel Time" = mean(TRANTIME))
 formattable(tbl)
 
@@ -55,8 +55,8 @@ p_hours <- data %>%
   filter(EMPSTAT == 1) %>% 
   group_by(YEAR, SEX) %>% 
   summarise("Average Hours per Week" = mean(UHRSWORK), "Average Travel Time" = mean(TRANTIME)) %>% 
-  ggplot(aes(x=YEAR, y=`Average Hours per Week`, color= as.factor(SEX))) + geom_line() + labs(title = "Average Workweek by Sex over Time", x = "Year") + 
-  scale_color_manual(name="Sex", labels = c("Male","Female"), values=c('Blue','Pink'))
+  ggplot(aes(x=YEAR, y=`Average Hours per Week`, color= as.factor(SEX))) + geom_line() + labs(title = "Average Workweek by Sex over Time", x = "Year", y= "Average Hours/Week") +
+  scale_color_manual(name="Sex", labels = c("Male","Female"), values=c('steelblue1','Pink'))
 p_hours
 ```
 
@@ -69,7 +69,7 @@ p_travel <- data %>%
   filter(EMPSTAT == 1) %>% 
   group_by(YEAR, SEX) %>% 
   summarise("Average Hours per Week" = mean(UHRSWORK), "Average Travel Time" = mean(TRANTIME)) %>% 
-  ggplot(aes(x=YEAR, y=`Average Travel Time`, color= as.factor(SEX))) + geom_line() + labs(title = "Average Workweek by Sex over Time", x = "Year") + scale_color_manual(name="Sex",labels = c("Male", "Female"), values=c('Blue','Pink'))
+  ggplot(aes(x=YEAR, y=`Average Travel Time`, color= as.factor(SEX))) + geom_line() + labs(title = "Average Commute by Sex over Time", x = "Year") + scale_color_manual(name="Sex",labels = c("Male", "Female"), values=c('steelblue1','Pink'))
 p_travel
 ```
 
@@ -94,7 +94,7 @@ data %>%
   group_by(SEX, CLASSWKR) %>% 
    mutate(CLASSWKR = if_else(CLASSWKR==1, "Self-Employed", "Works for Wages")) %>%
   summarise(Count = n()) %>% 
-  ggplot(aes(x=as.factor(CLASSWKR), weight = Count, fill= as.factor(SEX))) + geom_bar(position = "dodge") + labs(title = "Work Type by Sex", x = "Type of Work", y = "Count") + scale_fill_manual(name="Sex",labels = c("Male", "Female"), values=c('Blue','Pink')) 
+  ggplot(aes(x=as.factor(CLASSWKR), weight = Count, fill= as.factor(SEX))) + geom_bar(position = "dodge") + labs(title = "Work Type by Sex", x = "Type of Work", y = "Count") + scale_fill_manual(name="Sex",labels = c("Male", "Female"), values=c('steelblue1','Pink')) 
   
 ```
 
