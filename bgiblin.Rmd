@@ -1,0 +1,121 @@
+---
+title: 'Final Project'
+author: "Braedon Giblin"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readxl)
+library(tidyr)
+library(dplyr)
+library(tidyverse)
+library(ggplot2)
+library(ggthemes)
+library(ipumsr)
+
+
+ddi <- read_ipums_ddi("usa_00002.xml")
+data <- read_ipums_micro(ddi)
+info <- ddi$var_info
+
+```
+
+1.  How many hours per week do Americans work? Has this changed over time?
+
+    Answer:
+    ```{r}
+    data %>%
+      filter(CLASSWKR > 0) %>%
+      mutate(UHRSWORK = ifelse(YEAR == 2000, UHRSWORK / 2, UHRSWORK)) %>%
+      ggplot(aes(x=YEAR, y=UHRSWORK)) + geom_bar(fill = "deepskyblue", stat="identity") +
+      labs(x="Year", y= "Total Hours Worked per week", title="Hours of Work Per Week per Year") +
+      geom_vline(xintercept=2009, color="red") +
+      annotate("label", x=2008, y=7.5e5, label="Great Recession", hjust=0, fill="red", color="white")
+    ```
+    
+    Answer:
+    ```{r}
+    data %>%
+      filter(CLASSWKR > 0) %>%
+      group_by(YEAR) %>%
+      summarise(UHRSWORK = mean(UHRSWORK)) %>%
+      ggplot(aes(x=YEAR, y=UHRSWORK)) + geom_bar(fill = "deepskyblue", stat="identity") +
+      labs(x="Year", y= "Average Hours Worked per week", title="Average Hours of Work Per Week per Year") +
+      geom_vline(xintercept=2009, color="red") +
+      annotate("label", x=2008, y=40, label="Great Recession", hjust=0, fill="red", color="white")
+    ```
+    
+    
+2.  How does type of Job impact commmute and hours worked
+
+    Answer:
+    ```{r}
+    data %>%
+      filter(CLASSWKRD > 0) %>%
+      ggplot(aes(x=as_factor(CLASSWKRD))) + geom_bar(fill="deepskyblue") + theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+      labs(x="Job type", y= "Quantity", title="Distribution of Job Types")
+      
+    ```
+    
+    
+    
+    ```{r}
+    data %>%
+      filter(CLASSWKR > 0) %>%
+      mutate(CLASSWKRD = as_factor(CLASSWKRD)) %>%
+      group_by(CLASSWKRD) %>%
+      add_tally() %>%
+      summarise(UHRSWORK = mean(UHRSWORK),
+                n = mean(n)) %>%
+      ggplot(aes(x=CLASSWKRD, y=n, fill=UHRSWORK)) + geom_bar(stat = "identity") +
+      labs(x="Job type", y= "Average Hours Worked per week per job type", title="Hours Worked per job", fill="Hours worked per week") +
+      theme(axis.text.x = element_text(angle = 45, hjust = 1))
+      
+    
+    ```
+    
+    
+    Federal government employees and Self-Employed Inc. Employees work the most. This is reasonable because federal employees almost always are required to work 40 hours a week. Similarly, self employeed incorporated employees must work as much as necessary to keep there business afloat. If their business is not incorporated, then the business is likely not their primary source of income and therefore they work less. Unpaid family members work the least because they are not being payed for their work. 
+    
+    
+    
+    ```{r}
+    data %>%
+      filter(CLASSWKR > 0) %>%
+      mutate(CLASSWKRD = as_factor(CLASSWKRD)) %>%
+      group_by(YEAR, CLASSWKRD) %>%
+      tally() %>%
+      mutate(n = n / sum(n)) %>%
+      ungroup() %>%
+      ggplot(aes(x=YEAR, y=n * 100, group=CLASSWKRD, color=CLASSWKRD)) + geom_line()
+    ```
+    
+    
+    ```{r}
+    data %>%
+      filter(CLASSWKR > 0) %>%
+      mutate(CLASSWKRD = as_factor(CLASSWKRD)) %>%
+      group_by(YEAR, CLASSWKRD) %>%
+      tally() %>%
+      mutate(n = n / sum(n)) %>%
+      ungroup() %>%
+      ggplot(aes(x=YEAR, y=n * 100, group=CLASSWKRD, color=CLASSWKRD)) + geom_line()
+    ```
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

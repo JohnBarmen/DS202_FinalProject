@@ -1,0 +1,300 @@
+var_name,var_label,var_desc,code_instr,start,end,imp_decim,var_type,rectypes
+YEAR,Census year,"YEAR reports the four-digit year when the household was enumerated or included in the census, the ACS, and the PRCS.
+
+For the multi-year ACS/PRCS samples, YEAR indicates the last year of data included (e.g., 2007 for the 2005-2007 3-year ACS/PRCS; 2008 for the 2006-2008 3-year ACS/PRCS; and so on).  For the actual year of survey in these multi-year data, see MULTYEAR.",NA,1,4,0,integer,NA
+SERIAL,Household serial number,"SERIAL is an identifying number unique to each household record in a given sample. All person records are assigned the same serial number as the household record that they follow. (Person records also have their own unique identifiers - see PERNUM.) A combination of SAMPLE and SERIAL provides a unique identifier for every household in the IPUMS; the combination of SAMPLE, SERIAL, and PERNUM uniquely identifies every person in the database.
+
+For 1850-1930, households that are part of a multi-household dwelling can be identified by using the DWELLING and DWSEQ variables. See ""Sample Designs"" for further discussion of sampling from within multi-household dwellings.","CodesSERIAL is an 8-digit numeric variable which assigns a unique identification number to each household record in a given sample (See PERNUM for the analogous person record identifier). A combination of SAMPLE and SERIAL provides a unique identifier for every household in the IPUMS; the combination of SAMPLE, SERIAL, and PERNUM uniquely identifies every person in the database. SERIAL specific variable codes for missing, edited, or unidentified observations, observations not applicable (N/A), observations not in universe (NIU), top and bottom value coding, etc. are provided below if applicable by Census year (and data sample if specified).
+
+SERIAL Specific Variable Codes",5,12,0,numeric,NA
+HHWT,Household weight,"HHWT indicates how many households in the U.S. population are represented by a given household in an IPUMS sample. 
+
+It is generally a good idea to use HHWT when conducting a household-level analysis of any IPUMS sample. The use of HHWT is optional when analyzing one of the ""flat"" or unweighted IPUMS samples. Flat IPUMS samples include the 1% samples from 1850-1930, all samples from 1960, 1970, and 1980, the 1% unweighted samples from 1990 and 2000, the 10% 2010 sample, and any of the full count 100% census datasets. HHWT must be used to obtain nationally representative statistics for household-level analyses of any sample other than those.
+
+Users should also be sure to select one person (e.g., PERNUM = 1) to represent the entire household.
+
+For further explanation of the sample weights, see ""Sample Designs"" and ""Sample Weights"". See also PERWT for a corresponding variable at the person level, and SLWT for a weight variable used with sample-line records in 1940 1% and 1950.","CodesHHWT is a 6-digit numeric variable which indicates how many households in the U.S. population are represented by a given household in an IPUMS sample and has two implied decimals. For example, a HHWT value of 010461 should be interpreted as 104.61. HHWT specific variable codes for missing, edited, or unidentified observations, observations not applicable (N/A), observations not in universe (NIU), top and bottom value coding, etc. are provided below if applicable by Census year (and data sample if specified).
+
+User Note: Users should also be sure to select one person (e.g., PERNUM = 1) to represent the entire household when using HHWT.
+
+HHWT Specific Variable Codes",13,22,2,numeric,NA
+CLUSTER,Household cluster for variance estimation,CLUSTER is designed for use with STRATA in Taylor series linear approximation for correction of complex sample design characteristics. See the STRATA variable description for more details.,"CodesCLUSTER is an 11-digit numeric variable designed for use with STRATA in Taylor series linear approximation for correction of complex sample design characteristics (See the Description of STRATA for more details). CLUSTER specific variable codes for missing, edited, or unidentified observations, observations not applicable (N/A), observations not in universe (NIU), top and bottom value coding, etc. are provided below if applicable by Census year (and data sample if specified).
+
+CLUSTER Specific Variable Codes",23,35,0,numeric,NA
+STRATA,Household strata for variance estimation,"STRATA is designed for use with CLUSTER in Taylor series linear approximation for correction of complex sample design characteristics.
+
+While appropriate use of the sampling weights PERWT and HHWT allow users to produce correct point estimates (such as means and proportions), many researchers believe that additional statistical techniques are also necessary to produce correct standard errors and statistical tests that account for complex sample design. 
+
+For further information on why and how to use STRATA and CLUSTER, see  Analysis and Variance Estimation with the IPUMS . For more details on the mathematics behind this method, see  Issues Concerning the Calculation of Standard Errors Using IPUMS Data Products .","CodesSTRATA is a 12-digit numeric variable designed for use with CLUSTER in Taylor series linear approximation for correction of complex sample design characteristics. While appropriate use of the sampling weights PERWT and HHWT allow users to produce correct point estimates (such as means and proportions), many researchers believe that additional statistical techniques are also necessary to produce correct standard errors and statistical tests that account for complex sample design. STRATA specific variable codes for missing, edited, or unidentified observations, observations not applicable (N/A), observations not in universe (NIU), top and bottom value coding, etc. are provided below if applicable by Census year (and data sample if specified).
+
+User Note: For further information on why and how to use STRATA and CLUSTER, see Analysis and Variance Estimation with the IPUMS. For more details on the mathematics behind this method, see Issues Concerning the Calculation of Standard Errors Using IPUMS Data Products.  
+
+STRATA Specific Variable Codes",36,47,0,numeric,NA
+OWNERSHP,Ownership of dwelling (tenure) [general version],"OWNERSHP indicates whether the housing unit was rented or owned by its inhabitants. Housing units acquired with a mortgage or other lending arrangement(s) are classified as ""owned,"" even if repayment was not yet completed.",NA,48,48,0,integer,NA
+OWNERSHPD,Ownership of dwelling (tenure) [detailed version],"OWNERSHP indicates whether the housing unit was rented or owned by its inhabitants. Housing units acquired with a mortgage or other lending arrangement(s) are classified as ""owned,"" even if repayment was not yet completed.",NA,49,50,0,integer,NA
+MORTGAGE,Mortgage status,"MORTGAGE indicates whether an owner-occupied housing unit was owned free and clear or was encumbered by a mortgage, loan, or other type of debt. (See also OWNERSHP.)",NA,51,51,0,integer,NA
+VALUEH,House value,"VALUEH reports the value of housing units in contemporary dollars. For 1930, 1940, and from 2008 onward, VALUEH is a continuous variable. The other years report the midpoint of an interval; see codes and frequencies for intervals.
+
+User Note: Universe shifts and changing methods of determining value complicate use of this variable for comparisons across years. Furthermore, dollar amounts were intervalled differently for each year, and the top codes changed. Users must adjust for the effects of inflation; see INCTOT for Consumer Price Index adjustment factors.
+
+User Note: The traditional unit of land area in Puerto Rico is the cuerda. The cuerda is equal to about 3930 square meters, 4700 square yards, or 0.971 acres. Because the cuerda and the acre are so close to being equal, they are often treated informally as being equal. Mainlanders sometimes call the unit the ""Spanish Acre."" The IPUMS has preserved the units for the mainland U.S. as acres and Puerto Rico as cuerdas.","CodesVALUEH is a 7-digit numeric code which reports the value of housing units in contemporary dollars. For 1930, 1940, and 2008 onward samples, VALUEH is a continuous variable. Other years report the midpoint of an interval.
+
+VALUEH specific variable codes for missing, edited, or unidentified observations, observations not applicable (N/A), observations not in universe (NIU), top and bottom value coding, etc. are provided below by Census year (and data sample if specified).
+
+User Note: Amounts are expressed in contemporary dollars, and users studying change over time must adjust for inflation. Further, universe shifts and changing methods of determining value complicate use of this variable for comparisons across years (See Description).
+
+VALUEH Specific Variable Codes
+0000000 = N/A (1930)
+9999998 = Missing (1940 100%)
+9999999 = Missing (1930), N/A (1940-2000, ACS, and PRCS)
+
+
+* .indent {
+  text-indent: 10px;
+}
+
+
+* .lrgindent {
+  text-indent: 90px;
+}
+
+
+
+	
+		VALUEH
+	
+		Census 
+		Top Code
+	
+		1960
+		$35,000
+	
+		1970 (US)
+		$50,000
+	
+		1970 (PR)
+		$30,000
+	
+		1980 (US)
+		$200,000
+	
+		1980 (PR)
+		$100,000
+	
+		1990 (US)
+		$400,000
+	
+		2000
+		$1,000,000
+	
+		ACS (2000-2007)
+		$1,000,000
+	
+		&nbsp;PRCS (2000-2007)
+		$1,000,000
+	
+	
+	
+	",52,58,0,numeric,NA
+PERNUM,Person number in sample unit,"PERNUM numbers all persons within each household consecutively in the order in which they appear on the original census or survey form. When combined with SAMPLE and SERIAL, PERNUM uniquely identifies each person within the IPUMS.","CodesPERNUM is a 4-digit numeric variable which numbers all persons within each household consecutively in the order in which they appear on the original census or survey form. PERNUM specific variable codes for missing, edited, or unidentified observations, observations not applicable (N/A), observations not in universe (NIU), top and bottom value coding, etc. are provided below if applicable by Census year (and data sample if specified).",59,62,0,numeric,NA
+PERWT,Person weight,"PERWT indicates how many persons in the U.S. population are represented by a given person in an IPUMS sample. 
+
+It is generally a good idea to use PERWT when conducting a person-level analysis of any IPUMS sample. The use of PERWT is optional when analyzing one of the ""flat"" or unweighted IPUMS samples. Flat IPUMS samples include the 1% samples from 1850-1930, all samples from 1960, 1970, and 1980, the 1% unweighted samples from 1990 and 2000, the 10% 2010 sample, and any of the full count 100% census datasets. PERWT must be used to obtain nationally representative statistics for person-level analyses of any sample other than those.
+
+For further explanation of the sample weights, see ""Sample Designs"" and ""Sample Weights"". See also HHWT for a corresponding variable at the household level, and SLWT for a weight variable used with sample-line records in 1940 and 1950.","CodesPERWT is a 6-digit numeric variable which indicates how many persons in the U.S. population are represented by a given person in an IPUMS sample and has two implied decimals. For example, a PERWT value of 010461 should be interpreted as 104.61. PERWT specific variable codes for missing, edited, or unidentified observations, observations not applicable (N/A), observations not in universe (NIU), top and bottom value coding, etc. are provided below if applicable by Census year (and data sample if specified).
+
+PERWT Specific Variable Codes",63,72,2,numeric,NA
+NCHILD,Number of own children in the household,"NCHILD counts the number of own children (of any age or marital status) residing with each individual. NCHILD includes step-children and adopted children as well as biological children. Persons with no children present are coded ""0.""",NA,73,73,0,integer,NA
+SEX,Sex,SEX reports whether the person was male or female.,NA,74,74,0,integer,NA
+AGE,Age,"AGE reports the person's age in years as of the last birthday.
+
+Please see the Comparability section regarding a known Universe issue with AGE and AGEORIG which effects EMPSTAT and LABFORCE for the 2004 ACS Sample.",NA,75,77,0,integer,NA
+MARST,Marital status,MARST gives each person's current marital status.,NA,78,78,0,integer,NA
+EMPSTAT,Employment status [general version],"EMPSTAT indicates whether the respondent was a part of the labor force -- working or seeking work -- and, if so, whether the person was currently unemployed. The second digit preserves additional related information available for some years but not others. See LABFORCE for a dichotomous variable that identifies whether a person participated in the labor force or not and is available for all years in the IPUMS.",NA,79,79,0,integer,NA
+EMPSTATD,Employment status [detailed version],"EMPSTAT indicates whether the respondent was a part of the labor force -- working or seeking work -- and, if so, whether the person was currently unemployed. The second digit preserves additional related information available for some years but not others. See LABFORCE for a dichotomous variable that identifies whether a person participated in the labor force or not and is available for all years in the IPUMS.",NA,80,81,0,integer,NA
+CLASSWKR,Class of worker [general version],"CLASSWKR indicates whether respondents worked for their own enterprise(s) or for someone else as employees. Workers with multiple sources of employment were classified according to the work relationship in which they spent the most time during the reference day or week. As described below, CLASSWKR contains other related information in most years.",NA,82,82,0,integer,NA
+CLASSWKRD,Class of worker [detailed version],"CLASSWKR indicates whether respondents worked for their own enterprise(s) or for someone else as employees. Workers with multiple sources of employment were classified according to the work relationship in which they spent the most time during the reference day or week. As described below, CLASSWKR contains other related information in most years.",NA,83,84,0,integer,NA
+UHRSWORK,Usual hours worked per week,"UHRSWORK reports the number of hours per week that the respondent usually worked, if the person worked during the previous year. The census inquiry relates to the previous calendar year, while the ACS and the PRCS uses the previous 12 months as the reference period.",NA,85,86,0,integer,NA
+INCTOT,Total personal income,"INCTOT reports each respondent's total pre-tax personal income or losses from all sources for the previous year. The censuses collected information on income received from these sources during the previous calendar year; for the ACS and the PRCS, the reference period was the past 12 months. Amounts are expressed in contemporary dollars, and users studying change over time must adjust for inflation:
+
+Users studying change over time must adjust for inflation. Consumer Price Index adjustment factors for the appropriate years can be found in the CPI99 variable.
+
+The exception is the ACS/PRCS multi-year files, where all dollar amounts have been standardized to dollars as valued in the final year of data included in the file (e.g., 2007 dollars for the 2005-2007 3-year file). Additionally, more detail may be available than exists in the original ACS samples.
+
+User Note: ACS respondents are surveyed throughout the year, and amounts do not reflect calendar year dollars. While the Census Bureau provides an adjustment factor (available in ADJUST), this is an imperfect solution. See the ACS income variables note for further details.
+
+For a more complete discussion of the use of these factors to adjust for inflation, users may wish to see the IPUMS-CPS note on adjusting dollar amount variables for inflation.","CodesINCTOT is a 7-digit numeric code reporting each respondent's total pre-tax personal income or losses from all sources for the previous year. INCTOT specific variable codes for missing, edited, or unidentified observations, observations not applicable (N/A), observations not in universe (NIU), top and bottom value coding, etc. are provided below by Census year (and data sample if specified).
+
+User Note: Users studying change over time must adjust for inflation (See Description).
+
+INCTOT Specific Variable Codes
+-009995 = -$9,900 (1980)
+-000001 = Net loss (1950)
+0000000 = None
+0000001 = $1 or break even (2000, 2005-onward ACS and PRCS)
+9999999 = N/A
+
+
+* .indent {
+  text-indent: 10px;
+}
+
+
+* .lrgindent {
+  text-indent: 90px;
+}
+
+
+
+	
+		INCTOT
+	
+		Census
+		Bottom Code
+		Top Code
+	
+		1950
+		 Net loss
+		$10,000
+	
+		1960
+		-$9,900
+		$25,000
+	
+		1970
+		-$9,900
+		$50,000
+	
+		1980
+		-$9,990
+		$75,000
+	
+		1990
+		-$19,998
+		&nbsp;$400,000*
+	
+		2000
+		-$20,000
+		$999,998
+	
+		ACS
+		-$19,998
+		-
+	
+		PRCS
+		-$19,998
+		-
+	
+
+
+",87,93,0,numeric,NA
+FTOTINC,Total family income,"FTOTINC reports the total pre-tax money income earned by one's family (as defined by FAMUNIT) from all sources for the previous year. For the census samples, the reference period is the previous calendar year; for the ACS/PRCS, it is the previous 12 months. 
+
+For 1950-1980, the amounts represent the midpoints of $10, $100, or other intervals used by each year's sample, not exact dollar amounts. 1990 gives exact dollar amounts. For the 2000 census, the ACS and the PRCS, FTOTINC is the sum of several income variables, each of which is rounded as follows:
+
+
+  
+    
+      No income 
+      $0  
+    
+    
+      &nbsp;$1 - $7 &nbsp;
+      $4  
+    
+    
+      &nbsp;$8 - $999 &nbsp;
+      rounded to nearest $10  
+    
+    
+	  &nbsp;$1,000 - $49,999 &nbsp;
+	  rounded to nearest $100  
+    
+    
+	  &nbsp;$50,000 or more &nbsp;
+	  rounded to nearest $1000 
+    
+    
+
+","CodesFTOTINC is a 7-digit numeric code reporting the total pre-tax money income earned by one's family (as defined by FAMUNIT) from all sources for the previous year. FTOTINC specific variable codes for missing, edited, or unidentified observations, observations not applicable (N/A), observations not in universe (NIU), top and bottom value coding, etc. are provided below by Census year (and data sample if specified).
+
+User Note: Amounts are expressed in contemporary dollars, and users studying change over time must adjust for inflation (See Description).
+
+FTOTINC Specific Variable Codes
+-000001 = Net loss (1950) 
+0000000 = No income (1950-2000, ACS/PRCS) 
+9999998 = Not ascertained (1950) 
+9999999 = N/A 
+
+
+* .indent {
+  text-indent: 10px;
+}
+
+
+* .lrgindent {
+  text-indent: 90px;
+}
+
+
+
+	
+		FTOTINC
+	
+		Census
+		Bottom Code
+		Top Code
+	
+		1950
+		Net loss
+		$10,000
+	
+		1960
+		-$9,990
+		$25,000
+	
+		1970
+		-$9,990
+		$50,000
+	
+		1980
+		-$9,995
+		$75,000
+	
+		1990
+		&nbsp;By State*
+		&nbsp;By State*
+	
+		2000
+		-$59,999
+		-
+	
+		ACS
+		-
+		-
+	
+		PRCS
+		-
+		-
+	
+
+
+",94,100,0,numeric,NA
+PWSTATE2,Place of work: state,"PWSTATE2 reports the state in which the respondent's primary workplace was located. If the person worked abroad, this is also indicated. In some cases, the state is not identified, such as in the 1980 Puerto Rico census (see below).
+
+In 1980, responses to questions about workplace location were coded for only half the persons in the IPUMS. These cases yield representative proportional distributions but not correct absolute numbers for the general population. To generate accurate absolute numbers for 1980, users should select cases coded as 2 in MIGSAMP and multiply by 2 as well as by PERWT.",NA,101,102,0,integer,NA
+PWCITY,Place of work: city,"PWCITY identifies the city in which the respondent worked in the week prior to the census. IPUMS constructs PWCITY from PWCNTYGP in 1980, from PWPUMA in 1990, and from PWPUMA00 in 2000 and in the 2005-2011 ACS samples.  Differing confidentiality restrictions and coding procedures limit the identifiable cities over time. (See CITY for details on limitations in identifying cities.)
+
+In all years, many large cities cannot be identified. In 1990, 2000, and 2005-2011, a number of cities identified in CITY are not available in PWCITY. This is because, for these samples, CITY is based on PUMAs while PWCITY is based on coarser ""Place-of-Work PUMAs,"" which correspond to one or more PUMAs.
+
+In 1980, responses to questions about workplace location were coded for only half the persons included in IPUMS USA. These cases provide representative proportional distributions but not accurate absolute numbers for the population as a whole. To generate accurate absolute numbers, users should select cases coded as 2 in MIGSAMP and multiply by 2 as well as by PERWT.",NA,103,106,0,integer,NA
+TRANWORK,Means of transportation to work,"TRANWORK reports the respondent's primary means of transportation to work on the most recent day worked (1970), or over the course of the previous week (the 1960 and 1980-2000 censuses, the ACS, and the PRCS). The primary means of transportation was that used on the most days or to cover the greatest distance.",NA,107,108,0,integer,NA
+TRANTIME,Travel time to work,"TRANTIME reports the total amount of time, in minutes, that it usually took the respondent to get from home to work last week.
+
+In 1980, responses to questions about travel time to work were coded for only half the persons included in the IPUMS. These cases provide accurate proportional distributions but not correct absolute numbers for the general population. For correct absolute numbers, users should select cases coded as 2 in MIGSAMP and multiply by 2 as well as by PERWT.","CodesTRANTIME is a 3-digit numeric variable reporting the total amount of time, in minutes, that it usually took the respondent to get from home to work last week. TRANTIME specific variable codes for missing, edited, or unidentified observations, observations not applicable (N/A), observations not in universe (NIU), top and bottom value coding, etc. are provided below by Census year (and data sample if specified).
+
+TRANTIME Specific Variable Codes
+000 = N/A 
+
+		
+Top codes:Values Exceeding Top codes, by State: 2003 - onward",109,111,0,numeric,NA
