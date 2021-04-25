@@ -1,0 +1,15 @@
+---
+title: "Project"
+author: "John Barmen"
+date: "4/25/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Intro
+  
+I had the following question "How has the American work life balance changed in regards to income, marriage rates, and kids or dependents?". Before veiwing or exploring the data i belive that work life balence is very dependant on those 3 variables. To explore the data I will fit several models and created related plots for income, marriage rates, and kids or dependents in regards to work life balence. Then I will inspect each variable on its own against work life. And lastly i will investigate if these actually were the most relivent variables and repeat anything that needs to be redone based on those findings.  
+
