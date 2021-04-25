@@ -1,0 +1,146 @@
+---
+title: "Final_Project"
+author: "Yufei Huang"
+date: "2021/4/22"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+### Library
+```{r}
+library(ipumsr)
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+library(leaps)
+library(car)
+
+ddi <- read_ipums_ddi("usa_00002.xml")
+data <- read_ipums_micro(ddi)
+info <- ddi$var_info
+info
+
+head(data)
+```
+
+
+1) What variables in our data set are significantly changed overtime when we predict income or family income?
+a. divide data into 4 different time lines
+```{r}
+year80s = data %>%
+  filter(YEAR == c(1980,1981,1982,1983,1984,1985,1986,1987,1988,1989))
+
+year90s = data %>%
+  filter(YEAR == c(1990,1991,1992,1993,1994,1995,1996,1997,1998,1999))
+
+year00s = data %>%
+  filter(YEAR == c(2000,2001,2002,2003,2004,2005,2006,2007,2008,2009))
+
+year10s = data %>%
+  filter(YEAR == c(2010,2011,2012,2013,2014,2015,2016,2017,2018,2019))
+```
+
+attempt 1
+```{r}
+income.fit80 = lm(FTOTINC~SEX+AGE+MARST+EMPSTAT+CLASSWKR+UHRSWORK+PWSTATE2+PWCITY+TRANWORK+TRANTIME, data = year80s)
+summary(income.fit80)
+
+income.fit90 = lm(FTOTINC~SEX+AGE+MARST+EMPSTAT+CLASSWKR+UHRSWORK+PWSTATE2+PWCITY+TRANWORK+TRANTIME, data = year90s)
+summary(income.fit90)
+
+income.fit00 = lm(FTOTINC~SEX+AGE+MARST+EMPSTAT+CLASSWKR+UHRSWORK+PWSTATE2+PWCITY+TRANWORK+TRANTIME, data = year00s)
+summary(income.fit00)
+
+income.fit10 = lm(FTOTINC~SEX+AGE+MARST+EMPSTAT+CLASSWKR+UHRSWORK+PWSTATE2+PWCITY+TRANWORK+TRANTIME, data = year10s)
+summary(income.fit10)
+```
+
+```{r}
+regfit = regsubsets(FTOTINC~SEX+AGE+MARST+EMPSTAT+CLASSWKR+UHRSWORK+PWSTATE2+PWCITY+TRANWORK+TRANTIME,data=year80s,nbest=1,nvmax=15)
+regfit.sum = summary(regfit)
+regfit.sum
+```
+
+```{r}
+regfit2 = regsubsets(FTOTINC~SEX+AGE+MARST+EMPSTAT+CLASSWKR+UHRSWORK+PWSTATE2+PWCITY+TRANWORK+TRANTIME,data=year90s,nbest=1,nvmax=15)
+regfit.sum2 = summary(regfit2)
+regfit.sum2
+```
+
+```{r}
+regfit3 = regsubsets(FTOTINC~SEX+AGE+MARST+EMPSTAT+CLASSWKR+UHRSWORK+PWSTATE2+PWCITY+TRANWORK+TRANTIME,data=year00s,nbest=1,nvmax=15)
+regfit.sum3 = summary(regfit3)
+regfit.sum3
+```
+
+```{r}
+regfit4 = regsubsets(FTOTINC~SEX+AGE+MARST+EMPSTAT+CLASSWKR+UHRSWORK+PWSTATE2+PWCITY+TRANWORK+TRANTIME,data=year10s,nbest=1,nvmax=15)
+regfit.sum4 = summary(regfit4)
+regfit.sum4
+```
+
+```{r}
+frame = data.frame("Variables" = c("SEX","SEX","SEX","SEX","AGE","AGE","AGE","AGE","MARST","MARST","MARST","MARST","EMPSTAT","EMPSTAT","EMPSTAT","EMPSTAT","CLASSWKR","CLASSWKR","CLASSWKR","CLASSWKR","UHRSWORK","UHRSWORK","UHRSWORK","UHRSWORK","PWSTATE2","PWSTATE2","PWSTATE2","PWSTATE2","PWCITY","PWCITY","PWCITY","PWCITY","TRANWORK","TRANWORK","TRANWORK","TRANWORK","TRANTIME","TRANTIME","TRANTIME","TRANTIME"),
+                   "TIME" = c("1980s","1990s","2000s","2010s","1980s","1990s","2000s","2010s","1980s","1990s","2000s","2010s","1980s","1990s","2000s","2010s","1980s","1990s","2000s","2010s","1980s","1990s","2000s","2010s","1980s","1990s","2000s","2010s","1980s","1990s","2000s","2010s","1980s","1990s","2000s","2010s","1980s","1990s","2000s","2010s"),
+                   "P-values" = c(0.00547,0.075393,0.000000000000169,0.0000000982,0.13155,0.262341,0.00000109,0.0000000886,0.0000000000000002,0.00000000000000722,0.0000000000000002,0.0000000000000002,0.0000000000000002,0.0000000025,0.0000000000000002,0.0000000000000002,0.00602,0.041115,0.00389,0.84879,0.08796,0.653650,0.80444,0.26091,0.73778,0.683581,0.30593,0.79777,0.73276,0.080681,0.08121,0.76926,0.0000766,0.000878,0.00000000000424,0.0000000000000477,0.05554,0.068192,0.15066,0.39587))
+
+frame$Variables = as.character(frame$Variables)
+frame$TIME = as.factor(frame$TIME)
+frame$P.values = as.numeric(frame$P.values)
+
+ggplot(frame, aes(x=TIME, y=P.values, group=Variables, color=Variables))+geom_line()+ggtitle("Time Series Plot of Predictors Used for Prediction Family Income")+geom_abline(slope=0,intercept = 0.05)
+```
+
+
+
+2) Are there any changes in the economic center cities and their proportion? Is this related to the changes in their life and work balance? 
+```{r}
+table(year80s$PWCITY)
+
+table(year90s$PWCITY)
+
+table(year00s$PWCITY)
+
+table(year10s$PWCITY)
+
+
+new80s = year80s%>%
+  filter(PWCITY!=0)
+##table(new80s$PWCITY)
+new80s %>%
+  group_by(PWCITY) %>%
+  summarize(meanINC =  mean(INCTOT)) %>%
+  arrange(desc(meanINC))
+
+
+new90s = year90s%>%
+  filter(PWCITY!=0)
+##table(new90s$PWCITY)
+new90s %>%
+  group_by(PWCITY) %>%
+  summarize(meanINC =  mean(INCTOT)) %>%
+  arrange(desc(meanINC))
+
+
+new00s = year00s%>%
+  filter(PWCITY!=0)
+##table(new00s$PWCITY)
+new00s %>%
+  group_by(PWCITY) %>%
+  summarize(meanINC =  mean(INCTOT)) %>%
+  arrange(desc(meanINC))
+
+
+new10s = year10s%>%
+  filter(PWCITY!=0)
+##table(new10s$PWCITY)
+new10s %>%
+  group_by(PWCITY) %>%
+  summarize(meanINC =  mean(INCTOT)) %>%
+  arrange(desc(meanINC))
+```
+
