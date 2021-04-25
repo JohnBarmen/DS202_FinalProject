@@ -1,0 +1,3317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="ipums-ddi-xslt.xsl"?>
+<codeBook ID="ddi2-536cd870-7551-0139-0e99-0242ac1d0003-usa_00002.dat-usa.ipums.org" version="2.5" xmlns="ddi:codebook:2_5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="ddi:codebook:2_5 http://www.ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/codebook.xsd">
+  <docDscr>
+    <citation>
+      <titlStmt>
+        <titl>Codebook for an IPUMS-USA Data Extract</titl>
+        <subTitl>DDI 2.5 metadata describing the extract file  'usa_00002.dat'</subTitl>
+        <IDNo>ddi2-536cd870-7551-0139-0e99-0242ac1d0003-usa_00002.dat-usa.ipums.org</IDNo>
+      </titlStmt>
+      <rspStmt>
+        <AuthEnty affiliation="University of Minnesota">Minnesota Population Center</AuthEnty>
+      </rspStmt>
+      <prodStmt>
+        <producer abbr="MPC" affiliation="University of Minnesota" role="Documentation">Minnesota Population Center</producer>
+        <prodDate date="2021-04-01">April 1, 2021</prodDate>
+        <prodPlac>Minnesota Population Center, 50 Willey Hall, 225 - 19th Avenue South, Minneapolis, MN 55455</prodPlac>
+      </prodStmt>
+      <distStmt>
+        <contact URI="http://pop.umn.edu" affiliation="University of Minnesota">Minnesota Population Center</contact>
+      </distStmt>
+    </citation>
+  </docDscr>
+  <stdyDscr>
+    <citation>
+      <titlStmt>
+        <titl>User Extract usa_00002.dat</titl>
+      </titlStmt>
+      <rspStmt>
+        <AuthEnty affiliation="University of Minnesota">Minnesota Population Center</AuthEnty>
+      </rspStmt>
+      <prodStmt>
+        <producer abbr="MPC" affiliation="University of Minnesota" role="Documentation">Minnesota Population Center</producer>
+        <prodDate date="2021-04-01">April 1, 2021</prodDate>
+        <prodPlac>Minnesota Population Center, 50 Willey Hall, 225 - 19th Avenue South, Minneapolis, MN 55455</prodPlac>
+      </prodStmt>
+      <distStmt>
+        <contact URI="http://pop.umn.edu" affiliation="University of Minnesota">Minnesota Population Center</contact>
+      </distStmt>
+      <serStmt>
+        <serName abbr="usa">IPUMS USA</serName>
+        <serInfo>DOI:10.18128/D010.V11.0</serInfo>
+      </serStmt>
+      <verStmt>
+        <version date="2021-04-01"/>
+      </verStmt>
+    </citation>
+    <stdyInfo>
+      <subject>
+        <topcClas vocab="IPUMS">Technical Variables -- HOUSEHOLD</topcClas>
+        <topcClas vocab="IPUMS">Economic Characteristic Variables -- HOUSEHOLD</topcClas>
+        <topcClas vocab="IPUMS">Technical Variables -- PERSON</topcClas>
+        <topcClas vocab="IPUMS">Family Interrelationship Variables -- PERSON</topcClas>
+        <topcClas vocab="IPUMS">Demographic Variables -- PERSON</topcClas>
+        <topcClas vocab="IPUMS">Work Variables -- PERSON</topcClas>
+        <topcClas vocab="IPUMS">Income Variables -- PERSON</topcClas>
+        <topcClas vocab="IPUMS">Place of Work and Travel Time Variables -- PERSON</topcClas>
+      </subject>
+      <sumDscr ID="sdatref-2595">
+        <timePrd date="1980" event="single">1980</timePrd>
+        <nation abbr="us">United States</nation>
+      </sumDscr>
+      <sumDscr ID="sdatref-2604">
+        <timePrd date="1990" event="single">1990</timePrd>
+        <nation abbr="us">United States</nation>
+      </sumDscr>
+      <sumDscr ID="sdatref-2612">
+        <timePrd date="2000" event="single">2000</timePrd>
+        <nation abbr="us">United States</nation>
+      </sumDscr>
+      <sumDscr ID="sdatref-2617">
+        <timePrd date="2000" event="single">2000</timePrd>
+        <nation abbr="us">United States</nation>
+      </sumDscr>
+      <sumDscr ID="sdatref-2618">
+        <timePrd date="2001" event="single">2001</timePrd>
+        <nation abbr="us">United States</nation>
+      </sumDscr>
+      <sumDscr ID="sdatref-2619">
+        <timePrd date="2002" event="single">2002</timePrd>
+        <nation abbr="us">United States</nation>
+      </sumDscr>
+      <sumDscr ID="sdatref-2620">
+        <timePrd date="2003" event="single">2003</timePrd>
+        <nation abbr="us">United States</nation>
+      </sumDscr>
+      <sumDscr ID="sdatref-2621">
+        <timePrd date="2004" event="single">2004</timePrd>
+        <nation abbr="us">United States</nation>
+      </sumDscr>
+      <sumDscr ID="sdatref-2622">
+        <timePrd date="2005" event="single">2005</timePrd>
+        <nation abbr="us">United States</nation>
+      </sumDscr>
+      <sumDscr ID="sdatref-2624">
+        <timePrd date="2006" event="single">2006</timePrd>
+        <nation abbr="us">United States</nation>
+      </sumDscr>
+      <sumDscr ID="sdatref-2626">
+        <timePrd date="2007" event="single">2007</timePrd>
+        <nation abbr="us">United States</nation>
+      </sumDscr>
+      <sumDscr ID="sdatref-2632">
+        <timePrd date="2008" event="single">2008</timePrd>
+        <nation abbr="us">United States</nation>
+      </sumDscr>
+      <sumDscr ID="sdatref-2637">
+        <timePrd date="2009" event="single">2009</timePrd>
+        <nation abbr="us">United States</nation>
+      </sumDscr>
+      <sumDscr ID="sdatref-2650">
+        <timePrd date="2010" event="single">2010</timePrd>
+        <nation abbr="us">United States</nation>
+      </sumDscr>
+      <sumDscr ID="sdatref-2656">
+        <timePrd date="2011" event="single">2011</timePrd>
+        <nation abbr="us">United States</nation>
+      </sumDscr>
+      <sumDscr ID="sdatref-2666">
+        <timePrd date="2012" event="single">2012</timePrd>
+        <nation abbr="us">United States</nation>
+      </sumDscr>
+      <sumDscr ID="sdatref-2673">
+        <timePrd date="2013" event="single">2013</timePrd>
+        <nation abbr="us">United States</nation>
+      </sumDscr>
+      <sumDscr ID="sdatref-2680">
+        <timePrd date="2014" event="single">2014</timePrd>
+        <nation abbr="us">United States</nation>
+      </sumDscr>
+      <sumDscr ID="sdatref-2690">
+        <timePrd date="2015" event="single">2015</timePrd>
+        <nation abbr="us">United States</nation>
+      </sumDscr>
+      <sumDscr ID="sdatref-2695">
+        <timePrd date="2016" event="single">2016</timePrd>
+        <nation abbr="us">United States</nation>
+      </sumDscr>
+      <sumDscr ID="sdatref-2700">
+        <timePrd date="2017" event="single">2017</timePrd>
+        <nation abbr="us">United States</nation>
+      </sumDscr>
+      <sumDscr ID="sdatref-2706">
+        <timePrd date="2018" event="single">2018</timePrd>
+        <nation abbr="us">United States</nation>
+      </sumDscr>
+      <sumDscr ID="sdatref-2710">
+        <timePrd date="2019" event="single">2019</timePrd>
+        <nation abbr="us">United States</nation>
+      </sumDscr>
+      <notes><![CDATA[Additional notes on a sample that is part of this study:  1980 5%
+            Density of the full data file:  5.0%
+            Density of this extract: 0.0%
+]]></notes>
+      <notes><![CDATA[Additional notes on a sample that is part of this study:  1990 5%
+            Density of the full data file:  5.0%
+            Density of this extract: 0.0%
+]]></notes>
+      <notes><![CDATA[Additional notes on a sample that is part of this study:  2000 5%
+            Density of the full data file:  5.0%
+            Density of this extract: 0.0%
+]]></notes>
+      <notes><![CDATA[Additional notes on a sample that is part of this study:  2000 ACS
+            Note: Does not include persons in group quarters.
+            Density of the full data file:  0.13%
+            Density of this extract: 0.0%
+]]></notes>
+      <notes><![CDATA[Additional notes on a sample that is part of this study:  2001 ACS
+            Note: Does not include persons in group quarters.
+            Density of the full data file:  0.43%
+            Density of this extract: 0.0%
+]]></notes>
+      <notes><![CDATA[Additional notes on a sample that is part of this study:  2002 ACS
+            Note: Does not include persons in group quarters.
+            Density of the full data file:  0.38%
+            Density of this extract: 0.0%
+]]></notes>
+      <notes><![CDATA[Additional notes on a sample that is part of this study:  2003 ACS
+            Note: Does not include persons in group quarters.
+            Density of the full data file:  0.42%
+            Density of this extract: 0.0%
+]]></notes>
+      <notes><![CDATA[Additional notes on a sample that is part of this study:  2004 ACS
+            Note: Does not include persons in group quarters.
+            Density of the full data file:  0.42%
+            Density of this extract: 0.0%
+]]></notes>
+      <notes><![CDATA[Additional notes on a sample that is part of this study:  2005 ACS
+            Note: Does not include persons in group quarters.
+            Density of the full data file:  1.0%
+            Density of this extract: 0.0%
+]]></notes>
+      <notes><![CDATA[Additional notes on a sample that is part of this study:  2006 ACS
+            Density of the full data file:  1.0%
+            Density of this extract: 0.0%
+]]></notes>
+      <notes><![CDATA[Additional notes on a sample that is part of this study:  2007 ACS
+            Density of the full data file:  1.0%
+            Density of this extract: 0.0%
+]]></notes>
+      <notes><![CDATA[Additional notes on a sample that is part of this study:  2008 ACS
+            Density of the full data file:  1.0%
+            Density of this extract: 0.0%
+]]></notes>
+      <notes><![CDATA[Additional notes on a sample that is part of this study:  2009 ACS
+            Density of the full data file:  1.0%
+            Density of this extract: 0.0%
+]]></notes>
+      <notes><![CDATA[Additional notes on a sample that is part of this study:  2010 ACS
+            Density of the full data file:  1.0%
+            Density of this extract: 0.0%
+]]></notes>
+      <notes><![CDATA[Additional notes on a sample that is part of this study:  2011 ACS
+            Density of the full data file:  1.0%
+            Density of this extract: 0.0%
+]]></notes>
+      <notes><![CDATA[Additional notes on a sample that is part of this study:  2012 ACS
+            Density of the full data file:  1.0%
+            Density of this extract: 0.0%
+]]></notes>
+      <notes><![CDATA[Additional notes on a sample that is part of this study:  2013 ACS
+            Density of the full data file:  1.0%
+            Density of this extract: 0.0%
+]]></notes>
+      <notes><![CDATA[Additional notes on a sample that is part of this study:  2014 ACS
+            Density of the full data file:  1.0%
+            Density of this extract: 0.0%
+]]></notes>
+      <notes><![CDATA[Additional notes on a sample that is part of this study:  2015 ACS
+            Density of the full data file:  1.0%
+            Density of this extract: 0.0%
+]]></notes>
+      <notes><![CDATA[Additional notes on a sample that is part of this study:  2016 ACS
+            Density of the full data file:  1.0%
+            Density of this extract: 0.0%
+]]></notes>
+      <notes><![CDATA[Additional notes on a sample that is part of this study:  2017 ACS
+            Density of the full data file:  1.0%
+            Density of this extract: 0.0%
+]]></notes>
+      <notes><![CDATA[Additional notes on a sample that is part of this study:  2018 ACS
+            Density of the full data file:  1.0%
+            Density of this extract: 0.0%
+]]></notes>
+      <notes><![CDATA[Additional notes on a sample that is part of this study:  2019 ACS
+            Density of the full data file:  1.0%
+            Density of this extract: 0.0%
+]]></notes>
+    </stdyInfo>
+    <dataAccs>
+      <useStmt>
+        <confDec required="no"><![CDATA[None]]></confDec>
+        <contact URI="http://usa.ipums.org" affiliation="Minnesota Population Center">IPUMS-USA</contact>
+        <citReq><![CDATA[Publications and research reports based on the IPUMS-USA database must cite it appropriately. The citation should include the following:
+
+Steven Ruggles,  Sarah Flood, Sophia Foster,  Ronald Goeken,  Jose Pacas, Megan Schouweiler and Matthew Sobek. IPUMS USA: Version 11.0  [dataset]. Minneapolis, MN: IPUMS, 2021. https://doi.org/10.18128/D010.V11.0
+
+The licensing agreement for use of IPUMS-USA data requires that users supply us with the title and full citation for any publications, research reports, or educational materials making use of the data or documentation. Please add your citation to the IPUMS bibliography at http://bibliography.ipums.org/.]]></citReq>
+        <conditions><![CDATA[Users of IPUMS-USA data must agree to abide by the conditions of use. A user's license is valid for one year and may be renewed.  Users must agree to the following conditions:
+
+(1) No fees may be charged for use or distribution of the data.
+
+(2) Cite IPUMS appropriately.  For information on proper citation,  refer to the citation requirement section of this DDI document.
+
+(3) Tell us about any work you do using the IPUMS.  Publications, research  reports, or presentations making use of IPUMS-USA should be added to our  Bibliography. Continued funding for the IPUMS depends on our ability to  show our sponsor agencies that researchers are using the data for productive  purposes.
+
+(4) The IPUMS cannot be used for genealogical research
+
+(5) It is difficult to use the IPUMS to study small geographic areas.  In the  IPUMS census samples for years 1940-present, no places having a population  of fewer than 100,000 persons can be identified.
+
+(6) Use it for GOOD -- never for EVIL.
+
+(7) Please notify ipums@umn.edu regarding errors in the data or documentation.]]></conditions>
+        <disclaimer>The user of the data acknowledges that the original collector of the data, the authorized distributor of the data, and the relevant funding agency bear no responsibility for use of the data or for interpretations or inferences based upon such uses.</disclaimer>
+      </useStmt>
+    </dataAccs>
+    <notes><![CDATA[User-provided description:  Revision of (Work/Life Balance )]]></notes>
+    <notes>This extract is a revision of the user's previous extract, ID 11674008.</notes>
+  </stdyDscr>
+  <fileDscr ID="ExtractData">
+    <fileTxt>
+      <fileName>usa_00002.dat</fileName>
+      <fileCont>Microdata records</fileCont>
+      <fileStrc type="rectangular"/>
+      <fileType charset="ISO-8859-1">ISO-8859-1 data file</fileType>
+      <format>fixed length fields</format>
+      <filePlac>Minnesota Population Center, 50 Willey Hall, 225 - 19th Avenue South, Minneapolis, MN 55455</filePlac>
+    </fileTxt>
+  </fileDscr>
+  <dataDscr>
+    <var ID="YEAR" dcml="0" files="ExtractData" intrvl="discrete" name="YEAR">
+      <location EndPos="4" StartPos="1" width="4"/>
+      <labl>Census year</labl>
+      <txt><![CDATA[YEAR reports the four-digit year when the household was enumerated or included in the census, the ACS, and the PRCS.
+
+For the multi-year ACS/PRCS samples, YEAR indicates the last year of data included (e.g., 2007 for the 2005-2007 3-year ACS/PRCS; 2008 for the 2006-2008 3-year ACS/PRCS; and so on).  For the actual year of survey in these multi-year data, see MULTYEAR.]]></txt>
+      <catgry>
+        <catValu>1850</catValu>
+        <labl>1850</labl>
+      </catgry>
+      <catgry>
+        <catValu>1860</catValu>
+        <labl>1860</labl>
+      </catgry>
+      <catgry>
+        <catValu>1870</catValu>
+        <labl>1870</labl>
+      </catgry>
+      <catgry>
+        <catValu>1880</catValu>
+        <labl>1880</labl>
+      </catgry>
+      <catgry>
+        <catValu>1900</catValu>
+        <labl>1900</labl>
+      </catgry>
+      <catgry>
+        <catValu>1910</catValu>
+        <labl>1910</labl>
+      </catgry>
+      <catgry>
+        <catValu>1920</catValu>
+        <labl>1920</labl>
+      </catgry>
+      <catgry>
+        <catValu>1930</catValu>
+        <labl>1930</labl>
+      </catgry>
+      <catgry>
+        <catValu>1940</catValu>
+        <labl>1940</labl>
+      </catgry>
+      <catgry>
+        <catValu>1950</catValu>
+        <labl>1950</labl>
+      </catgry>
+      <catgry>
+        <catValu>1960</catValu>
+        <labl>1960</labl>
+      </catgry>
+      <catgry>
+        <catValu>1970</catValu>
+        <labl>1970</labl>
+      </catgry>
+      <catgry>
+        <catValu>1980</catValu>
+        <labl>1980</labl>
+      </catgry>
+      <catgry>
+        <catValu>1990</catValu>
+        <labl>1990</labl>
+      </catgry>
+      <catgry>
+        <catValu>2000</catValu>
+        <labl>2000</labl>
+      </catgry>
+      <catgry>
+        <catValu>2001</catValu>
+        <labl>2001</labl>
+      </catgry>
+      <catgry>
+        <catValu>2002</catValu>
+        <labl>2002</labl>
+      </catgry>
+      <catgry>
+        <catValu>2003</catValu>
+        <labl>2003</labl>
+      </catgry>
+      <catgry>
+        <catValu>2004</catValu>
+        <labl>2004</labl>
+      </catgry>
+      <catgry>
+        <catValu>2005</catValu>
+        <labl>2005</labl>
+      </catgry>
+      <catgry>
+        <catValu>2006</catValu>
+        <labl>2006</labl>
+      </catgry>
+      <catgry>
+        <catValu>2007</catValu>
+        <labl>2007</labl>
+      </catgry>
+      <catgry>
+        <catValu>2008</catValu>
+        <labl>2008</labl>
+      </catgry>
+      <catgry>
+        <catValu>2009</catValu>
+        <labl>2009</labl>
+      </catgry>
+      <catgry>
+        <catValu>2010</catValu>
+        <labl>2010</labl>
+      </catgry>
+      <catgry>
+        <catValu>2011</catValu>
+        <labl>2011</labl>
+      </catgry>
+      <catgry>
+        <catValu>2012</catValu>
+        <labl>2012</labl>
+      </catgry>
+      <catgry>
+        <catValu>2013</catValu>
+        <labl>2013</labl>
+      </catgry>
+      <catgry>
+        <catValu>2014</catValu>
+        <labl>2014</labl>
+      </catgry>
+      <catgry>
+        <catValu>2015</catValu>
+        <labl>2015</labl>
+      </catgry>
+      <catgry>
+        <catValu>2016</catValu>
+        <labl>2016</labl>
+      </catgry>
+      <catgry>
+        <catValu>2017</catValu>
+        <labl>2017</labl>
+      </catgry>
+      <catgry>
+        <catValu>2018</catValu>
+        <labl>2018</labl>
+      </catgry>
+      <catgry>
+        <catValu>2019</catValu>
+        <labl>2019</labl>
+      </catgry>
+      <concept vocab="IPUMS">Technical Variables -- HOUSEHOLD</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="SERIAL" dcml="0" files="ExtractData" intrvl="contin" name="SERIAL">
+      <location EndPos="12" StartPos="5" width="8"/>
+      <labl>Household serial number</labl>
+      <txt><![CDATA[SERIAL is an identifying number unique to each household record in a given sample. All person records are assigned the same serial number as the household record that they follow. (Person records also have their own unique identifiers - see PERNUM.) A combination of SAMPLE and SERIAL provides a unique identifier for every household in the IPUMS; the combination of SAMPLE, SERIAL, and PERNUM uniquely identifies every person in the database.
+
+For 1850-1930, households that are part of a multi-household dwelling can be identified by using the DWELLING and DWSEQ variables. See "Sample Designs" for further discussion of sampling from within multi-household dwellings.]]></txt>
+      <codInstr><![CDATA[CodesSERIAL is an 8-digit numeric variable which assigns a unique identification number to each household record in a given sample (See PERNUM for the analogous person record identifier). A combination of SAMPLE and SERIAL provides a unique identifier for every household in the IPUMS; the combination of SAMPLE, SERIAL, and PERNUM uniquely identifies every person in the database. SERIAL specific variable codes for missing, edited, or unidentified observations, observations not applicable (N/A), observations not in universe (NIU), top and bottom value coding, etc. are provided below if applicable by Census year (and data sample if specified).
+
+SERIAL Specific Variable Codes]]></codInstr>
+      <concept vocab="IPUMS">Technical Variables -- HOUSEHOLD</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="HHWT" dcml="2" files="ExtractData" intrvl="contin" name="HHWT">
+      <location EndPos="22" StartPos="13" width="10"/>
+      <labl>Household weight</labl>
+      <txt><![CDATA[HHWT indicates how many households in the U.S. population are represented by a given household in an IPUMS sample. 
+
+It is generally a good idea to use HHWT when conducting a household-level analysis of any IPUMS sample. The use of HHWT is optional when analyzing one of the "flat" or unweighted IPUMS samples. Flat IPUMS samples include the 1% samples from 1850-1930, all samples from 1960, 1970, and 1980, the 1% unweighted samples from 1990 and 2000, the 10% 2010 sample, and any of the full count 100% census datasets. HHWT must be used to obtain nationally representative statistics for household-level analyses of any sample other than those.
+
+Users should also be sure to select one person (e.g., PERNUM = 1) to represent the entire household.
+
+For further explanation of the sample weights, see "Sample Designs" and "Sample Weights". See also PERWT for a corresponding variable at the person level, and SLWT for a weight variable used with sample-line records in 1940 1% and 1950.]]></txt>
+      <codInstr><![CDATA[CodesHHWT is a 6-digit numeric variable which indicates how many households in the U.S. population are represented by a given household in an IPUMS sample and has two implied decimals. For example, a HHWT value of 010461 should be interpreted as 104.61. HHWT specific variable codes for missing, edited, or unidentified observations, observations not applicable (N/A), observations not in universe (NIU), top and bottom value coding, etc. are provided below if applicable by Census year (and data sample if specified).
+
+User Note: Users should also be sure to select one person (e.g., PERNUM = 1) to represent the entire household when using HHWT.
+
+HHWT Specific Variable Codes]]></codInstr>
+      <concept vocab="IPUMS">Technical Variables -- HOUSEHOLD</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="CLUSTER" dcml="0" files="ExtractData" intrvl="contin" name="CLUSTER">
+      <location EndPos="35" StartPos="23" width="13"/>
+      <labl>Household cluster for variance estimation</labl>
+      <txt><![CDATA[CLUSTER is designed for use with STRATA in Taylor series linear approximation for correction of complex sample design characteristics. See the STRATA variable description for more details.]]></txt>
+      <codInstr><![CDATA[CodesCLUSTER is an 11-digit numeric variable designed for use with STRATA in Taylor series linear approximation for correction of complex sample design characteristics (See the Description of STRATA for more details). CLUSTER specific variable codes for missing, edited, or unidentified observations, observations not applicable (N/A), observations not in universe (NIU), top and bottom value coding, etc. are provided below if applicable by Census year (and data sample if specified).
+
+CLUSTER Specific Variable Codes]]></codInstr>
+      <concept vocab="IPUMS">Technical Variables -- HOUSEHOLD</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="STRATA" dcml="0" files="ExtractData" intrvl="contin" name="STRATA">
+      <location EndPos="47" StartPos="36" width="12"/>
+      <labl>Household strata for variance estimation</labl>
+      <txt><![CDATA[STRATA is designed for use with CLUSTER in Taylor series linear approximation for correction of complex sample design characteristics.
+
+While appropriate use of the sampling weights PERWT and HHWT allow users to produce correct point estimates (such as means and proportions), many researchers believe that additional statistical techniques are also necessary to produce correct standard errors and statistical tests that account for complex sample design. 
+
+For further information on why and how to use STRATA and CLUSTER, see  Analysis and Variance Estimation with the IPUMS . For more details on the mathematics behind this method, see  Issues Concerning the Calculation of Standard Errors Using IPUMS Data Products .]]></txt>
+      <codInstr><![CDATA[CodesSTRATA is a 12-digit numeric variable designed for use with CLUSTER in Taylor series linear approximation for correction of complex sample design characteristics. While appropriate use of the sampling weights PERWT and HHWT allow users to produce correct point estimates (such as means and proportions), many researchers believe that additional statistical techniques are also necessary to produce correct standard errors and statistical tests that account for complex sample design. STRATA specific variable codes for missing, edited, or unidentified observations, observations not applicable (N/A), observations not in universe (NIU), top and bottom value coding, etc. are provided below if applicable by Census year (and data sample if specified).
+
+User Note: For further information on why and how to use STRATA and CLUSTER, see Analysis and Variance Estimation with the IPUMS. For more details on the mathematics behind this method, see Issues Concerning the Calculation of Standard Errors Using IPUMS Data Products.  
+
+STRATA Specific Variable Codes]]></codInstr>
+      <concept vocab="IPUMS">Technical Variables -- HOUSEHOLD</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="OWNERSHP" dcml="0" files="ExtractData" intrvl="discrete" name="OWNERSHP">
+      <location EndPos="48" StartPos="48" width="1"/>
+      <labl>Ownership of dwelling (tenure) [general version]</labl>
+      <txt><![CDATA[OWNERSHP indicates whether the housing unit was rented or owned by its inhabitants. Housing units acquired with a mortgage or other lending arrangement(s) are classified as "owned," even if repayment was not yet completed.]]></txt>
+      <catgry>
+        <catValu>0</catValu>
+        <labl>N/A</labl>
+      </catgry>
+      <catgry>
+        <catValu>1</catValu>
+        <labl>Owned or being bought (loan)</labl>
+      </catgry>
+      <catgry>
+        <catValu>2</catValu>
+        <labl>Rented</labl>
+      </catgry>
+      <concept vocab="IPUMS">Economic Characteristic Variables -- HOUSEHOLD</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="OWNERSHPD" dcml="0" files="ExtractData" intrvl="discrete" name="OWNERSHPD">
+      <location EndPos="50" StartPos="49" width="2"/>
+      <labl>Ownership of dwelling (tenure) [detailed version]</labl>
+      <txt><![CDATA[OWNERSHP indicates whether the housing unit was rented or owned by its inhabitants. Housing units acquired with a mortgage or other lending arrangement(s) are classified as "owned," even if repayment was not yet completed.]]></txt>
+      <catgry>
+        <catValu>00</catValu>
+        <labl>N/A</labl>
+      </catgry>
+      <catgry>
+        <catValu>10</catValu>
+        <labl>Owned or being bought</labl>
+      </catgry>
+      <catgry>
+        <catValu>11</catValu>
+        <labl>Check mark (owns?)</labl>
+      </catgry>
+      <catgry>
+        <catValu>12</catValu>
+        <labl>Owned free and clear</labl>
+      </catgry>
+      <catgry>
+        <catValu>13</catValu>
+        <labl>Owned with mortgage or loan</labl>
+      </catgry>
+      <catgry>
+        <catValu>20</catValu>
+        <labl>Rented</labl>
+      </catgry>
+      <catgry>
+        <catValu>21</catValu>
+        <labl>No cash rent</labl>
+      </catgry>
+      <catgry>
+        <catValu>22</catValu>
+        <labl>With cash rent</labl>
+      </catgry>
+      <concept vocab="IPUMS">Economic Characteristic Variables -- HOUSEHOLD</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="MORTGAGE" dcml="0" files="ExtractData" intrvl="discrete" name="MORTGAGE">
+      <location EndPos="51" StartPos="51" width="1"/>
+      <labl>Mortgage status</labl>
+      <txt><![CDATA[MORTGAGE indicates whether an owner-occupied housing unit was owned free and clear or was encumbered by a mortgage, loan, or other type of debt. (See also OWNERSHP.)]]></txt>
+      <catgry>
+        <catValu>0</catValu>
+        <labl>N/A</labl>
+      </catgry>
+      <catgry>
+        <catValu>1</catValu>
+        <labl>No, owned free and clear</labl>
+      </catgry>
+      <catgry>
+        <catValu>2</catValu>
+        <labl>Check mark on manuscript (probably yes)</labl>
+      </catgry>
+      <catgry>
+        <catValu>3</catValu>
+        <labl>Yes, mortgaged/ deed of trust or similar debt</labl>
+      </catgry>
+      <catgry>
+        <catValu>4</catValu>
+        <labl>Yes, contract to purchase</labl>
+      </catgry>
+      <concept vocab="IPUMS">Economic Characteristic Variables -- HOUSEHOLD</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="VALUEH" dcml="0" files="ExtractData" intrvl="contin" name="VALUEH">
+      <location EndPos="58" StartPos="52" width="7"/>
+      <labl>House value</labl>
+      <txt><![CDATA[VALUEH reports the value of housing units in contemporary dollars. For 1930, 1940, and from 2008 onward, VALUEH is a continuous variable. The other years report the midpoint of an interval; see codes and frequencies for intervals.
+
+User Note: Universe shifts and changing methods of determining value complicate use of this variable for comparisons across years. Furthermore, dollar amounts were intervalled differently for each year, and the top codes changed. Users must adjust for the effects of inflation; see INCTOT for Consumer Price Index adjustment factors.
+
+User Note: The traditional unit of land area in Puerto Rico is the cuerda. The cuerda is equal to about 3930 square meters, 4700 square yards, or 0.971 acres. Because the cuerda and the acre are so close to being equal, they are often treated informally as being equal. Mainlanders sometimes call the unit the "Spanish Acre." The IPUMS has preserved the units for the mainland U.S. as acres and Puerto Rico as cuerdas.]]></txt>
+      <codInstr><![CDATA[CodesVALUEH is a 7-digit numeric code which reports the value of housing units in contemporary dollars. For 1930, 1940, and 2008 onward samples, VALUEH is a continuous variable. Other years report the midpoint of an interval.
+
+VALUEH specific variable codes for missing, edited, or unidentified observations, observations not applicable (N/A), observations not in universe (NIU), top and bottom value coding, etc. are provided below by Census year (and data sample if specified).
+
+User Note: Amounts are expressed in contemporary dollars, and users studying change over time must adjust for inflation. Further, universe shifts and changing methods of determining value complicate use of this variable for comparisons across years (See Description).
+
+VALUEH Specific Variable Codes
+0000000 = N/A (1930)
+9999998 = Missing (1940 100%)
+9999999 = Missing (1930), N/A (1940-2000, ACS, and PRCS)
+
+
+* .indent {
+  text-indent: 10px;
+}
+
+
+* .lrgindent {
+  text-indent: 90px;
+}
+
+
+
+	
+		VALUEH
+	
+		Census 
+		Top Code
+	
+		1960
+		$35,000
+	
+		1970 (US)
+		$50,000
+	
+		1970 (PR)
+		$30,000
+	
+		1980 (US)
+		$200,000
+	
+		1980 (PR)
+		$100,000
+	
+		1990 (US)
+		$400,000
+	
+		2000
+		$1,000,000
+	
+		ACS (2000-2007)
+		$1,000,000
+	
+		&nbsp;PRCS (2000-2007)
+		$1,000,000
+	
+	
+	
+	]]></codInstr>
+      <concept vocab="IPUMS">Economic Characteristic Variables -- HOUSEHOLD</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="PERNUM" dcml="0" files="ExtractData" intrvl="contin" name="PERNUM">
+      <location EndPos="62" StartPos="59" width="4"/>
+      <labl>Person number in sample unit</labl>
+      <txt><![CDATA[PERNUM numbers all persons within each household consecutively in the order in which they appear on the original census or survey form. When combined with SAMPLE and SERIAL, PERNUM uniquely identifies each person within the IPUMS.]]></txt>
+      <codInstr><![CDATA[CodesPERNUM is a 4-digit numeric variable which numbers all persons within each household consecutively in the order in which they appear on the original census or survey form. PERNUM specific variable codes for missing, edited, or unidentified observations, observations not applicable (N/A), observations not in universe (NIU), top and bottom value coding, etc. are provided below if applicable by Census year (and data sample if specified).]]></codInstr>
+      <concept vocab="IPUMS">Technical Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="PERWT" dcml="2" files="ExtractData" intrvl="contin" name="PERWT">
+      <location EndPos="72" StartPos="63" width="10"/>
+      <labl>Person weight</labl>
+      <txt><![CDATA[PERWT indicates how many persons in the U.S. population are represented by a given person in an IPUMS sample. 
+
+It is generally a good idea to use PERWT when conducting a person-level analysis of any IPUMS sample. The use of PERWT is optional when analyzing one of the "flat" or unweighted IPUMS samples. Flat IPUMS samples include the 1% samples from 1850-1930, all samples from 1960, 1970, and 1980, the 1% unweighted samples from 1990 and 2000, the 10% 2010 sample, and any of the full count 100% census datasets. PERWT must be used to obtain nationally representative statistics for person-level analyses of any sample other than those.
+
+For further explanation of the sample weights, see "Sample Designs" and "Sample Weights". See also HHWT for a corresponding variable at the household level, and SLWT for a weight variable used with sample-line records in 1940 and 1950.]]></txt>
+      <codInstr><![CDATA[CodesPERWT is a 6-digit numeric variable which indicates how many persons in the U.S. population are represented by a given person in an IPUMS sample and has two implied decimals. For example, a PERWT value of 010461 should be interpreted as 104.61. PERWT specific variable codes for missing, edited, or unidentified observations, observations not applicable (N/A), observations not in universe (NIU), top and bottom value coding, etc. are provided below if applicable by Census year (and data sample if specified).
+
+PERWT Specific Variable Codes]]></codInstr>
+      <concept vocab="IPUMS">Technical Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="NCHILD" dcml="0" files="ExtractData" intrvl="discrete" name="NCHILD">
+      <location EndPos="73" StartPos="73" width="1"/>
+      <labl>Number of own children in the household</labl>
+      <txt><![CDATA[NCHILD counts the number of own children (of any age or marital status) residing with each individual. NCHILD includes step-children and adopted children as well as biological children. Persons with no children present are coded "0."]]></txt>
+      <catgry>
+        <catValu>0</catValu>
+        <labl>0 children present</labl>
+      </catgry>
+      <catgry>
+        <catValu>1</catValu>
+        <labl>1 child present</labl>
+      </catgry>
+      <catgry>
+        <catValu>2</catValu>
+        <labl>2</labl>
+      </catgry>
+      <catgry>
+        <catValu>3</catValu>
+        <labl>3</labl>
+      </catgry>
+      <catgry>
+        <catValu>4</catValu>
+        <labl>4</labl>
+      </catgry>
+      <catgry>
+        <catValu>5</catValu>
+        <labl>5</labl>
+      </catgry>
+      <catgry>
+        <catValu>6</catValu>
+        <labl>6</labl>
+      </catgry>
+      <catgry>
+        <catValu>7</catValu>
+        <labl>7</labl>
+      </catgry>
+      <catgry>
+        <catValu>8</catValu>
+        <labl>8</labl>
+      </catgry>
+      <catgry>
+        <catValu>9</catValu>
+        <labl>9+</labl>
+      </catgry>
+      <concept vocab="IPUMS">Family Interrelationship Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="SEX" dcml="0" files="ExtractData" intrvl="discrete" name="SEX">
+      <location EndPos="74" StartPos="74" width="1"/>
+      <labl>Sex</labl>
+      <txt><![CDATA[SEX reports whether the person was male or female.]]></txt>
+      <catgry>
+        <catValu>1</catValu>
+        <labl>Male</labl>
+      </catgry>
+      <catgry>
+        <catValu>2</catValu>
+        <labl>Female</labl>
+      </catgry>
+      <concept vocab="IPUMS">Demographic Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="AGE" dcml="0" files="ExtractData" intrvl="discrete" name="AGE">
+      <location EndPos="77" StartPos="75" width="3"/>
+      <labl>Age</labl>
+      <txt><![CDATA[AGE reports the person's age in years as of the last birthday.
+
+Please see the Comparability section regarding a known Universe issue with AGE and AGEORIG which effects EMPSTAT and LABFORCE for the 2004 ACS Sample.]]></txt>
+      <catgry>
+        <catValu>000</catValu>
+        <labl>Less than 1 year old</labl>
+      </catgry>
+      <catgry>
+        <catValu>001</catValu>
+        <labl>1</labl>
+      </catgry>
+      <catgry>
+        <catValu>002</catValu>
+        <labl>2</labl>
+      </catgry>
+      <catgry>
+        <catValu>003</catValu>
+        <labl>3</labl>
+      </catgry>
+      <catgry>
+        <catValu>004</catValu>
+        <labl>4</labl>
+      </catgry>
+      <catgry>
+        <catValu>005</catValu>
+        <labl>5</labl>
+      </catgry>
+      <catgry>
+        <catValu>006</catValu>
+        <labl>6</labl>
+      </catgry>
+      <catgry>
+        <catValu>007</catValu>
+        <labl>7</labl>
+      </catgry>
+      <catgry>
+        <catValu>008</catValu>
+        <labl>8</labl>
+      </catgry>
+      <catgry>
+        <catValu>009</catValu>
+        <labl>9</labl>
+      </catgry>
+      <catgry>
+        <catValu>010</catValu>
+        <labl>10</labl>
+      </catgry>
+      <catgry>
+        <catValu>011</catValu>
+        <labl>11</labl>
+      </catgry>
+      <catgry>
+        <catValu>012</catValu>
+        <labl>12</labl>
+      </catgry>
+      <catgry>
+        <catValu>013</catValu>
+        <labl>13</labl>
+      </catgry>
+      <catgry>
+        <catValu>014</catValu>
+        <labl>14</labl>
+      </catgry>
+      <catgry>
+        <catValu>015</catValu>
+        <labl>15</labl>
+      </catgry>
+      <catgry>
+        <catValu>016</catValu>
+        <labl>16</labl>
+      </catgry>
+      <catgry>
+        <catValu>017</catValu>
+        <labl>17</labl>
+      </catgry>
+      <catgry>
+        <catValu>018</catValu>
+        <labl>18</labl>
+      </catgry>
+      <catgry>
+        <catValu>019</catValu>
+        <labl>19</labl>
+      </catgry>
+      <catgry>
+        <catValu>020</catValu>
+        <labl>20</labl>
+      </catgry>
+      <catgry>
+        <catValu>021</catValu>
+        <labl>21</labl>
+      </catgry>
+      <catgry>
+        <catValu>022</catValu>
+        <labl>22</labl>
+      </catgry>
+      <catgry>
+        <catValu>023</catValu>
+        <labl>23</labl>
+      </catgry>
+      <catgry>
+        <catValu>024</catValu>
+        <labl>24</labl>
+      </catgry>
+      <catgry>
+        <catValu>025</catValu>
+        <labl>25</labl>
+      </catgry>
+      <catgry>
+        <catValu>026</catValu>
+        <labl>26</labl>
+      </catgry>
+      <catgry>
+        <catValu>027</catValu>
+        <labl>27</labl>
+      </catgry>
+      <catgry>
+        <catValu>028</catValu>
+        <labl>28</labl>
+      </catgry>
+      <catgry>
+        <catValu>029</catValu>
+        <labl>29</labl>
+      </catgry>
+      <catgry>
+        <catValu>030</catValu>
+        <labl>30</labl>
+      </catgry>
+      <catgry>
+        <catValu>031</catValu>
+        <labl>31</labl>
+      </catgry>
+      <catgry>
+        <catValu>032</catValu>
+        <labl>32</labl>
+      </catgry>
+      <catgry>
+        <catValu>033</catValu>
+        <labl>33</labl>
+      </catgry>
+      <catgry>
+        <catValu>034</catValu>
+        <labl>34</labl>
+      </catgry>
+      <catgry>
+        <catValu>035</catValu>
+        <labl>35</labl>
+      </catgry>
+      <catgry>
+        <catValu>036</catValu>
+        <labl>36</labl>
+      </catgry>
+      <catgry>
+        <catValu>037</catValu>
+        <labl>37</labl>
+      </catgry>
+      <catgry>
+        <catValu>038</catValu>
+        <labl>38</labl>
+      </catgry>
+      <catgry>
+        <catValu>039</catValu>
+        <labl>39</labl>
+      </catgry>
+      <catgry>
+        <catValu>040</catValu>
+        <labl>40</labl>
+      </catgry>
+      <catgry>
+        <catValu>041</catValu>
+        <labl>41</labl>
+      </catgry>
+      <catgry>
+        <catValu>042</catValu>
+        <labl>42</labl>
+      </catgry>
+      <catgry>
+        <catValu>043</catValu>
+        <labl>43</labl>
+      </catgry>
+      <catgry>
+        <catValu>044</catValu>
+        <labl>44</labl>
+      </catgry>
+      <catgry>
+        <catValu>045</catValu>
+        <labl>45</labl>
+      </catgry>
+      <catgry>
+        <catValu>046</catValu>
+        <labl>46</labl>
+      </catgry>
+      <catgry>
+        <catValu>047</catValu>
+        <labl>47</labl>
+      </catgry>
+      <catgry>
+        <catValu>048</catValu>
+        <labl>48</labl>
+      </catgry>
+      <catgry>
+        <catValu>049</catValu>
+        <labl>49</labl>
+      </catgry>
+      <catgry>
+        <catValu>050</catValu>
+        <labl>50</labl>
+      </catgry>
+      <catgry>
+        <catValu>051</catValu>
+        <labl>51</labl>
+      </catgry>
+      <catgry>
+        <catValu>052</catValu>
+        <labl>52</labl>
+      </catgry>
+      <catgry>
+        <catValu>053</catValu>
+        <labl>53</labl>
+      </catgry>
+      <catgry>
+        <catValu>054</catValu>
+        <labl>54</labl>
+      </catgry>
+      <catgry>
+        <catValu>055</catValu>
+        <labl>55</labl>
+      </catgry>
+      <catgry>
+        <catValu>056</catValu>
+        <labl>56</labl>
+      </catgry>
+      <catgry>
+        <catValu>057</catValu>
+        <labl>57</labl>
+      </catgry>
+      <catgry>
+        <catValu>058</catValu>
+        <labl>58</labl>
+      </catgry>
+      <catgry>
+        <catValu>059</catValu>
+        <labl>59</labl>
+      </catgry>
+      <catgry>
+        <catValu>060</catValu>
+        <labl>60</labl>
+      </catgry>
+      <catgry>
+        <catValu>061</catValu>
+        <labl>61</labl>
+      </catgry>
+      <catgry>
+        <catValu>062</catValu>
+        <labl>62</labl>
+      </catgry>
+      <catgry>
+        <catValu>063</catValu>
+        <labl>63</labl>
+      </catgry>
+      <catgry>
+        <catValu>064</catValu>
+        <labl>64</labl>
+      </catgry>
+      <catgry>
+        <catValu>065</catValu>
+        <labl>65</labl>
+      </catgry>
+      <catgry>
+        <catValu>066</catValu>
+        <labl>66</labl>
+      </catgry>
+      <catgry>
+        <catValu>067</catValu>
+        <labl>67</labl>
+      </catgry>
+      <catgry>
+        <catValu>068</catValu>
+        <labl>68</labl>
+      </catgry>
+      <catgry>
+        <catValu>069</catValu>
+        <labl>69</labl>
+      </catgry>
+      <catgry>
+        <catValu>070</catValu>
+        <labl>70</labl>
+      </catgry>
+      <catgry>
+        <catValu>071</catValu>
+        <labl>71</labl>
+      </catgry>
+      <catgry>
+        <catValu>072</catValu>
+        <labl>72</labl>
+      </catgry>
+      <catgry>
+        <catValu>073</catValu>
+        <labl>73</labl>
+      </catgry>
+      <catgry>
+        <catValu>074</catValu>
+        <labl>74</labl>
+      </catgry>
+      <catgry>
+        <catValu>075</catValu>
+        <labl>75</labl>
+      </catgry>
+      <catgry>
+        <catValu>076</catValu>
+        <labl>76</labl>
+      </catgry>
+      <catgry>
+        <catValu>077</catValu>
+        <labl>77</labl>
+      </catgry>
+      <catgry>
+        <catValu>078</catValu>
+        <labl>78</labl>
+      </catgry>
+      <catgry>
+        <catValu>079</catValu>
+        <labl>79</labl>
+      </catgry>
+      <catgry>
+        <catValu>080</catValu>
+        <labl>80</labl>
+      </catgry>
+      <catgry>
+        <catValu>081</catValu>
+        <labl>81</labl>
+      </catgry>
+      <catgry>
+        <catValu>082</catValu>
+        <labl>82</labl>
+      </catgry>
+      <catgry>
+        <catValu>083</catValu>
+        <labl>83</labl>
+      </catgry>
+      <catgry>
+        <catValu>084</catValu>
+        <labl>84</labl>
+      </catgry>
+      <catgry>
+        <catValu>085</catValu>
+        <labl>85</labl>
+      </catgry>
+      <catgry>
+        <catValu>086</catValu>
+        <labl>86</labl>
+      </catgry>
+      <catgry>
+        <catValu>087</catValu>
+        <labl>87</labl>
+      </catgry>
+      <catgry>
+        <catValu>088</catValu>
+        <labl>88</labl>
+      </catgry>
+      <catgry>
+        <catValu>089</catValu>
+        <labl>89</labl>
+      </catgry>
+      <catgry>
+        <catValu>090</catValu>
+        <labl>90 (90+ in 1980 and 1990)</labl>
+      </catgry>
+      <catgry>
+        <catValu>091</catValu>
+        <labl>91</labl>
+      </catgry>
+      <catgry>
+        <catValu>092</catValu>
+        <labl>92</labl>
+      </catgry>
+      <catgry>
+        <catValu>093</catValu>
+        <labl>93</labl>
+      </catgry>
+      <catgry>
+        <catValu>094</catValu>
+        <labl>94</labl>
+      </catgry>
+      <catgry>
+        <catValu>095</catValu>
+        <labl>95</labl>
+      </catgry>
+      <catgry>
+        <catValu>096</catValu>
+        <labl>96</labl>
+      </catgry>
+      <catgry>
+        <catValu>097</catValu>
+        <labl>97</labl>
+      </catgry>
+      <catgry>
+        <catValu>098</catValu>
+        <labl>98</labl>
+      </catgry>
+      <catgry>
+        <catValu>099</catValu>
+        <labl>99</labl>
+      </catgry>
+      <catgry>
+        <catValu>100</catValu>
+        <labl>100 (100+ in 1960-1970)</labl>
+      </catgry>
+      <catgry>
+        <catValu>101</catValu>
+        <labl>101</labl>
+      </catgry>
+      <catgry>
+        <catValu>102</catValu>
+        <labl>102</labl>
+      </catgry>
+      <catgry>
+        <catValu>103</catValu>
+        <labl>103</labl>
+      </catgry>
+      <catgry>
+        <catValu>104</catValu>
+        <labl>104</labl>
+      </catgry>
+      <catgry>
+        <catValu>105</catValu>
+        <labl>105</labl>
+      </catgry>
+      <catgry>
+        <catValu>106</catValu>
+        <labl>106</labl>
+      </catgry>
+      <catgry>
+        <catValu>107</catValu>
+        <labl>107</labl>
+      </catgry>
+      <catgry>
+        <catValu>108</catValu>
+        <labl>108</labl>
+      </catgry>
+      <catgry>
+        <catValu>109</catValu>
+        <labl>109</labl>
+      </catgry>
+      <catgry>
+        <catValu>110</catValu>
+        <labl>110</labl>
+      </catgry>
+      <catgry>
+        <catValu>111</catValu>
+        <labl>111</labl>
+      </catgry>
+      <catgry>
+        <catValu>112</catValu>
+        <labl>112 (112+ in the 1980 internal data)</labl>
+      </catgry>
+      <catgry>
+        <catValu>113</catValu>
+        <labl>113</labl>
+      </catgry>
+      <catgry>
+        <catValu>114</catValu>
+        <labl>114</labl>
+      </catgry>
+      <catgry>
+        <catValu>115</catValu>
+        <labl>115 (115+ in the 1990 internal data)</labl>
+      </catgry>
+      <catgry>
+        <catValu>116</catValu>
+        <labl>116</labl>
+      </catgry>
+      <catgry>
+        <catValu>117</catValu>
+        <labl>117</labl>
+      </catgry>
+      <catgry>
+        <catValu>118</catValu>
+        <labl>118</labl>
+      </catgry>
+      <catgry>
+        <catValu>119</catValu>
+        <labl>119</labl>
+      </catgry>
+      <catgry>
+        <catValu>120</catValu>
+        <labl>120</labl>
+      </catgry>
+      <catgry>
+        <catValu>121</catValu>
+        <labl>121</labl>
+      </catgry>
+      <catgry>
+        <catValu>122</catValu>
+        <labl>122</labl>
+      </catgry>
+      <catgry>
+        <catValu>123</catValu>
+        <labl>123</labl>
+      </catgry>
+      <catgry>
+        <catValu>124</catValu>
+        <labl>124</labl>
+      </catgry>
+      <catgry>
+        <catValu>125</catValu>
+        <labl>125</labl>
+      </catgry>
+      <catgry>
+        <catValu>126</catValu>
+        <labl>126</labl>
+      </catgry>
+      <catgry>
+        <catValu>129</catValu>
+        <labl>129</labl>
+      </catgry>
+      <catgry>
+        <catValu>130</catValu>
+        <labl>130</labl>
+      </catgry>
+      <catgry>
+        <catValu>135</catValu>
+        <labl>135</labl>
+      </catgry>
+      <concept vocab="IPUMS">Demographic Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="MARST" dcml="0" files="ExtractData" intrvl="discrete" name="MARST">
+      <location EndPos="78" StartPos="78" width="1"/>
+      <labl>Marital status</labl>
+      <txt><![CDATA[MARST gives each person's current marital status.]]></txt>
+      <catgry>
+        <catValu>1</catValu>
+        <labl>Married, spouse present</labl>
+      </catgry>
+      <catgry>
+        <catValu>2</catValu>
+        <labl>Married, spouse absent</labl>
+      </catgry>
+      <catgry>
+        <catValu>3</catValu>
+        <labl>Separated</labl>
+      </catgry>
+      <catgry>
+        <catValu>4</catValu>
+        <labl>Divorced</labl>
+      </catgry>
+      <catgry>
+        <catValu>5</catValu>
+        <labl>Widowed</labl>
+      </catgry>
+      <catgry>
+        <catValu>6</catValu>
+        <labl>Never married/single</labl>
+      </catgry>
+      <concept vocab="IPUMS">Demographic Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="EMPSTAT" dcml="0" files="ExtractData" intrvl="discrete" name="EMPSTAT">
+      <location EndPos="79" StartPos="79" width="1"/>
+      <labl>Employment status [general version]</labl>
+      <txt><![CDATA[EMPSTAT indicates whether the respondent was a part of the labor force -- working or seeking work -- and, if so, whether the person was currently unemployed. The second digit preserves additional related information available for some years but not others. See LABFORCE for a dichotomous variable that identifies whether a person participated in the labor force or not and is available for all years in the IPUMS.]]></txt>
+      <catgry>
+        <catValu>0</catValu>
+        <labl>N/A</labl>
+      </catgry>
+      <catgry>
+        <catValu>1</catValu>
+        <labl>Employed</labl>
+      </catgry>
+      <catgry>
+        <catValu>2</catValu>
+        <labl>Unemployed</labl>
+      </catgry>
+      <catgry>
+        <catValu>3</catValu>
+        <labl>Not in labor force</labl>
+      </catgry>
+      <concept vocab="IPUMS">Work Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="EMPSTATD" dcml="0" files="ExtractData" intrvl="discrete" name="EMPSTATD">
+      <location EndPos="81" StartPos="80" width="2"/>
+      <labl>Employment status [detailed version]</labl>
+      <txt><![CDATA[EMPSTAT indicates whether the respondent was a part of the labor force -- working or seeking work -- and, if so, whether the person was currently unemployed. The second digit preserves additional related information available for some years but not others. See LABFORCE for a dichotomous variable that identifies whether a person participated in the labor force or not and is available for all years in the IPUMS.]]></txt>
+      <catgry>
+        <catValu>00</catValu>
+        <labl>N/A</labl>
+      </catgry>
+      <catgry>
+        <catValu>10</catValu>
+        <labl>At work</labl>
+      </catgry>
+      <catgry>
+        <catValu>11</catValu>
+        <labl>At work, public emerg</labl>
+      </catgry>
+      <catgry>
+        <catValu>12</catValu>
+        <labl>Has job, not working</labl>
+      </catgry>
+      <catgry>
+        <catValu>13</catValu>
+        <labl>Armed forces</labl>
+      </catgry>
+      <catgry>
+        <catValu>14</catValu>
+        <labl>Armed forces--at work</labl>
+      </catgry>
+      <catgry>
+        <catValu>15</catValu>
+        <labl>Armed forces--not at work but with job</labl>
+      </catgry>
+      <catgry>
+        <catValu>20</catValu>
+        <labl>Unemployed</labl>
+      </catgry>
+      <catgry>
+        <catValu>21</catValu>
+        <labl>Unemp, exper worker</labl>
+      </catgry>
+      <catgry>
+        <catValu>22</catValu>
+        <labl>Unemp, new worker</labl>
+      </catgry>
+      <catgry>
+        <catValu>30</catValu>
+        <labl>Not in Labor Force</labl>
+      </catgry>
+      <catgry>
+        <catValu>31</catValu>
+        <labl>NILF, housework</labl>
+      </catgry>
+      <catgry>
+        <catValu>32</catValu>
+        <labl>NILF, unable to work</labl>
+      </catgry>
+      <catgry>
+        <catValu>33</catValu>
+        <labl>NILF, school</labl>
+      </catgry>
+      <catgry>
+        <catValu>34</catValu>
+        <labl>NILF, other</labl>
+      </catgry>
+      <concept vocab="IPUMS">Work Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="CLASSWKR" dcml="0" files="ExtractData" intrvl="discrete" name="CLASSWKR">
+      <location EndPos="82" StartPos="82" width="1"/>
+      <labl>Class of worker [general version]</labl>
+      <txt><![CDATA[CLASSWKR indicates whether respondents worked for their own enterprise(s) or for someone else as employees. Workers with multiple sources of employment were classified according to the work relationship in which they spent the most time during the reference day or week. As described below, CLASSWKR contains other related information in most years.]]></txt>
+      <catgry>
+        <catValu>0</catValu>
+        <labl>N/A</labl>
+      </catgry>
+      <catgry>
+        <catValu>1</catValu>
+        <labl>Self-employed</labl>
+      </catgry>
+      <catgry>
+        <catValu>2</catValu>
+        <labl>Works for wages</labl>
+      </catgry>
+      <concept vocab="IPUMS">Work Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="CLASSWKRD" dcml="0" files="ExtractData" intrvl="discrete" name="CLASSWKRD">
+      <location EndPos="84" StartPos="83" width="2"/>
+      <labl>Class of worker [detailed version]</labl>
+      <txt><![CDATA[CLASSWKR indicates whether respondents worked for their own enterprise(s) or for someone else as employees. Workers with multiple sources of employment were classified according to the work relationship in which they spent the most time during the reference day or week. As described below, CLASSWKR contains other related information in most years.]]></txt>
+      <catgry>
+        <catValu>00</catValu>
+        <labl>N/A</labl>
+      </catgry>
+      <catgry>
+        <catValu>10</catValu>
+        <labl>Self-employed</labl>
+      </catgry>
+      <catgry>
+        <catValu>11</catValu>
+        <labl>Employer</labl>
+      </catgry>
+      <catgry>
+        <catValu>12</catValu>
+        <labl>Working on own account</labl>
+      </catgry>
+      <catgry>
+        <catValu>13</catValu>
+        <labl>Self-employed, not incorporated</labl>
+      </catgry>
+      <catgry>
+        <catValu>14</catValu>
+        <labl>Self-employed, incorporated</labl>
+      </catgry>
+      <catgry>
+        <catValu>20</catValu>
+        <labl>Works for wages</labl>
+      </catgry>
+      <catgry>
+        <catValu>21</catValu>
+        <labl>Works on salary (1920)</labl>
+      </catgry>
+      <catgry>
+        <catValu>22</catValu>
+        <labl>Wage/salary, private</labl>
+      </catgry>
+      <catgry>
+        <catValu>23</catValu>
+        <labl>Wage/salary at non-profit</labl>
+      </catgry>
+      <catgry>
+        <catValu>24</catValu>
+        <labl>Wage/salary, government</labl>
+      </catgry>
+      <catgry>
+        <catValu>25</catValu>
+        <labl>Federal govt employee</labl>
+      </catgry>
+      <catgry>
+        <catValu>26</catValu>
+        <labl>Armed forces</labl>
+      </catgry>
+      <catgry>
+        <catValu>27</catValu>
+        <labl>State govt employee</labl>
+      </catgry>
+      <catgry>
+        <catValu>28</catValu>
+        <labl>Local govt employee</labl>
+      </catgry>
+      <catgry>
+        <catValu>29</catValu>
+        <labl>Unpaid family worker</labl>
+      </catgry>
+      <concept vocab="IPUMS">Work Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="UHRSWORK" dcml="0" files="ExtractData" intrvl="discrete" name="UHRSWORK">
+      <location EndPos="86" StartPos="85" width="2"/>
+      <labl>Usual hours worked per week</labl>
+      <txt><![CDATA[UHRSWORK reports the number of hours per week that the respondent usually worked, if the person worked during the previous year. The census inquiry relates to the previous calendar year, while the ACS and the PRCS uses the previous 12 months as the reference period.]]></txt>
+      <catgry>
+        <catValu>00</catValu>
+        <labl>N/A</labl>
+      </catgry>
+      <catgry>
+        <catValu>01</catValu>
+        <labl>1</labl>
+      </catgry>
+      <catgry>
+        <catValu>02</catValu>
+        <labl>2</labl>
+      </catgry>
+      <catgry>
+        <catValu>03</catValu>
+        <labl>3</labl>
+      </catgry>
+      <catgry>
+        <catValu>04</catValu>
+        <labl>4</labl>
+      </catgry>
+      <catgry>
+        <catValu>05</catValu>
+        <labl>5</labl>
+      </catgry>
+      <catgry>
+        <catValu>06</catValu>
+        <labl>6</labl>
+      </catgry>
+      <catgry>
+        <catValu>07</catValu>
+        <labl>7</labl>
+      </catgry>
+      <catgry>
+        <catValu>08</catValu>
+        <labl>8</labl>
+      </catgry>
+      <catgry>
+        <catValu>09</catValu>
+        <labl>9</labl>
+      </catgry>
+      <catgry>
+        <catValu>10</catValu>
+        <labl>10</labl>
+      </catgry>
+      <catgry>
+        <catValu>11</catValu>
+        <labl>11</labl>
+      </catgry>
+      <catgry>
+        <catValu>12</catValu>
+        <labl>12</labl>
+      </catgry>
+      <catgry>
+        <catValu>13</catValu>
+        <labl>13</labl>
+      </catgry>
+      <catgry>
+        <catValu>14</catValu>
+        <labl>14</labl>
+      </catgry>
+      <catgry>
+        <catValu>15</catValu>
+        <labl>15</labl>
+      </catgry>
+      <catgry>
+        <catValu>16</catValu>
+        <labl>16</labl>
+      </catgry>
+      <catgry>
+        <catValu>17</catValu>
+        <labl>17</labl>
+      </catgry>
+      <catgry>
+        <catValu>18</catValu>
+        <labl>18</labl>
+      </catgry>
+      <catgry>
+        <catValu>19</catValu>
+        <labl>19</labl>
+      </catgry>
+      <catgry>
+        <catValu>20</catValu>
+        <labl>20</labl>
+      </catgry>
+      <catgry>
+        <catValu>21</catValu>
+        <labl>21</labl>
+      </catgry>
+      <catgry>
+        <catValu>22</catValu>
+        <labl>22</labl>
+      </catgry>
+      <catgry>
+        <catValu>23</catValu>
+        <labl>23</labl>
+      </catgry>
+      <catgry>
+        <catValu>24</catValu>
+        <labl>24</labl>
+      </catgry>
+      <catgry>
+        <catValu>25</catValu>
+        <labl>25</labl>
+      </catgry>
+      <catgry>
+        <catValu>26</catValu>
+        <labl>26</labl>
+      </catgry>
+      <catgry>
+        <catValu>27</catValu>
+        <labl>27</labl>
+      </catgry>
+      <catgry>
+        <catValu>28</catValu>
+        <labl>28</labl>
+      </catgry>
+      <catgry>
+        <catValu>29</catValu>
+        <labl>29</labl>
+      </catgry>
+      <catgry>
+        <catValu>30</catValu>
+        <labl>30</labl>
+      </catgry>
+      <catgry>
+        <catValu>31</catValu>
+        <labl>31</labl>
+      </catgry>
+      <catgry>
+        <catValu>32</catValu>
+        <labl>32</labl>
+      </catgry>
+      <catgry>
+        <catValu>33</catValu>
+        <labl>33</labl>
+      </catgry>
+      <catgry>
+        <catValu>34</catValu>
+        <labl>34</labl>
+      </catgry>
+      <catgry>
+        <catValu>35</catValu>
+        <labl>35</labl>
+      </catgry>
+      <catgry>
+        <catValu>36</catValu>
+        <labl>36</labl>
+      </catgry>
+      <catgry>
+        <catValu>37</catValu>
+        <labl>37</labl>
+      </catgry>
+      <catgry>
+        <catValu>38</catValu>
+        <labl>38</labl>
+      </catgry>
+      <catgry>
+        <catValu>39</catValu>
+        <labl>39</labl>
+      </catgry>
+      <catgry>
+        <catValu>40</catValu>
+        <labl>40</labl>
+      </catgry>
+      <catgry>
+        <catValu>41</catValu>
+        <labl>41</labl>
+      </catgry>
+      <catgry>
+        <catValu>42</catValu>
+        <labl>42</labl>
+      </catgry>
+      <catgry>
+        <catValu>43</catValu>
+        <labl>43</labl>
+      </catgry>
+      <catgry>
+        <catValu>44</catValu>
+        <labl>44</labl>
+      </catgry>
+      <catgry>
+        <catValu>45</catValu>
+        <labl>45</labl>
+      </catgry>
+      <catgry>
+        <catValu>46</catValu>
+        <labl>46</labl>
+      </catgry>
+      <catgry>
+        <catValu>47</catValu>
+        <labl>47</labl>
+      </catgry>
+      <catgry>
+        <catValu>48</catValu>
+        <labl>48</labl>
+      </catgry>
+      <catgry>
+        <catValu>49</catValu>
+        <labl>49</labl>
+      </catgry>
+      <catgry>
+        <catValu>50</catValu>
+        <labl>50</labl>
+      </catgry>
+      <catgry>
+        <catValu>51</catValu>
+        <labl>51</labl>
+      </catgry>
+      <catgry>
+        <catValu>52</catValu>
+        <labl>52</labl>
+      </catgry>
+      <catgry>
+        <catValu>53</catValu>
+        <labl>53</labl>
+      </catgry>
+      <catgry>
+        <catValu>54</catValu>
+        <labl>54</labl>
+      </catgry>
+      <catgry>
+        <catValu>55</catValu>
+        <labl>55</labl>
+      </catgry>
+      <catgry>
+        <catValu>56</catValu>
+        <labl>56</labl>
+      </catgry>
+      <catgry>
+        <catValu>57</catValu>
+        <labl>57</labl>
+      </catgry>
+      <catgry>
+        <catValu>58</catValu>
+        <labl>58</labl>
+      </catgry>
+      <catgry>
+        <catValu>59</catValu>
+        <labl>59</labl>
+      </catgry>
+      <catgry>
+        <catValu>60</catValu>
+        <labl>60</labl>
+      </catgry>
+      <catgry>
+        <catValu>61</catValu>
+        <labl>61</labl>
+      </catgry>
+      <catgry>
+        <catValu>62</catValu>
+        <labl>62</labl>
+      </catgry>
+      <catgry>
+        <catValu>63</catValu>
+        <labl>63</labl>
+      </catgry>
+      <catgry>
+        <catValu>64</catValu>
+        <labl>64</labl>
+      </catgry>
+      <catgry>
+        <catValu>65</catValu>
+        <labl>65</labl>
+      </catgry>
+      <catgry>
+        <catValu>66</catValu>
+        <labl>66</labl>
+      </catgry>
+      <catgry>
+        <catValu>67</catValu>
+        <labl>67</labl>
+      </catgry>
+      <catgry>
+        <catValu>68</catValu>
+        <labl>68</labl>
+      </catgry>
+      <catgry>
+        <catValu>69</catValu>
+        <labl>69</labl>
+      </catgry>
+      <catgry>
+        <catValu>70</catValu>
+        <labl>70</labl>
+      </catgry>
+      <catgry>
+        <catValu>71</catValu>
+        <labl>71</labl>
+      </catgry>
+      <catgry>
+        <catValu>72</catValu>
+        <labl>72</labl>
+      </catgry>
+      <catgry>
+        <catValu>73</catValu>
+        <labl>73</labl>
+      </catgry>
+      <catgry>
+        <catValu>74</catValu>
+        <labl>74</labl>
+      </catgry>
+      <catgry>
+        <catValu>75</catValu>
+        <labl>75</labl>
+      </catgry>
+      <catgry>
+        <catValu>76</catValu>
+        <labl>76</labl>
+      </catgry>
+      <catgry>
+        <catValu>77</catValu>
+        <labl>77</labl>
+      </catgry>
+      <catgry>
+        <catValu>78</catValu>
+        <labl>78</labl>
+      </catgry>
+      <catgry>
+        <catValu>79</catValu>
+        <labl>79</labl>
+      </catgry>
+      <catgry>
+        <catValu>80</catValu>
+        <labl>80</labl>
+      </catgry>
+      <catgry>
+        <catValu>81</catValu>
+        <labl>81</labl>
+      </catgry>
+      <catgry>
+        <catValu>82</catValu>
+        <labl>82</labl>
+      </catgry>
+      <catgry>
+        <catValu>83</catValu>
+        <labl>83</labl>
+      </catgry>
+      <catgry>
+        <catValu>84</catValu>
+        <labl>84</labl>
+      </catgry>
+      <catgry>
+        <catValu>85</catValu>
+        <labl>85</labl>
+      </catgry>
+      <catgry>
+        <catValu>86</catValu>
+        <labl>86</labl>
+      </catgry>
+      <catgry>
+        <catValu>87</catValu>
+        <labl>87</labl>
+      </catgry>
+      <catgry>
+        <catValu>88</catValu>
+        <labl>88</labl>
+      </catgry>
+      <catgry>
+        <catValu>89</catValu>
+        <labl>89</labl>
+      </catgry>
+      <catgry>
+        <catValu>90</catValu>
+        <labl>90</labl>
+      </catgry>
+      <catgry>
+        <catValu>91</catValu>
+        <labl>91</labl>
+      </catgry>
+      <catgry>
+        <catValu>92</catValu>
+        <labl>92</labl>
+      </catgry>
+      <catgry>
+        <catValu>93</catValu>
+        <labl>93</labl>
+      </catgry>
+      <catgry>
+        <catValu>94</catValu>
+        <labl>94</labl>
+      </catgry>
+      <catgry>
+        <catValu>95</catValu>
+        <labl>95</labl>
+      </catgry>
+      <catgry>
+        <catValu>96</catValu>
+        <labl>96</labl>
+      </catgry>
+      <catgry>
+        <catValu>97</catValu>
+        <labl>97</labl>
+      </catgry>
+      <catgry>
+        <catValu>98</catValu>
+        <labl>98</labl>
+      </catgry>
+      <catgry>
+        <catValu>99</catValu>
+        <labl>99 (Topcode)</labl>
+      </catgry>
+      <concept vocab="IPUMS">Work Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="INCTOT" dcml="0" files="ExtractData" intrvl="contin" name="INCTOT">
+      <location EndPos="93" StartPos="87" width="7"/>
+      <labl>Total personal income</labl>
+      <txt><![CDATA[INCTOT reports each respondent's total pre-tax personal income or losses from all sources for the previous year. The censuses collected information on income received from these sources during the previous calendar year; for the ACS and the PRCS, the reference period was the past 12 months. Amounts are expressed in contemporary dollars, and users studying change over time must adjust for inflation:
+
+Users studying change over time must adjust for inflation. Consumer Price Index adjustment factors for the appropriate years can be found in the CPI99 variable.
+
+The exception is the ACS/PRCS multi-year files, where all dollar amounts have been standardized to dollars as valued in the final year of data included in the file (e.g., 2007 dollars for the 2005-2007 3-year file). Additionally, more detail may be available than exists in the original ACS samples.
+
+User Note: ACS respondents are surveyed throughout the year, and amounts do not reflect calendar year dollars. While the Census Bureau provides an adjustment factor (available in ADJUST), this is an imperfect solution. See the ACS income variables note for further details.
+
+For a more complete discussion of the use of these factors to adjust for inflation, users may wish to see the IPUMS-CPS note on adjusting dollar amount variables for inflation.]]></txt>
+      <codInstr><![CDATA[CodesINCTOT is a 7-digit numeric code reporting each respondent's total pre-tax personal income or losses from all sources for the previous year. INCTOT specific variable codes for missing, edited, or unidentified observations, observations not applicable (N/A), observations not in universe (NIU), top and bottom value coding, etc. are provided below by Census year (and data sample if specified).
+
+User Note: Users studying change over time must adjust for inflation (See Description).
+
+INCTOT Specific Variable Codes
+-009995 = -$9,900 (1980)
+-000001 = Net loss (1950)
+0000000 = None
+0000001 = $1 or break even (2000, 2005-onward ACS and PRCS)
+9999999 = N/A
+
+
+* .indent {
+  text-indent: 10px;
+}
+
+
+* .lrgindent {
+  text-indent: 90px;
+}
+
+
+
+	
+		INCTOT
+	
+		Census
+		Bottom Code
+		Top Code
+	
+		1950
+		 Net loss
+		$10,000
+	
+		1960
+		-$9,900
+		$25,000
+	
+		1970
+		-$9,900
+		$50,000
+	
+		1980
+		-$9,990
+		$75,000
+	
+		1990
+		-$19,998
+		&nbsp;$400,000*
+	
+		2000
+		-$20,000
+		$999,998
+	
+		ACS
+		-$19,998
+		-
+	
+		PRCS
+		-$19,998
+		-
+	
+
+
+]]></codInstr>
+      <concept vocab="IPUMS">Income Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="FTOTINC" dcml="0" files="ExtractData" intrvl="contin" name="FTOTINC">
+      <location EndPos="100" StartPos="94" width="7"/>
+      <labl>Total family income</labl>
+      <txt><![CDATA[FTOTINC reports the total pre-tax money income earned by one's family (as defined by FAMUNIT) from all sources for the previous year. For the census samples, the reference period is the previous calendar year; for the ACS/PRCS, it is the previous 12 months. 
+
+For 1950-1980, the amounts represent the midpoints of $10, $100, or other intervals used by each year's sample, not exact dollar amounts. 1990 gives exact dollar amounts. For the 2000 census, the ACS and the PRCS, FTOTINC is the sum of several income variables, each of which is rounded as follows:
+
+
+  
+    
+      No income 
+      $0  
+    
+    
+      &nbsp;$1 - $7 &nbsp;
+      $4  
+    
+    
+      &nbsp;$8 - $999 &nbsp;
+      rounded to nearest $10  
+    
+    
+	  &nbsp;$1,000 - $49,999 &nbsp;
+	  rounded to nearest $100  
+    
+    
+	  &nbsp;$50,000 or more &nbsp;
+	  rounded to nearest $1000 
+    
+    
+
+]]></txt>
+      <codInstr><![CDATA[CodesFTOTINC is a 7-digit numeric code reporting the total pre-tax money income earned by one's family (as defined by FAMUNIT) from all sources for the previous year. FTOTINC specific variable codes for missing, edited, or unidentified observations, observations not applicable (N/A), observations not in universe (NIU), top and bottom value coding, etc. are provided below by Census year (and data sample if specified).
+
+User Note: Amounts are expressed in contemporary dollars, and users studying change over time must adjust for inflation (See Description).
+
+FTOTINC Specific Variable Codes
+-000001 = Net loss (1950) 
+0000000 = No income (1950-2000, ACS/PRCS) 
+9999998 = Not ascertained (1950) 
+9999999 = N/A 
+
+
+* .indent {
+  text-indent: 10px;
+}
+
+
+* .lrgindent {
+  text-indent: 90px;
+}
+
+
+
+	
+		FTOTINC
+	
+		Census
+		Bottom Code
+		Top Code
+	
+		1950
+		Net loss
+		$10,000
+	
+		1960
+		-$9,990
+		$25,000
+	
+		1970
+		-$9,990
+		$50,000
+	
+		1980
+		-$9,995
+		$75,000
+	
+		1990
+		&nbsp;By State*
+		&nbsp;By State*
+	
+		2000
+		-$59,999
+		-
+	
+		ACS
+		-
+		-
+	
+		PRCS
+		-
+		-
+	
+
+
+]]></codInstr>
+      <concept vocab="IPUMS">Income Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="PWSTATE2" dcml="0" files="ExtractData" intrvl="discrete" name="PWSTATE2">
+      <location EndPos="102" StartPos="101" width="2"/>
+      <labl>Place of work: state</labl>
+      <txt><![CDATA[PWSTATE2 reports the state in which the respondent's primary workplace was located. If the person worked abroad, this is also indicated. In some cases, the state is not identified, such as in the 1980 Puerto Rico census (see below).
+
+In 1980, responses to questions about workplace location were coded for only half the persons in the IPUMS. These cases yield representative proportional distributions but not correct absolute numbers for the general population. To generate accurate absolute numbers for 1980, users should select cases coded as 2 in MIGSAMP and multiply by 2 as well as by PERWT.]]></txt>
+      <catgry>
+        <catValu>00</catValu>
+        <labl>N/A</labl>
+      </catgry>
+      <catgry>
+        <catValu>01</catValu>
+        <labl>Alabama</labl>
+      </catgry>
+      <catgry>
+        <catValu>02</catValu>
+        <labl>Alaska</labl>
+      </catgry>
+      <catgry>
+        <catValu>04</catValu>
+        <labl>Arizona</labl>
+      </catgry>
+      <catgry>
+        <catValu>05</catValu>
+        <labl>Arkansas</labl>
+      </catgry>
+      <catgry>
+        <catValu>06</catValu>
+        <labl>California</labl>
+      </catgry>
+      <catgry>
+        <catValu>08</catValu>
+        <labl>Colorado</labl>
+      </catgry>
+      <catgry>
+        <catValu>09</catValu>
+        <labl>Connecticut</labl>
+      </catgry>
+      <catgry>
+        <catValu>10</catValu>
+        <labl>Delaware</labl>
+      </catgry>
+      <catgry>
+        <catValu>11</catValu>
+        <labl>District of Columbia</labl>
+      </catgry>
+      <catgry>
+        <catValu>12</catValu>
+        <labl>Florida</labl>
+      </catgry>
+      <catgry>
+        <catValu>13</catValu>
+        <labl>Georgia</labl>
+      </catgry>
+      <catgry>
+        <catValu>15</catValu>
+        <labl>Hawaii</labl>
+      </catgry>
+      <catgry>
+        <catValu>16</catValu>
+        <labl>Idaho</labl>
+      </catgry>
+      <catgry>
+        <catValu>17</catValu>
+        <labl>Illinois</labl>
+      </catgry>
+      <catgry>
+        <catValu>18</catValu>
+        <labl>Indiana</labl>
+      </catgry>
+      <catgry>
+        <catValu>19</catValu>
+        <labl>Iowa</labl>
+      </catgry>
+      <catgry>
+        <catValu>20</catValu>
+        <labl>Kansas</labl>
+      </catgry>
+      <catgry>
+        <catValu>21</catValu>
+        <labl>Kentucky</labl>
+      </catgry>
+      <catgry>
+        <catValu>22</catValu>
+        <labl>Louisiana</labl>
+      </catgry>
+      <catgry>
+        <catValu>23</catValu>
+        <labl>Maine</labl>
+      </catgry>
+      <catgry>
+        <catValu>24</catValu>
+        <labl>Maryland</labl>
+      </catgry>
+      <catgry>
+        <catValu>25</catValu>
+        <labl>Massachusetts</labl>
+      </catgry>
+      <catgry>
+        <catValu>26</catValu>
+        <labl>Michigan</labl>
+      </catgry>
+      <catgry>
+        <catValu>27</catValu>
+        <labl>Minnesota</labl>
+      </catgry>
+      <catgry>
+        <catValu>28</catValu>
+        <labl>Mississippi</labl>
+      </catgry>
+      <catgry>
+        <catValu>29</catValu>
+        <labl>Missouri</labl>
+      </catgry>
+      <catgry>
+        <catValu>30</catValu>
+        <labl>Montana</labl>
+      </catgry>
+      <catgry>
+        <catValu>31</catValu>
+        <labl>Nebraska</labl>
+      </catgry>
+      <catgry>
+        <catValu>32</catValu>
+        <labl>Nevada</labl>
+      </catgry>
+      <catgry>
+        <catValu>33</catValu>
+        <labl>New Hampshire</labl>
+      </catgry>
+      <catgry>
+        <catValu>34</catValu>
+        <labl>New Jersey</labl>
+      </catgry>
+      <catgry>
+        <catValu>35</catValu>
+        <labl>New Mexico</labl>
+      </catgry>
+      <catgry>
+        <catValu>36</catValu>
+        <labl>New York</labl>
+      </catgry>
+      <catgry>
+        <catValu>37</catValu>
+        <labl>North Carolina</labl>
+      </catgry>
+      <catgry>
+        <catValu>38</catValu>
+        <labl>North Dakota</labl>
+      </catgry>
+      <catgry>
+        <catValu>39</catValu>
+        <labl>Ohio</labl>
+      </catgry>
+      <catgry>
+        <catValu>40</catValu>
+        <labl>Oklahoma</labl>
+      </catgry>
+      <catgry>
+        <catValu>41</catValu>
+        <labl>Oregon</labl>
+      </catgry>
+      <catgry>
+        <catValu>42</catValu>
+        <labl>Pennsylvania</labl>
+      </catgry>
+      <catgry>
+        <catValu>44</catValu>
+        <labl>Rhode Island</labl>
+      </catgry>
+      <catgry>
+        <catValu>45</catValu>
+        <labl>South Carolina</labl>
+      </catgry>
+      <catgry>
+        <catValu>46</catValu>
+        <labl>South Dakota</labl>
+      </catgry>
+      <catgry>
+        <catValu>47</catValu>
+        <labl>Tennessee</labl>
+      </catgry>
+      <catgry>
+        <catValu>48</catValu>
+        <labl>Texas</labl>
+      </catgry>
+      <catgry>
+        <catValu>49</catValu>
+        <labl>Utah</labl>
+      </catgry>
+      <catgry>
+        <catValu>50</catValu>
+        <labl>Vermont</labl>
+      </catgry>
+      <catgry>
+        <catValu>51</catValu>
+        <labl>Virginia</labl>
+      </catgry>
+      <catgry>
+        <catValu>53</catValu>
+        <labl>Washington</labl>
+      </catgry>
+      <catgry>
+        <catValu>54</catValu>
+        <labl>West Virginia</labl>
+      </catgry>
+      <catgry>
+        <catValu>55</catValu>
+        <labl>Wisconsin</labl>
+      </catgry>
+      <catgry>
+        <catValu>56</catValu>
+        <labl>Wyoming</labl>
+      </catgry>
+      <catgry>
+        <catValu>61</catValu>
+        <labl>Maine-New Hamp-Vermont</labl>
+      </catgry>
+      <catgry>
+        <catValu>62</catValu>
+        <labl>Massachusetts-Rhode Island</labl>
+      </catgry>
+      <catgry>
+        <catValu>63</catValu>
+        <labl>Minn-Iowa-Missouri-Kansas-S Dakota-N Dakota</labl>
+      </catgry>
+      <catgry>
+        <catValu>64</catValu>
+        <labl>Mayrland-Delaware</labl>
+      </catgry>
+      <catgry>
+        <catValu>65</catValu>
+        <labl>Montana-Idaho-Wyoming</labl>
+      </catgry>
+      <catgry>
+        <catValu>66</catValu>
+        <labl>Utah-Nevada</labl>
+      </catgry>
+      <catgry>
+        <catValu>67</catValu>
+        <labl>Arizona-New Mexico</labl>
+      </catgry>
+      <catgry>
+        <catValu>68</catValu>
+        <labl>Alaska-Hawaii</labl>
+      </catgry>
+      <catgry>
+        <catValu>72</catValu>
+        <labl>Puerto Rico</labl>
+      </catgry>
+      <catgry>
+        <catValu>73</catValu>
+        <labl>U.S. outlying area</labl>
+      </catgry>
+      <catgry>
+        <catValu>74</catValu>
+        <labl>United States (1980 Puerto Rico samples)</labl>
+      </catgry>
+      <catgry>
+        <catValu>80</catValu>
+        <labl>Abroad</labl>
+      </catgry>
+      <catgry>
+        <catValu>81</catValu>
+        <labl>Europe</labl>
+      </catgry>
+      <catgry>
+        <catValu>82</catValu>
+        <labl>Eastern Asia</labl>
+      </catgry>
+      <catgry>
+        <catValu>83</catValu>
+        <labl>South Central, South East, and Western Asia</labl>
+      </catgry>
+      <catgry>
+        <catValu>84</catValu>
+        <labl>Mexico</labl>
+      </catgry>
+      <catgry>
+        <catValu>85</catValu>
+        <labl>Other Americas</labl>
+      </catgry>
+      <catgry>
+        <catValu>86</catValu>
+        <labl>Other, nec</labl>
+      </catgry>
+      <catgry>
+        <catValu>87</catValu>
+        <labl>Iraq</labl>
+      </catgry>
+      <catgry>
+        <catValu>88</catValu>
+        <labl>Canada</labl>
+      </catgry>
+      <catgry>
+        <catValu>90</catValu>
+        <labl>Confidential</labl>
+      </catgry>
+      <catgry>
+        <catValu>99</catValu>
+        <labl>Not reported</labl>
+      </catgry>
+      <concept vocab="IPUMS">Place of Work and Travel Time Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="PWCITY" dcml="0" files="ExtractData" intrvl="discrete" name="PWCITY">
+      <location EndPos="106" StartPos="103" width="4"/>
+      <labl>Place of work: city</labl>
+      <txt><![CDATA[PWCITY identifies the city in which the respondent worked in the week prior to the census. IPUMS constructs PWCITY from PWCNTYGP in 1980, from PWPUMA in 1990, and from PWPUMA00 in 2000 and in the 2005-2011 ACS samples.  Differing confidentiality restrictions and coding procedures limit the identifiable cities over time. (See CITY for details on limitations in identifying cities.)
+
+In all years, many large cities cannot be identified. In 1990, 2000, and 2005-2011, a number of cities identified in CITY are not available in PWCITY. This is because, for these samples, CITY is based on PUMAs while PWCITY is based on coarser "Place-of-Work PUMAs," which correspond to one or more PUMAs.
+
+In 1980, responses to questions about workplace location were coded for only half the persons included in IPUMS USA. These cases provide representative proportional distributions but not accurate absolute numbers for the population as a whole. To generate accurate absolute numbers, users should select cases coded as 2 in MIGSAMP and multiply by 2 as well as by PERWT.]]></txt>
+      <catgry>
+        <catValu>0000</catValu>
+        <labl>N/A or not identifiable</labl>
+      </catgry>
+      <catgry>
+        <catValu>0010</catValu>
+        <labl>Akron, OH</labl>
+      </catgry>
+      <catgry>
+        <catValu>0050</catValu>
+        <labl>Albany, NY</labl>
+      </catgry>
+      <catgry>
+        <catValu>0070</catValu>
+        <labl>Albuquerque, NM</labl>
+      </catgry>
+      <catgry>
+        <catValu>0090</catValu>
+        <labl>Alexandria, VA</labl>
+      </catgry>
+      <catgry>
+        <catValu>0130</catValu>
+        <labl>Allentown, PA</labl>
+      </catgry>
+      <catgry>
+        <catValu>0190</catValu>
+        <labl>Anaheim, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>0210</catValu>
+        <labl>Anchorage, AK</labl>
+      </catgry>
+      <catgry>
+        <catValu>0270</catValu>
+        <labl>Ann Arbor, MI</labl>
+      </catgry>
+      <catgry>
+        <catValu>0290</catValu>
+        <labl>Arlington, TX</labl>
+      </catgry>
+      <catgry>
+        <catValu>0310</catValu>
+        <labl>Arlington, VA</labl>
+      </catgry>
+      <catgry>
+        <catValu>0350</catValu>
+        <labl>Atlanta, GA</labl>
+      </catgry>
+      <catgry>
+        <catValu>0450</catValu>
+        <labl>Aurora, CO</labl>
+      </catgry>
+      <catgry>
+        <catValu>0490</catValu>
+        <labl>Austin, TX</labl>
+      </catgry>
+      <catgry>
+        <catValu>0510</catValu>
+        <labl>Bakersfield, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>0530</catValu>
+        <labl>Baltimore, MD</labl>
+      </catgry>
+      <catgry>
+        <catValu>0590</catValu>
+        <labl>Baton Rouge, LA</labl>
+      </catgry>
+      <catgry>
+        <catValu>0600</catValu>
+        <labl>Bayamon, PR</labl>
+      </catgry>
+      <catgry>
+        <catValu>0670</catValu>
+        <labl>Beaumont, TX</labl>
+      </catgry>
+      <catgry>
+        <catValu>0680</catValu>
+        <labl>Bellevue, WA</labl>
+      </catgry>
+      <catgry>
+        <catValu>0770</catValu>
+        <labl>Birmingham, AL</labl>
+      </catgry>
+      <catgry>
+        <catValu>0800</catValu>
+        <labl>Boise, ID</labl>
+      </catgry>
+      <catgry>
+        <catValu>0810</catValu>
+        <labl>Boston, MA</labl>
+      </catgry>
+      <catgry>
+        <catValu>0830</catValu>
+        <labl>Bridgeport, CT</labl>
+      </catgry>
+      <catgry>
+        <catValu>0880</catValu>
+        <labl>Brownsville, TX</labl>
+      </catgry>
+      <catgry>
+        <catValu>0890</catValu>
+        <labl>Buffalo, NY</labl>
+      </catgry>
+      <catgry>
+        <catValu>0930</catValu>
+        <labl>Cambridge, MA</labl>
+      </catgry>
+      <catgry>
+        <catValu>1000</catValu>
+        <labl>Cape Coral, FL</labl>
+      </catgry>
+      <catgry>
+        <catValu>1050</catValu>
+        <labl>Carolina, PR</labl>
+      </catgry>
+      <catgry>
+        <catValu>1090</catValu>
+        <labl>Charlotte, NC</labl>
+      </catgry>
+      <catgry>
+        <catValu>1110</catValu>
+        <labl>Chattanooga, TN</labl>
+      </catgry>
+      <catgry>
+        <catValu>1150</catValu>
+        <labl>Chesapeake, VA</labl>
+      </catgry>
+      <catgry>
+        <catValu>1190</catValu>
+        <labl>Chicago, IL</labl>
+      </catgry>
+      <catgry>
+        <catValu>1250</catValu>
+        <labl>Chula Vista, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>1290</catValu>
+        <labl>Cincinnati, OH</labl>
+      </catgry>
+      <catgry>
+        <catValu>1330</catValu>
+        <labl>Cleveland, OH</labl>
+      </catgry>
+      <catgry>
+        <catValu>1390</catValu>
+        <labl>Colorado Springs, CO</labl>
+      </catgry>
+      <catgry>
+        <catValu>1410</catValu>
+        <labl>Columbia, SC</labl>
+      </catgry>
+      <catgry>
+        <catValu>1450</catValu>
+        <labl>Columbus, OH</labl>
+      </catgry>
+      <catgry>
+        <catValu>1470</catValu>
+        <labl>Concord, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>1500</catValu>
+        <labl>Corona, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>1520</catValu>
+        <labl>Corpus Christi, TX</labl>
+      </catgry>
+      <catgry>
+        <catValu>1590</catValu>
+        <labl>Dallas, TX</labl>
+      </catgry>
+      <catgry>
+        <catValu>1650</catValu>
+        <labl>Davenport, IA</labl>
+      </catgry>
+      <catgry>
+        <catValu>1670</catValu>
+        <labl>Dayton, OH</labl>
+      </catgry>
+      <catgry>
+        <catValu>1710</catValu>
+        <labl>Denver, CO</labl>
+      </catgry>
+      <catgry>
+        <catValu>1730</catValu>
+        <labl>Des Moines, IA</labl>
+      </catgry>
+      <catgry>
+        <catValu>1750</catValu>
+        <labl>Detroit, MI</labl>
+      </catgry>
+      <catgry>
+        <catValu>1800</catValu>
+        <labl>Downey, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>1850</catValu>
+        <labl>Durham, NC</labl>
+      </catgry>
+      <catgry>
+        <catValu>1910</catValu>
+        <labl>East Los Angeles, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>1990</catValu>
+        <labl>El Monte, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>2010</catValu>
+        <labl>El Paso, TX</labl>
+      </catgry>
+      <catgry>
+        <catValu>2050</catValu>
+        <labl>Elizabeth, NJ</labl>
+      </catgry>
+      <catgry>
+        <catValu>2090</catValu>
+        <labl>Erie, PA</labl>
+      </catgry>
+      <catgry>
+        <catValu>2110</catValu>
+        <labl>Escondido, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>2130</catValu>
+        <labl>Eugene, OR</labl>
+      </catgry>
+      <catgry>
+        <catValu>2170</catValu>
+        <labl>Evansville, IN</labl>
+      </catgry>
+      <catgry>
+        <catValu>2240</catValu>
+        <labl>Fayetteville, NC</labl>
+      </catgry>
+      <catgry>
+        <catValu>2270</catValu>
+        <labl>Flint, MI</labl>
+      </catgry>
+      <catgry>
+        <catValu>2260</catValu>
+        <labl>Fontana, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>2300</catValu>
+        <labl>Fort Collins, CO</labl>
+      </catgry>
+      <catgry>
+        <catValu>2290</catValu>
+        <labl>Fort Lauderdale, FL</labl>
+      </catgry>
+      <catgry>
+        <catValu>2330</catValu>
+        <labl>Fort Wayne, IN</labl>
+      </catgry>
+      <catgry>
+        <catValu>2350</catValu>
+        <labl>Fort Worth, TX</labl>
+      </catgry>
+      <catgry>
+        <catValu>2370</catValu>
+        <labl>Fresno, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>2390</catValu>
+        <labl>Fullerton, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>2430</catValu>
+        <labl>Garden Grove, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>2450</catValu>
+        <labl>Garland, TX</labl>
+      </catgry>
+      <catgry>
+        <catValu>2470</catValu>
+        <labl>Gary, IN</labl>
+      </catgry>
+      <catgry>
+        <catValu>2490</catValu>
+        <labl>Glendale, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>2530</catValu>
+        <labl>Grand Rapids, MI</labl>
+      </catgry>
+      <catgry>
+        <catValu>2550</catValu>
+        <labl>Green Bay, WI</labl>
+      </catgry>
+      <catgry>
+        <catValu>2570</catValu>
+        <labl>Greensboro, NC</labl>
+      </catgry>
+      <catgry>
+        <catValu>2600</catValu>
+        <labl>Guyanabo, PR</labl>
+      </catgry>
+      <catgry>
+        <catValu>2650</catValu>
+        <labl>Hampton, VA</labl>
+      </catgry>
+      <catgry>
+        <catValu>2710</catValu>
+        <labl>Hartford, CT</labl>
+      </catgry>
+      <catgry>
+        <catValu>2770</catValu>
+        <labl>Hialeah, FL</labl>
+      </catgry>
+      <catgry>
+        <catValu>2830</catValu>
+        <labl>Hollywood, FL</labl>
+      </catgry>
+      <catgry>
+        <catValu>2870</catValu>
+        <labl>Honolulu, HI</labl>
+      </catgry>
+      <catgry>
+        <catValu>2890</catValu>
+        <labl>Houston, TX</labl>
+      </catgry>
+      <catgry>
+        <catValu>2930</catValu>
+        <labl>Huntington Beach, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>2950</catValu>
+        <labl>Huntsville, AL</labl>
+      </catgry>
+      <catgry>
+        <catValu>2970</catValu>
+        <labl>Independence, MO</labl>
+      </catgry>
+      <catgry>
+        <catValu>2990</catValu>
+        <labl>Indianapolis, IN</labl>
+      </catgry>
+      <catgry>
+        <catValu>3010</catValu>
+        <labl>Inglewood, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>3020</catValu>
+        <labl>Irvine, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>3030</catValu>
+        <labl>Irving, TX</labl>
+      </catgry>
+      <catgry>
+        <catValu>3090</catValu>
+        <labl>Jackson, MS</labl>
+      </catgry>
+      <catgry>
+        <catValu>3110</catValu>
+        <labl>Jacksonville, FL</labl>
+      </catgry>
+      <catgry>
+        <catValu>3150</catValu>
+        <labl>Jersey City, NJ</labl>
+      </catgry>
+      <catgry>
+        <catValu>3260</catValu>
+        <labl>Kansas City, MO</labl>
+      </catgry>
+      <catgry>
+        <catValu>3330</catValu>
+        <labl>Knoxville, TN</labl>
+      </catgry>
+      <catgry>
+        <catValu>3390</catValu>
+        <labl>Lafayette, LA</labl>
+      </catgry>
+      <catgry>
+        <catValu>3410</catValu>
+        <labl>Lakewood, CO</labl>
+      </catgry>
+      <catgry>
+        <catValu>3440</catValu>
+        <labl>Lancaster, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>3470</catValu>
+        <labl>Lansing, MI</labl>
+      </catgry>
+      <catgry>
+        <catValu>3490</catValu>
+        <labl>Las Vegas, NV</labl>
+      </catgry>
+      <catgry>
+        <catValu>3590</catValu>
+        <labl>Lexington-Fayette, KY</labl>
+      </catgry>
+      <catgry>
+        <catValu>3650</catValu>
+        <labl>Little Rock, AR</labl>
+      </catgry>
+      <catgry>
+        <catValu>3670</catValu>
+        <labl>Livonia, MI</labl>
+      </catgry>
+      <catgry>
+        <catValu>3690</catValu>
+        <labl>Long Beach, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>3730</catValu>
+        <labl>Los Angeles, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>3750</catValu>
+        <labl>Louisville, KY</labl>
+      </catgry>
+      <catgry>
+        <catValu>3770</catValu>
+        <labl>Lowell, MA</labl>
+      </catgry>
+      <catgry>
+        <catValu>3830</catValu>
+        <labl>Macon, GA</labl>
+      </catgry>
+      <catgry>
+        <catValu>3870</catValu>
+        <labl>Madison, WI</labl>
+      </catgry>
+      <catgry>
+        <catValu>3910</catValu>
+        <labl>Manchester, NH</labl>
+      </catgry>
+      <catgry>
+        <catValu>3960</catValu>
+        <labl>McAllen, TX</labl>
+      </catgry>
+      <catgry>
+        <catValu>4010</catValu>
+        <labl>Memphis, TN</labl>
+      </catgry>
+      <catgry>
+        <catValu>4050</catValu>
+        <labl>Mesa, AZ</labl>
+      </catgry>
+      <catgry>
+        <catValu>4070</catValu>
+        <labl>Mesquite, TX</labl>
+      </catgry>
+      <catgry>
+        <catValu>4090</catValu>
+        <labl>Metairie, LA</labl>
+      </catgry>
+      <catgry>
+        <catValu>4110</catValu>
+        <labl>Miami, FL</labl>
+      </catgry>
+      <catgry>
+        <catValu>4130</catValu>
+        <labl>Milwaukee, WI</labl>
+      </catgry>
+      <catgry>
+        <catValu>4150</catValu>
+        <labl>Minneapolis, MN</labl>
+      </catgry>
+      <catgry>
+        <catValu>4170</catValu>
+        <labl>Mobile, AL</labl>
+      </catgry>
+      <catgry>
+        <catValu>4190</catValu>
+        <labl>Modesto, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>4250</catValu>
+        <labl>Montgomery, AL</labl>
+      </catgry>
+      <catgry>
+        <catValu>4270</catValu>
+        <labl>Moreno Valley, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>4410</catValu>
+        <labl>Nashville-Davidson, TN</labl>
+      </catgry>
+      <catgry>
+        <catValu>4530</catValu>
+        <labl>New Haven, CT</labl>
+      </catgry>
+      <catgry>
+        <catValu>4570</catValu>
+        <labl>New Orleans, LA</labl>
+      </catgry>
+      <catgry>
+        <catValu>4610</catValu>
+        <labl>New York, NY</labl>
+      </catgry>
+      <catgry>
+        <catValu>4630</catValu>
+        <labl>Newark, NJ</labl>
+      </catgry>
+      <catgry>
+        <catValu>4750</catValu>
+        <labl>Newport News, VA</labl>
+      </catgry>
+      <catgry>
+        <catValu>4810</catValu>
+        <labl>Norfolk, VA</labl>
+      </catgry>
+      <catgry>
+        <catValu>4860</catValu>
+        <labl>Norwalk, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>4930</catValu>
+        <labl>Oakland, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>4950</catValu>
+        <labl>Oceanside, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>4990</catValu>
+        <labl>Oklahoma City, OK</labl>
+      </catgry>
+      <catgry>
+        <catValu>5010</catValu>
+        <labl>Omaha, NE</labl>
+      </catgry>
+      <catgry>
+        <catValu>5030</catValu>
+        <labl>Ontario, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>5070</catValu>
+        <labl>Orlando, FL</labl>
+      </catgry>
+      <catgry>
+        <catValu>5130</catValu>
+        <labl>Oxnard, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>5140</catValu>
+        <labl>Palmdale, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>5150</catValu>
+        <labl>Pasadena, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>5170</catValu>
+        <labl>Pasadena, TX</labl>
+      </catgry>
+      <catgry>
+        <catValu>5210</catValu>
+        <labl>Paterson, NJ</labl>
+      </catgry>
+      <catgry>
+        <catValu>5270</catValu>
+        <labl>Peoria, IL</labl>
+      </catgry>
+      <catgry>
+        <catValu>5330</catValu>
+        <labl>Philadelphia, PA</labl>
+      </catgry>
+      <catgry>
+        <catValu>5350</catValu>
+        <labl>Phoenix, AZ</labl>
+      </catgry>
+      <catgry>
+        <catValu>5370</catValu>
+        <labl>Pittsburgh, PA</labl>
+      </catgry>
+      <catgry>
+        <catValu>5430</catValu>
+        <labl>Plano, TX</labl>
+      </catgry>
+      <catgry>
+        <catValu>5450</catValu>
+        <labl>Pomona, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>5500</catValu>
+        <labl>Ponce, PR</labl>
+      </catgry>
+      <catgry>
+        <catValu>5530</catValu>
+        <labl>Portland, OR</labl>
+      </catgry>
+      <catgry>
+        <catValu>5590</catValu>
+        <labl>Portsmouth, VA</labl>
+      </catgry>
+      <catgry>
+        <catValu>5650</catValu>
+        <labl>Providence, RI</labl>
+      </catgry>
+      <catgry>
+        <catValu>5750</catValu>
+        <labl>Raleigh, NC</labl>
+      </catgry>
+      <catgry>
+        <catValu>5770</catValu>
+        <labl>Rancho Cucamonga, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>5810</catValu>
+        <labl>Reno, NV</labl>
+      </catgry>
+      <catgry>
+        <catValu>5870</catValu>
+        <labl>Richmond, VA</labl>
+      </catgry>
+      <catgry>
+        <catValu>5890</catValu>
+        <labl>Riverside, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>5910</catValu>
+        <labl>Roanoke, VA</labl>
+      </catgry>
+      <catgry>
+        <catValu>5930</catValu>
+        <labl>Rochester, NY</labl>
+      </catgry>
+      <catgry>
+        <catValu>5970</catValu>
+        <labl>Rockford, IL</labl>
+      </catgry>
+      <catgry>
+        <catValu>6030</catValu>
+        <labl>Sacramento, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>6090</catValu>
+        <labl>Saint Louis, MO</labl>
+      </catgry>
+      <catgry>
+        <catValu>6110</catValu>
+        <labl>Saint Paul, MN</labl>
+      </catgry>
+      <catgry>
+        <catValu>6130</catValu>
+        <labl>Saint Petersburg, FL</labl>
+      </catgry>
+      <catgry>
+        <catValu>6170</catValu>
+        <labl>Salem, OR</labl>
+      </catgry>
+      <catgry>
+        <catValu>6190</catValu>
+        <labl>Salinas, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>6210</catValu>
+        <labl>Salt Lake City, UT</labl>
+      </catgry>
+      <catgry>
+        <catValu>6230</catValu>
+        <labl>San Antonio, TX</labl>
+      </catgry>
+      <catgry>
+        <catValu>6250</catValu>
+        <labl>San Bernadino, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>6270</catValu>
+        <labl>San Diego, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>6290</catValu>
+        <labl>San Francisco, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>6310</catValu>
+        <labl>San Jose, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>6320</catValu>
+        <labl>San Juan, PR</labl>
+      </catgry>
+      <catgry>
+        <catValu>6330</catValu>
+        <labl>Santa Ana, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>6340</catValu>
+        <labl>Santa Clarita, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>6350</catValu>
+        <labl>Santa Rosa, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>6370</catValu>
+        <labl>Savannah, GA</labl>
+      </catgry>
+      <catgry>
+        <catValu>6430</catValu>
+        <labl>Seattle, WA</labl>
+      </catgry>
+      <catgry>
+        <catValu>6490</catValu>
+        <labl>Shreveport, LA</labl>
+      </catgry>
+      <catgry>
+        <catValu>6500</catValu>
+        <labl>Simi Valley, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>6530</catValu>
+        <labl>Sioux Falls, SD</labl>
+      </catgry>
+      <catgry>
+        <catValu>6590</catValu>
+        <labl>South Bend, IN</labl>
+      </catgry>
+      <catgry>
+        <catValu>6630</catValu>
+        <labl>Spokane, WA</labl>
+      </catgry>
+      <catgry>
+        <catValu>6650</catValu>
+        <labl>Springfield, IL</labl>
+      </catgry>
+      <catgry>
+        <catValu>6670</catValu>
+        <labl>Springfield, MA</labl>
+      </catgry>
+      <catgry>
+        <catValu>6690</catValu>
+        <labl>Springfield, MO</labl>
+      </catgry>
+      <catgry>
+        <catValu>6730</catValu>
+        <labl>Stamford, CT</labl>
+      </catgry>
+      <catgry>
+        <catValu>6750</catValu>
+        <labl>Sterling Heights, MI</labl>
+      </catgry>
+      <catgry>
+        <catValu>6790</catValu>
+        <labl>Stockton, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>6810</catValu>
+        <labl>Sunnyvale, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>6850</catValu>
+        <labl>Syracuse, NY</labl>
+      </catgry>
+      <catgry>
+        <catValu>6870</catValu>
+        <labl>Tacoma, WA</labl>
+      </catgry>
+      <catgry>
+        <catValu>6890</catValu>
+        <labl>Tampa, FL</labl>
+      </catgry>
+      <catgry>
+        <catValu>6930</catValu>
+        <labl>Tempe, AZ</labl>
+      </catgry>
+      <catgry>
+        <catValu>6960</catValu>
+        <labl>Thousand Oaks, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>6970</catValu>
+        <labl>Toledo, OH</labl>
+      </catgry>
+      <catgry>
+        <catValu>6990</catValu>
+        <labl>Topeka, KS</labl>
+      </catgry>
+      <catgry>
+        <catValu>7000</catValu>
+        <labl>Torrance, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>7050</catValu>
+        <labl>Tucson, AZ</labl>
+      </catgry>
+      <catgry>
+        <catValu>7070</catValu>
+        <labl>Tulsa, OK</labl>
+      </catgry>
+      <catgry>
+        <catValu>7110</catValu>
+        <labl>Vallejo, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>7100</catValu>
+        <labl>Vancouver, WA</labl>
+      </catgry>
+      <catgry>
+        <catValu>7130</catValu>
+        <labl>Virginia Beach, VA</labl>
+      </catgry>
+      <catgry>
+        <catValu>7180</catValu>
+        <labl>Warren, MI</labl>
+      </catgry>
+      <catgry>
+        <catValu>7230</catValu>
+        <labl>Washington, DC</labl>
+      </catgry>
+      <catgry>
+        <catValu>7250</catValu>
+        <labl>Waterbury, CT</labl>
+      </catgry>
+      <catgry>
+        <catValu>7320</catValu>
+        <labl>West Covina, CA</labl>
+      </catgry>
+      <catgry>
+        <catValu>7410</catValu>
+        <labl>Wichita, KS</labl>
+      </catgry>
+      <catgry>
+        <catValu>7530</catValu>
+        <labl>Winston-Salem, NC</labl>
+      </catgry>
+      <catgry>
+        <catValu>7570</catValu>
+        <labl>Worcester, MA</labl>
+      </catgry>
+      <catgry>
+        <catValu>7590</catValu>
+        <labl>Yonkers, NY</labl>
+      </catgry>
+      <catgry>
+        <catValu>7630</catValu>
+        <labl>Youngstown, OH</labl>
+      </catgry>
+      <concept vocab="IPUMS">Place of Work and Travel Time Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="TRANWORK" dcml="0" files="ExtractData" intrvl="discrete" name="TRANWORK">
+      <location EndPos="108" StartPos="107" width="2"/>
+      <labl>Means of transportation to work</labl>
+      <txt><![CDATA[TRANWORK reports the respondent's primary means of transportation to work on the most recent day worked (1970), or over the course of the previous week (the 1960 and 1980-2000 censuses, the ACS, and the PRCS). The primary means of transportation was that used on the most days or to cover the greatest distance.]]></txt>
+      <catgry>
+        <catValu>00</catValu>
+        <labl>N/A</labl>
+      </catgry>
+      <catgry>
+        <catValu>10</catValu>
+        <labl>Auto, truck, or van</labl>
+      </catgry>
+      <catgry>
+        <catValu>11</catValu>
+        <labl>Auto</labl>
+      </catgry>
+      <catgry>
+        <catValu>12</catValu>
+        <labl>Driver</labl>
+      </catgry>
+      <catgry>
+        <catValu>13</catValu>
+        <labl>Passenger</labl>
+      </catgry>
+      <catgry>
+        <catValu>14</catValu>
+        <labl>Truck</labl>
+      </catgry>
+      <catgry>
+        <catValu>15</catValu>
+        <labl>Van</labl>
+      </catgry>
+      <catgry>
+        <catValu>20</catValu>
+        <labl>Motorcycle</labl>
+      </catgry>
+      <catgry>
+        <catValu>31</catValu>
+        <labl>Bus</labl>
+      </catgry>
+      <catgry>
+        <catValu>32</catValu>
+        <labl>Bus or trolley bus</labl>
+      </catgry>
+      <catgry>
+        <catValu>33</catValu>
+        <labl>Bus or streetcar</labl>
+      </catgry>
+      <catgry>
+        <catValu>34</catValu>
+        <labl>Light rail, streetcar, or trolley (Carro público in PR)</labl>
+      </catgry>
+      <catgry>
+        <catValu>35</catValu>
+        <labl>Streetcar or trolley car (publico in Puerto Rico, 2000)</labl>
+      </catgry>
+      <catgry>
+        <catValu>36</catValu>
+        <labl>Subway or elevated</labl>
+      </catgry>
+      <catgry>
+        <catValu>37</catValu>
+        <labl>Long-distance train or commuter train</labl>
+      </catgry>
+      <catgry>
+        <catValu>38</catValu>
+        <labl>Taxicab</labl>
+      </catgry>
+      <catgry>
+        <catValu>39</catValu>
+        <labl>Ferryboat</labl>
+      </catgry>
+      <catgry>
+        <catValu>50</catValu>
+        <labl>Bicycle</labl>
+      </catgry>
+      <catgry>
+        <catValu>60</catValu>
+        <labl>Walked only</labl>
+      </catgry>
+      <catgry>
+        <catValu>70</catValu>
+        <labl>Other</labl>
+      </catgry>
+      <catgry>
+        <catValu>80</catValu>
+        <labl>Worked at home</labl>
+      </catgry>
+      <concept vocab="IPUMS">Place of Work and Travel Time Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="TRANTIME" dcml="0" files="ExtractData" intrvl="contin" name="TRANTIME">
+      <location EndPos="111" StartPos="109" width="3"/>
+      <labl>Travel time to work</labl>
+      <txt><![CDATA[TRANTIME reports the total amount of time, in minutes, that it usually took the respondent to get from home to work last week.
+
+In 1980, responses to questions about travel time to work were coded for only half the persons included in the IPUMS. These cases provide accurate proportional distributions but not correct absolute numbers for the general population. For correct absolute numbers, users should select cases coded as 2 in MIGSAMP and multiply by 2 as well as by PERWT.]]></txt>
+      <codInstr><![CDATA[CodesTRANTIME is a 3-digit numeric variable reporting the total amount of time, in minutes, that it usually took the respondent to get from home to work last week. TRANTIME specific variable codes for missing, edited, or unidentified observations, observations not applicable (N/A), observations not in universe (NIU), top and bottom value coding, etc. are provided below by Census year (and data sample if specified).
+
+TRANTIME Specific Variable Codes
+000 = N/A 
+
+		
+Top codes:Values Exceeding Top codes, by State: 2003 - onward]]></codInstr>
+      <concept vocab="IPUMS">Place of Work and Travel Time Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+  </dataDscr>
+</codeBook>
