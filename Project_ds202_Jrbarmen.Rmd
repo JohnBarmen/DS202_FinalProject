@@ -1,0 +1,177 @@
+---
+title: "Project"
+author: "John Barmen"
+date: "4/25/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Intro
+  
+I had the following question "How does the American work life balance change in regards to income, marriage rates, and kids or dependents?". Before viewing or exploring the data i believe that work life balance is very dependent on those 3 variables. To explore the data I will fit several models and created related plots for income, marriage rates, and kids or dependents in regards to work life balance. Then I will inspect each variable on its own against work life. And lastly i will investigate if these actually were the most relevant variables and repeat anything that needs to be redone based on those findings.  
+
+### Exploration
+
+```{r setup2, include=FALSE}
+library(glmnet)
+library(ISLR)
+library(leaps)
+library(dplyr)
+library(car)
+library(ggplot2)
+library(ipumsr)
+ddi <- read_ipums_ddi("usa_00002.xml")
+data <- read_ipums_micro(ddi)
+data2 <- data %>%
+  select(UHRSWORK, NCHILD, INCTOT, FTOTINC,MARST, YEAR) %>%
+  rename(hours = UHRSWORK,
+         dependants = NCHILD,
+         incomesolo = INCTOT,
+         incomefamily = FTOTINC,
+         marrital = MARST,
+         year = YEAR)
+data2 <- na.omit(data2)
+data2$married <- ifelse(data2$marrital<=2, 1, 0) # 1 married, 0 not married
+data2
+```
+
+```{r Explore1}
+n=dim(data2)[1]
+regfit = regsubsets(hours~., data=data2, nbest=1, nvmax=9)
+regfit.sum = summary(regfit)
+regfit.sum
+p=rowSums(regfit.sum$which)
+adjr2=regfit.sum$adjr2
+cp=regfit.sum$cp
+rss=regfit.sum$rss
+AIC=n*log(rss/n)+2*p
+BIC=n*log(rss/n)+(p)*log(n)
+table <- cbind(p,rss,adjr2,cp,AIC,BIC)
+minAIC = min(AIC)
+minBIC = min(BIC)
+maxAdjr2 = max(adjr2)
+minCP = min(cp)
+table
+minAIC
+minBIC
+maxAdjr2
+minCP
+```
+AIC - 6  
+BIC - 6  
+$R^2$ - 6   
+CP - 6  
+what this tells me is that all 6 of the current variables are incredibly important predictors of Hours worked, but we still don't know if they are the best of _all_ the variables available.  
+
+```{r Explore2}
+n2=dim(data)[1]
+regfit2 = regsubsets(UHRSWORK~., data=data, nbest=1, nvmax=24)
+regfit2.sum = summary(regfit2)
+regfit2.sum
+p2=rowSums(regfit2.sum$which)
+adjr22=regfit2.sum$adjr2
+cp2=regfit2.sum$cp
+rss2=regfit2.sum$rss
+AIC2=n*log(rss2/n)+2*p2
+BIC2=n*log(rss2/n)+(p2)*log(n2)
+table2 <- cbind(p2,rss2,adjr22,cp2,AIC2,BIC2)
+minAIC2 = min(AIC2)
+minBIC2 = min(BIC2)
+maxAdjr22 = max(adjr22)
+minCP2 = min(cp2)
+table2
+```
+This second look tells us that some variables such as TRAINTIME or the time to take the train to work, CLASSWKRD or the type of job worked, are very strong predictors of the amount of time spent each week working. TRAINTIME consistently is a valued predictor where as more predictors are added CLASSWKRD loses some relevance. Therefore I will add TRAINTIME into the current model.  
+
+```{r modelupdate, include=FALSE}
+data2 <- data %>%
+  select(UHRSWORK, NCHILD, INCTOT, FTOTINC,MARST, YEAR, TRANTIME) %>%
+  rename(hours = UHRSWORK,
+         dependents = NCHILD,
+         incomesolo = INCTOT,
+         incomefamily = FTOTINC,
+         marrital = MARST,
+         year = YEAR,
+         traintime = TRANTIME)
+data2 <- na.omit(data2)
+data2$married <- ifelse(data2$marrital<=2, 1, 0) # 1 married, 0 not married
+```
+
+```{r Explore3}
+model0 <- lm(hours~., data = data2)
+summary(model0)
+```
+
+```{r Explore4}
+set.seed(30)
+train_index = sample(1:nrow(data2), nrow(data2)/2)
+testIndex=(-train_index)
+train = data2[train_index,]
+test = data2[-train_index,]
+grid = 10^seq(10,-5,length=200)
+X = model.matrix(hours~.,data=data2)[,-1]
+Y = data2$hours
+ridge_modeld=glmnet(X, Y,alpha=0, lambda=grid)
+plot(ridge_modeld, xvar="lambda", label=TRUE)
+```
+  
+This tells us that some of the included predictors are biasing the results but not in a meaningful way, therefor that the predictors are useful.
+
+```{r plot1}
+ggplot(data2, aes(y = hours, x = dependents, fill=factor(dependents)))+geom_boxplot()
+```
+  
+It appears that as the number of dependents increases there is a small increase in average hours worked a week, but then as we get to the extremely large family sizes the number of hours begin to dip slightly.  
+
+```{r plot2}
+ggplot(data2, aes(y = hours, x = married, fill=factor(married)))+geom_boxplot()
+ggplot(data2, aes(y = hours, x = marrital, fill=factor(marrital)))+geom_boxplot()
+```
+  
+Married individuals seem to work more hours on average, but this could be skewed by marital status 5, widowers, who are made up in large part of retired individuals who no longer work.  
+
+```{r plot3}
+ggplot(data2, aes(y = hours, x = year, fill=factor(year)))+geom_boxplot()
+```
+  
+Regardless of year the distance between Q1-Q3 seems to stay constant along with similar overall domains. The key difference is that of the median time worked. looking at after the year 2000 we can see there has been a steady decrease in the median with only a recent small bounce back.  
+
+```{r plot4}
+ggplot(data2, aes(y = hours, x = factor(traintime)))+geom_boxplot()
+```
+  
+Train time increases left to right, as the total train time increases the average work week decreases, but not universally. also regardless of trian commute times there is a strong centering on around 35-40 hours a week.  
+
+```{r plot5}
+ggplot(data2, aes(factor(hours)))+geom_bar()
+```
+  
+A vast majority of respondents work 0 hours a week or had no data, while the next closest is a 40 hours a week the traditional work week.
+
+### Conclusion  
+To conclude it seems that one of the largest contributes to the time worked in a week was not in this set of data, but i can only assume is tied to cultural expectations around the "appropriate" amount of time to work each week. Otherwise all predictors had small impacts on the actual time worked each week, as it seems more that work week is dictated by something else, that i have already speculated at. Variables like income, seem to also depend on time worked more than the other way around. Ultimately the time worked each week does seem to be slightly impacted by some of the variable we examined but must also have a much more important predictor such as the place of employment, the individual's ideal work week, hours work by their peers, and many others that we did not have access to in this data set.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

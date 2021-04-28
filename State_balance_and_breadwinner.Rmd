@@ -1,0 +1,81 @@
+---
+title: "Breadwinner Role and State Balance"
+author: "Emma Smykalski"
+date: "4/25/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(ipumsr)
+ddi <- read_ipums_ddi('usa_00002.xml')
+fdata <- read_ipums_micro(ddi)
+library(ggplot2)
+library(tidyverse)
+library(lubridate)
+
+
+
+breadwinner <- fdata %>% group_by(SERIAL) %>%
+  summarize(INCTOT, SEX, AGE, proportion = INCTOT/sum(INCTOT), YEAR) %>% group_by(SERIAL) %>% filter(proportion == max(proportion)) %>%
+  summarize(SERIAL, SEX, YEAR, AGE, proportion)
+
+together <- breadwinner %>% mutate(AGE = as.integer(AGE)) %>%
+  group_by(YEAR) %>% summarize(average_age = mean(AGE))
+  
+per_year_sex <- breadwinner %>% group_by(YEAR, SEX) %>%
+  summarize(totalinyear = n(), SEX, YEAR, AGE, proportion, SERIAL)
+
+view(together)
+
+ggplot(together, aes(x=YEAR, y= average_age)) + geom_line() + ggtitle('Average Age of Breadwinner Over Time') + ylab('Average Age')
+
+total <- per_year_sex %>% select(YEAR, SEX, totalinyear) %>% distinct() %>% mutate(SEX = as.character(SEX)) %>% 
+  mutate(SEX = as.factor(SEX))
+total$SEX <- recode_factor(total$SEX, '1' = 'male', '2' = 'female' )
+
+total %>% ggplot(aes(x=YEAR, weight=totalinyear, fill=SEX)) + geom_bar(position = 'dodge', width = 1/2) + 
+  ylab('Breadwinners') + ggtitle('Number of Household Breadwinners Per Sex Each Year') + 
+  scale_fill_manual(name="SEX", labels = c("Male","Female"), values=c('steelblue1','pink')) + theme_bw()
+
+```
+```{r}
+balance <- fdata %>% filter(UHRSWORK != 0) %>% mutate(both_ways = TRANTIME*2) %>% 
+  group_by(PWSTATE2) %>% summarize(time_at_work = mean(UHRSWORK), time_to_work = mean(both_ways)) %>%
+  mutate(State = as.integer(PWSTATE2))
+
+lab <- ipums_val_labels(balance$PWSTATE2) %>% rename(State = val, state_name = lbl)
+
+balance1 <- left_join(balance, lab, by = 'State') %>% select(-PWSTATE2) %>% group_by(State) %>%
+  mutate(work = time_at_work + time_to_work) %>% mutate(life = 168 - work) %>%
+  mutate(percent_of_week_in_work = work/168)
+
+balance1$state_name <- tolower(balance1$state_name)
+
+library(maps)
+states <- map_data('state')
+library(ggthemes)
+
+
+balance2 <- balance1[c(2, 4:12, 14:52),] %>% rename(region = state_name)
+
+balancemap <- balance2 %>% inner_join(states, by = 'region')
+
+ggplot(balancemap, aes(x = long, y = lat, group=group, fill= percent_of_week_in_work)) + geom_polygon() +
+  coord_map() + ggtitle('Average Percent of Week Spent in Work by State') + 
+  scale_fill_distiller(palette = 'Blues', direction = 1) + theme_classic()
+
+missing <- balance1 %>% filter(state_name == 'n/a' | state_name == 'alaska' | state_name == 'hawaii') %>%
+  select(state_name, percent_of_week_in_work)
+```
+```{r}
+view(missing)
+```
+```{r}
+all_states <- balance1[c(2:52),]
+average <- mean(all_states$percent_of_week_in_work)
+average 
+```
