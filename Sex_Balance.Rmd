@@ -10,22 +10,48 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
+## Introduction/Background:
 
-```{r}
+Our group wanted to take an in-depth look at American work-life balance. There are many facets to explore, such as how sex, job type, marital status, location, age, and number of dependents play a role in work-life balance, and how this has changed over time.
+
+We collected our data from the IPUMS database, which has a collection of American Census data as well as American Community Surveys. The Census records span from 1790-2010, and the American Community Surveys span from 2000-present. The IPUMS database provides free access to social and economic data, and there is a massive collection of observations, with a wide array of variables.  
+
+
+
+
+
+## Data Collection:
+On IPUMS database, we selected a subset of variables and then selected a sample of 15,000 households per census/survey. We narrowed our scope to be from 1980-now, to get a better look at the most recent changes in work-life balance.
+
+
+
+
+```{r, }
 library(ipumsr)
 ddi <- read_ipums_ddi("usa_00002.xml")
 data <- read_ipums_micro(ddi)
-```
-
-
-```{r}
 info <- ddi$var_info
 ```
 
 
 
 
-```{r}
+
+## The questions we set out to explore:
+
+How do factors such as location, job type, and sex affect the average workweek and commute?
+
+How does the work-life balance change in the family setting, looking at breadwinners, marital status and number of kids?
+How have all of these findings changed over time?
+
+
+
+
+
+
+
+
+```{r, include= FALSE}
 library(tidyverse)
 library(ggplot2)
 library(gridExtra)
@@ -33,6 +59,10 @@ library(formattable)
 library(data.table)
 ```
 
+
+
+
+# How does the average workweek and average commute differ by sex? 
 
 
 ```{r}
@@ -46,41 +76,29 @@ formattable(tbl)
 ```
 
 
-1 = Male, 2 = Female. On avergage, employed men work more hours per week than women. Men average 42.1 hours per week, and women average 36.2 hours per week. On average, men also have longer commutes. Of employed adults, men average a 24.6 minute commute, and females average a 21.16 minute commute. 
+To calculate average workweeks and commutes, we first removed all people of unemployed work status, so we would not be diluting our numbers with zeroes for hours worked per week and commute time. We can see that overall, on average men work more per week than women, with an average of about 42 hours per week as opposed to 36 hours per week. We can also see that men have slightly longer commutes, averaging about 25 minutes versus women’s average commutes of 21 minutes. 
 
 
 
-```{r}
+
+
+**How has workweek and commute changed over time?**
+
+
+```{r, message=FALSE}
 p_hours <- data %>% 
   filter(EMPSTAT == 1) %>% 
   group_by(YEAR, SEX) %>% 
   summarise("Average Hours per Week" = mean(UHRSWORK), "Average Travel Time" = mean(TRANTIME)) %>% 
   ggplot(aes(x=YEAR, y=`Average Hours per Week`, color= as.factor(SEX))) + geom_line() + labs(title = "Average Workweek by Sex over Time", x = "Year", y= "Average Hours/Week") +
   scale_color_manual(name="Sex", labels = c("Male","Female"), values=c('steelblue1','Pink'))
-p_hours
-```
 
-
-As we can see in the plot above, average working hours per week mostly increased between 1980 and 2008, with women's average hours increasing more steeply. There was an average hour per week decline after 2008, most likely due to the Great Recession. After 2015, average hours seem to be increasing, but not the the level they were at before 2008, for both men and women. 
-
-
-```{r}
 p_travel <- data %>% 
   filter(EMPSTAT == 1) %>% 
   group_by(YEAR, SEX) %>% 
   summarise("Average Hours per Week" = mean(UHRSWORK), "Average Travel Time" = mean(TRANTIME)) %>% 
   ggplot(aes(x=YEAR, y=`Average Travel Time`, color= as.factor(SEX))) + geom_line() + labs(title = "Average Commute by Sex over Time", x = "Year") + scale_color_manual(name="Sex",labels = c("Male", "Female"), values=c('steelblue1','Pink'))
-p_travel
-```
 
-
-
-The average travel time has changed greatly for both men and women over time. Starting in 1980, the average commute was about 10 minutes. 1995 was the year where the average commute for both men and women exceeded 20 minutes. Average travel time for both men and women follow similar patterns, and have been slowly increasing since 2005. 
-
-
-
-
-```{r}
 grid.arrange(p_hours, p_travel)
 ```
 
@@ -88,7 +106,18 @@ grid.arrange(p_hours, p_travel)
 
 
 
-```{r}
+Looking at workweek and commute over time based on sex, we can see that between 1980-present, men have always averaged a longer workweek and commute. Commute seems to have grown more steadily over time than workweek. An interesting finding would be that, for both men and women, average workweek decreased after 2008 (the Great Recession), and it has yet to reach the same level it was at before 2008. 
+
+
+
+
+
+
+**How does employment type differ by sex?**
+
+
+
+```{r, message = FALSE}
 data %>% 
   filter(CLASSWKR %in% c(1, 2)) %>% 
   group_by(SEX, CLASSWKR) %>% 
@@ -99,4 +128,4 @@ data %>%
 ```
 
 
-As we can see from the chart above, more males than females are self-employed. But there is a pretty even amount of males and females who work for wages. 
+Finally, taking a look at work type by sex, we can see that more men are self-employed than women. Working for wages is roughly equal between men and women.  
