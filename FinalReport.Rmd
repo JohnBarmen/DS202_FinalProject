@@ -12,7 +12,8 @@ library(tidyverse)
 library(ggplot2)
 library(ggthemes)
 library(ipumsr)
-
+library(gridExtra)
+library(formattable)
 ddi <- read_ipums_ddi("usa_00002.xml")
 data <- read_ipums_micro(ddi)
 
@@ -27,6 +28,7 @@ We collected our data from the IPUMS database, which has a collection of America
 
 
 ## Data Collection:
+
 On IPUMS database, we selected a subset of variables and then selected a sample of 15,000 households per census/survey. We narrowed our scope to be from 1980-now, to get a better look at the most recent changes in work-life balance.
 
 ## Questions
@@ -50,7 +52,51 @@ On IPUMS database, we selected a subset of variables and then selected a sample 
 
 ### How does state affect the relationship between work/life balance?
 
-### How does gender play a role in work/life balance
+
+
+### How does gender play a role in work/life balance?
+
+```{r}
+tbl <- data %>% 
+  filter(EMPSTAT == 1) %>% 
+   mutate(Sex = if_else(SEX==1, "Male", "Female")) %>% 
+  group_by(Sex) %>% 
+  summarise("Average Hours per Week" = mean(UHRSWORK), "Average Travel Time" = mean(TRANTIME))
+formattable(tbl)
+```
+
+
+To calculate average workweeks and commutes, we first removed all people of unemployed work status, so we would not be diluting our numbers with zeroes for hours worked per week and commute time. We can see that overall, on average men work more per week than women, with an average of about 42 hours per week as opposed to 36 hours per week. We can also see that men have slightly longer commutes, averaging about 25 minutes versus women’s average commutes of 21 minutes. 
+
+
+
+**How has workweek and commute changed over time?**
+
+
+```{r, message=FALSE}
+p_hours <- data %>% 
+  filter(EMPSTAT == 1) %>% 
+  group_by(YEAR, SEX) %>% 
+  summarise("Average Hours per Week" = mean(UHRSWORK), "Average Travel Time" = mean(TRANTIME)) %>% 
+  ggplot(aes(x=YEAR, y=`Average Hours per Week`, color= as.factor(SEX))) + geom_line() + labs(title = "Average Workweek by Sex over Time", x = "Year", y= "Average Hours/Week") +
+  scale_color_manual(name="Sex", labels = c("Male","Female"), values=c('steelblue1','Pink'))
+
+p_travel <- data %>% 
+  filter(EMPSTAT == 1) %>% 
+  group_by(YEAR, SEX) %>% 
+  summarise("Average Hours per Week" = mean(UHRSWORK), "Average Travel Time" = mean(TRANTIME)) %>% 
+  ggplot(aes(x=YEAR, y=`Average Travel Time`, color= as.factor(SEX))) + geom_line() + labs(title = "Average Commute by Sex over Time", x = "Year", y="Travel Time (min)") + scale_color_manual(name="Sex",labels = c("Male", "Female"), values=c('steelblue1','Pink'))
+
+grid.arrange(p_hours, p_travel)
+```
+
+
+
+Looking at workweek and commute over time based on sex, we can see that between 1980-present, men have always averaged a longer workweek and commute. Commute seems to have grown more steadily over time than workweek. There is also a larger gender gap in average hours worked per week than in average commute time. An interesting finding would be that, for both men and women, average workweek decreased after 2008 (the Great Recession), and it has yet to reach the same level it was at before 2008. 
+
+
+
+
 
 ### How many hours does the average American work per week? How as that changed over time?
 
@@ -61,3 +107,11 @@ On IPUMS database, we selected a subset of variables and then selected a sample 
 ### What variables in our data set are significantly changed overtime when we predict income or family income?
 
 ### Are there any changes in the economic center cities and their proportion? Is this related to the changes in their life and work balance?
+
+## Conclusion
+
+
+## Contributions
+
+
+Kerstin - I searched the IPUMS database for variables related to our research topic, selected samples during our specified time period, and extracted the data into a new file that the team could work with. I looked into and wrote the background information, introduction, and data collection materials for our presentation and this report. I also took on the question "how does gender play a role in work/life balance?". 
