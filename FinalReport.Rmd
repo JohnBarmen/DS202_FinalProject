@@ -38,6 +38,23 @@ On IPUMS database, we selected a subset of variables and then selected a sample 
 ### What types of jobs typically require longer commutes and longer work weeks?
 
 ### How does the American work life balance change in regards to income, marriage rates, and kids or dependents?  
+```{r}
+data2 <- data %>%
+  select(UHRSWORK, NCHILD, INCTOT, FTOTINC,MARST, YEAR, TRANTIME) %>%
+  rename(hours = UHRSWORK,
+         dependents = NCHILD,
+         incomesolo = INCTOT,
+         incomefamily = FTOTINC,
+         marital = MARST,
+         year = YEAR,
+         traintime = TRANTIME)
+data2 <- na.omit(data2)
+data2$married <- ifelse(data2$marital<=2, 1, 0) # 1 married, 0 not married
+ggplot(data2, aes(y = hours, x = marital, fill=as_factor(marital)))+geom_boxplot()
+ggplot(data2, aes(y = hours, x = dependents, fill=factor(dependents)))+geom_boxplot()
+```
+  
+When we built the data set we initially tried to ad variables we thought would be important to determining work life balance, measured in hours worked per week. These included variables like marital status, family income, family size in regards to defendants, as well as other variables we thought may have been useful predictors. The two Plots I choose to explain this problem are above. These two plots are things that we thought would be very influential variables to determine work life balance but ended up having very little impact after all but ended up being less explanatory than we had predicted. They do a good job showing how little difference can be created as variables are changed. In the end we ended up finding that although the predictors we picked are valuable we discovered that they are not as valuable as we thought. There are probably many reliant predictors that we did not have access to that would have been more valuable but that is outside the scope of this analysis.
 
 ### What variables in our data set are significantly changed overtime when we predict income or family income?
 
