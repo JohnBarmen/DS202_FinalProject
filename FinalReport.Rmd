@@ -11,6 +11,10 @@ library(dplyr)
 library(tidyverse)
 library(ggplot2)
 library(ggthemes)
+library(ipumsr)
+
+ddi <- read_ipums_ddi("usa_00002.xml")
+data <- read_ipums_micro(ddi)
 
 ```
 
@@ -26,6 +30,21 @@ We collected our data from the IPUMS database, which has a collection of America
 On IPUMS database, we selected a subset of variables and then selected a sample of 15,000 households per census/survey. We narrowed our scope to be from 1980-now, to get a better look at the most recent changes in work-life balance.
 
 ## Questions
+<> Start Example
+<> TODO: Remove this block
+    
+    ```{r}
+    data %>%
+      filter(CLASSWKR > 0) %>%
+      mutate(UHRSWORK = ifelse(YEAR == 2000, UHRSWORK / 2, UHRSWORK)) %>%
+      ggplot(aes(x=YEAR, y=UHRSWORK)) + geom_bar(fill = "deepskyblue", stat="identity") +
+      labs(x="Year", y= "Total Hours Worked per week", title="Hours of Work Per Week per Year") +
+      geom_vline(xintercept=2009, color="red") +
+      annotate("label", x=2008, y=7.5e5, label="Great Recession", hjust=0, fill="red", color="white")
+    ```
+
+<> End Example
+
 
 ### How has the family breadwinner role changed over time?
 
