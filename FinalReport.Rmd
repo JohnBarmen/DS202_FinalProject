@@ -1,0 +1,28 @@
+---
+title: "DS 202 Final Project"
+output: html_notebook
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readxl)
+library(tidyr)
+library(dplyr)
+library(tidyverse)
+library(ggplot2)
+library(ggthemes)
+
+```
+
+## Introduction/Background:
+
+Our group wanted to take an in-depth look at American work-life balance. There are many facets to explore, such as how sex, job type, marital status, location, age, and number of dependents play a role in work-life balance, and how this has changed over time.
+
+We collected our data from the IPUMS database, which has a collection of American Census data as well as American Community Surveys. The Census records span from 1790-2010, and the American Community Surveys span from 2000-present. The IPUMS database provides free access to social and economic data, and there is a massive collection of observations, with a wide array of variables.  
+
+
+
+
+
+## Data Collection:
+On IPUMS database, we selected a subset of variables and then selected a sample of 15,000 households per census/survey. We narrowed our scope to be from 1980-now, to get a better look at the most recent changes in work-life balance.
