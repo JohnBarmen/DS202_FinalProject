@@ -22,7 +22,23 @@ We collected our data from the IPUMS database, which has a collection of America
 
 
 
-
-
 ## Data Collection:
 On IPUMS database, we selected a subset of variables and then selected a sample of 15,000 households per census/survey. We narrowed our scope to be from 1980-now, to get a better look at the most recent changes in work-life balance.
+
+## Questions
+
+### How has the family breadwinner role changed over time?
+
+### How does state affect the relationship between work/life balance?
+
+### How does gender play a role in work/life balance
+
+### How many hours does the average American work per week? How as that changed over time?
+
+### What types of jobs typically require longer commutes and longer work weeks?
+
+### How does the American work life balance change in regards to income, marriage rates, and kids or dependents?  
+
+### What variables in our data set are significantly changed overtime when we predict income or family income?
+
+### Are there any changes in the economic center cities and their proportion? Is this related to the changes in their life and work balance?
