@@ -1,0 +1,83 @@
+---
+title: "report_emma"
+author: "Emma Smykalski"
+date: "4/29/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+To look at how the family breadwinner role has changed over time we first grouped our data set by household and then filtered the data frame to include only the one individual who made the most money in each household. We then looked at the total number of males and females breadwinners per year to see how their totals compared. We get the following bar graph which shows that males remained the most common sex to be the household breadwinner throughout all the years and maintained about the same ratio to female breadwinners as well. You'll notice that the year 2000 has a bigger bar but that is just because of the larger number of respondents to the survey that year.  
+```{r, echo=FALSE, cache=FALSE, results='hide', warning=FALSE, comment=FALSE, warning=FALSE, message = FALSE}
+library(ipumsr)
+ddi <- read_ipums_ddi('usa_00002.xml')
+fdata <- read_ipums_micro(ddi)
+library(ggplot2)
+library(tidyverse)
+library(lubridate)
+
+
+
+breadwinner <- fdata %>% group_by(SERIAL) %>%
+  summarize(INCTOT, SEX, AGE, proportion = INCTOT/sum(INCTOT), YEAR) %>% group_by(SERIAL) %>% filter(proportion == max(proportion)) %>%
+  summarize(SERIAL, SEX, YEAR, AGE, proportion)
+
+together <- breadwinner %>% mutate(AGE = as.integer(AGE)) %>%
+  group_by(YEAR) %>% summarize(average_age = mean(AGE))
+  
+per_year_sex <- breadwinner %>% group_by(YEAR, SEX) %>%
+  summarize(totalinyear = n(), SEX, YEAR, AGE, proportion, SERIAL)
+total <- per_year_sex %>% select(YEAR, SEX, totalinyear) %>% distinct() %>% mutate(SEX = as.character(SEX)) %>% 
+  mutate(SEX = as.factor(SEX))
+total$SEX <- recode_factor(total$SEX, '1' = 'male', '2' = 'female' )
+
+total %>% ggplot(aes(x=YEAR, weight=totalinyear, fill=SEX)) + geom_bar(position = 'dodge', width = 1/2) + 
+  ylab('Breadwinners') + ggtitle('Number of Household Breadwinners Per Sex Each Year') + 
+  scale_fill_manual(name="SEX", labels = c("Male","Female"), values=c('steelblue1','pink')) + theme_bw()
+```  
+
+To see how the average age of the breadwinner has changed over the years, we averaged out the age of all the breadwinners in one year to obtain the average age for that year. We then created a time series plot to express how the age has changed over time. The time series plot below shows that from 1980 to 2019 the average age of the household breadwinner has increased from under 30 years old in 1980 to almost 40 years old in 2019.  
+
+```{r, echo=FALSE, cache=FALSE, results='hide', warning=FALSE, comment=FALSE, warning=FALSE, message = FALSE}
+
+ggplot(together, aes(x=YEAR, y= average_age)) + geom_line() + ggtitle('Average Age of Breadwinner Over Time') + ylab('Average Age')
+```  
+
+Our next question we explored was how the state of which the respondents job was located in affected the work/life balance. In order to see the relationship between state and work/life balance we took the variable representing the amount of hours spent at work in the last week and added twice the variable indicating how long the respondents commute to work was to get the total time that work took up during the week. We then grouped by state and found the average work time for all the respondents working in those states. Then, we divided by the total hours in a week to see the percent of the week that each state spent for work. By combining this new data frame with the states data frame in the maps library, we could create a map showing the average percent of the week that each state spent on work visually. The map below shows the outcome of that. The darker blue states, indicating that the state had a high average percent of the week spent in work, include California, Illinois, New York, Washington DC, and Georgia with New York and Washington DC being the darkest. The lighter blue states, indicating that the state had a low average percent of the week spent in work, include Montana, North Dakota, South Dakota, Wyoming, and Idaho. These results make sense as the darker blue states have larger cities and the lighter colored states are known for their nature attractions and not as frequent big cities. 
+```{r, echo=FALSE, cache=FALSE, results='hide', warning=FALSE, comment=FALSE, warning=FALSE, message = FALSE}
+
+balance <- fdata %>% filter(UHRSWORK != 0) %>% mutate(both_ways = TRANTIME*2) %>% 
+  group_by(PWSTATE2) %>% summarize(time_at_work = mean(UHRSWORK), time_to_work = mean(both_ways)) %>%
+  mutate(State = as.integer(PWSTATE2))
+
+lab <- ipums_val_labels(balance$PWSTATE2) %>% rename(State = val, state_name = lbl)
+
+balance1 <- left_join(balance, lab, by = 'State') %>% select(-PWSTATE2) %>% group_by(State) %>%
+  mutate(work = time_at_work + time_to_work) %>% mutate(life = 168 - work) %>%
+  mutate(percent_of_week_in_work = work/168)
+
+balance1$state_name <- tolower(balance1$state_name)
+
+library(maps)
+states <- map_data('state')
+library(ggthemes)
+
+
+balance2 <- balance1[c(2, 4:12, 14:52),] %>% rename(region = state_name)
+
+balancemap <- balance2 %>% inner_join(states, by = 'region')
+
+ggplot(balancemap, aes(x = long, y = lat, group=group, fill= percent_of_week_in_work)) + geom_polygon() +
+  coord_map() + ggtitle('Average Percent of Week Spent in Work by State') + 
+  scale_fill_distiller(palette = 'Blues', direction = 1) + theme_classic()
+```
+
+
+## Conclusion  
+
+Our analysis provided us with lots of informative conclusions on the work/life balance in the United States. These conclusions include that states with larger cities and that are closer to the coast spend a larger proportion of their week in work including commuting. We found that males typically spend more time both working and commuting as opposed to females and have also made up the majority of the breadwinners throughout the years. We also established that in general, Americans are spending more of their time commuting and less time actually working, with Federal employees working the most and commuting the longest. We found that what leads to the hours worked each week is difficult to quantify and despite things like the number of dependents and type of job playing a role, there are many more unknown factors at play. Lastly, some predictors are always significant when trying to predict the family income such as employment status, marital status, and travel time to work but we found that age is the one predictor that changed from not significant to significant as time has passed. 
+
+## My contribution:  
+Emma Smykalski: I ran the analysis and produced the graphs for how the family breadwinner role has changed over time and how state affects the relationship between work/life balance. For the presentation I recorded the slides that corresponded to that analysis. In our final report, I produced my analysis and graphs and I wrote the paragraphs and about my analysis as well as the conclusion. 
