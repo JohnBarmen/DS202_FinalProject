@@ -1,0 +1,141 @@
+---
+title: "DS 202 Final Project"
+output: html_notebook
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readxl)
+library(tidyr)
+library(dplyr)
+library(tidyverse)
+library(ggplot2)
+library(ggthemes)
+library(ipumsr)
+ddi <- read_ipums_ddi("usa_00002.xml")
+data <- read_ipums_micro(ddi)
+```
+
+## Introduction/Background:
+
+Our group wanted to take an in-depth look at American work-life balance. There are many facets to explore, such as how sex, job type, marital status, location, age, and number of dependents play a role in work-life balance, and how this has changed over time.
+
+We collected our data from the IPUMS database, which has a collection of American Census data as well as American Community Surveys. The Census records span from 1790-2010, and the American Community Surveys span from 2000-present. The IPUMS database provides free access to social and economic data, and there is a massive collection of observations, with a wide array of variables.  
+
+
+
+## Data Collection:
+On IPUMS database, we selected a subset of variables and then selected a sample of 15,000 households per census/survey. We narrowed our scope to be from 1980-now, to get a better look at the most recent changes in work-life balance.
+
+## Questions
+
+
+### How has the family breadwinner role changed over time?
+
+### How does state affect the relationship between work/life balance?
+
+### How does gender play a role in work/life balance
+
+### How many hours does the average American work per week? How as that changed over time?
+
+### What types of jobs typically require longer commutes and longer work weeks?
+
+### How does the American work life balance change in regards to income, marriage rates, and kids or dependents?  
+
+### What variables in our data set are significantly changed overtime when we predict or family income?
+a. divide data into 4 different time lines
+```{r}
+year80s = data %>%
+  filter(YEAR == c(1980,1981,1982,1983,1984,1985,1986,1987,1988,1989))
+
+year90s = data %>%
+  filter(YEAR == c(1990,1991,1992,1993,1994,1995,1996,1997,1998,1999))
+
+year00s = data %>%
+  filter(YEAR == c(2000,2001,2002,2003,2004,2005,2006,2007,2008,2009))
+
+year10s = data %>%
+  filter(YEAR == c(2010,2011,2012,2013,2014,2015,2016,2017,2018,2019))
+```
+
+b. Hypothesis test for selected variables.
+```
+income.fit80 = lm(FTOTINC~SEX+AGE+MARST+EMPSTAT+CLASSWKR+UHRSWORK+PWSTATE2+PWCITY+TRANWORK+TRANTIME, data = year80s)
+summary(income.fit80)
+
+income.fit90 = lm(FTOTINC~SEX+AGE+MARST+EMPSTAT+CLASSWKR+UHRSWORK+PWSTATE2+PWCITY+TRANWORK+TRANTIME, data = year90s)
+summary(income.fit90)
+
+income.fit00 = lm(FTOTINC~SEX+AGE+MARST+EMPSTAT+CLASSWKR+UHRSWORK+PWSTATE2+PWCITY+TRANWORK+TRANTIME, data = year00s)
+summary(income.fit00)
+
+income.fit10 = lm(FTOTINC~SEX+AGE+MARST+EMPSTAT+CLASSWKR+UHRSWORK+PWSTATE2+PWCITY+TRANWORK+TRANTIME, data = year10s)
+summary(income.fit10)
+```
+
+c. Final graph over time
+```{r}
+frame = data.frame("Variables" = c("SEX","SEX","SEX","SEX","AGE","AGE","AGE","AGE","MARST","MARST","MARST","MARST","EMPSTAT","EMPSTAT","EMPSTAT","EMPSTAT","CLASSWKR","CLASSWKR","CLASSWKR","CLASSWKR","UHRSWORK","UHRSWORK","UHRSWORK","UHRSWORK","PWSTATE2","PWSTATE2","PWSTATE2","PWSTATE2","PWCITY","PWCITY","PWCITY","PWCITY","TRANWORK","TRANWORK","TRANWORK","TRANWORK","TRANTIME","TRANTIME","TRANTIME","TRANTIME"),
+                   "TIME" = c("1980s","1990s","2000s","2010s","1980s","1990s","2000s","2010s","1980s","1990s","2000s","2010s","1980s","1990s","2000s","2010s","1980s","1990s","2000s","2010s","1980s","1990s","2000s","2010s","1980s","1990s","2000s","2010s","1980s","1990s","2000s","2010s","1980s","1990s","2000s","2010s","1980s","1990s","2000s","2010s"),
+                   "P-values" = c(0.00547,0.075393,0.000000000000169,0.0000000982,0.13155,0.262341,0.00000109,0.0000000886,0.0000000000000002,0.00000000000000722,0.0000000000000002,0.0000000000000002,0.0000000000000002,0.0000000025,0.0000000000000002,0.0000000000000002,0.00602,0.041115,0.00389,0.84879,0.08796,0.653650,0.80444,0.26091,0.73778,0.683581,0.30593,0.79777,0.73276,0.080681,0.08121,0.76926,0.0000766,0.000878,0.00000000000424,0.0000000000000477,0.05554,0.068192,0.15066,0.39587))
+
+frame$Variables = as.character(frame$Variables)
+frame$TIME = as.factor(frame$TIME)
+frame$P.values = as.numeric(frame$P.values)
+
+ggplot(frame, aes(x=TIME, y=P.values, group=Variables, color=Variables))+geom_line()+ggtitle("Time Series Plot of Predictors Used for Prediction Family Income")+geom_abline(slope=0,intercept = 0.05)
+```
+
+```
+After taking look of this time series plot, I figured out that some variables, such as Employment status, Marital status, and Travel time to work. Some variables' significant level have changed a lot over time, but they're still not as significant as the previous variables. Age is the one predictor that changed from not significant to significant by time passes.
+```
+### Are there any changes in the economic center cities and their proportion? Is this related to the changes in their life and work balance?
+Trying to figure out if there exsit any cities that would be a potential economic center city
+```{r}
+table(year80s$PWCITY)
+table(year90s$PWCITY)
+table(year00s$PWCITY)
+table(year10s$PWCITY)
+
+new80s = year80s%>%
+  filter(PWCITY!=0)
+##table(new80s$PWCITY)
+new80s %>%
+  group_by(PWCITY) %>%
+  summarize(meanINC =  mean(INCTOT)) %>%
+  arrange(desc(meanINC))
+
+new90s = year90s%>%
+  filter(PWCITY!=0)
+##table(new90s$PWCITY)
+new90s %>%
+  group_by(PWCITY) %>%
+  summarize(meanINC =  mean(INCTOT)) %>%
+  arrange(desc(meanINC))
+
+new00s = year00s%>%
+  filter(PWCITY!=0)
+##table(new00s$PWCITY)
+new00s %>%
+  group_by(PWCITY) %>%
+  summarize(meanINC =  mean(INCTOT)) %>%
+  arrange(desc(meanINC))
+
+new10s = year10s%>%
+  filter(PWCITY!=0)
+##table(new10s$PWCITY)
+new10s %>%
+  group_by(PWCITY) %>%
+  summarize(meanINC =  mean(INCTOT)) %>%
+  arrange(desc(meanINC))
+```
+
+```
+After finding the city codes and comparing with the city information from IPUMS, this data does not show a city pattern for us to come up a conclusion for this research question due to the lack of clear information, or missing values for both city and states variables.
+```
+
+
+### Contribution
+```
+Yufei Huang: I came up two research questions for our project, which are the significant predictors for family income overtime and the potential economic cities. Participaed in the analyzation and summarized my own part conclusion. Finished the PowerPoint, Presentation, and Final Report with my group members.
+```
