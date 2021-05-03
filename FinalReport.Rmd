@@ -53,8 +53,63 @@ On IPUMS database, we selected a subset of variables and then selected a sample 
 ### How does gender play a role in work/life balance
 
 ### How many hours does the average American work per week? How as that changed over time?
+	
+	  We found that most people worked an average of about 33 hours per week. We examined how this number has changed over the past 40 years, and recognized that there has been a subtle down trend in the amount of hours people work. We noted this especially after the Great Recession, when many people lost there jobs or had hours reduced. The most any respondant worked in an average week was 99 hours. 
+	
+    Descriptive statistics of peoples 2019 Work habits:
+    ```{r}
+    data %>%
+      filter(CLASSWKR > 0 & YEAR == 2019) %>%
+      select(UHRSWORK) %>%
+      summary()
+    ```
+    
+    
+    Average work hours by year:
+    ```{r}
+    data %>%
+      filter(CLASSWKR > 0) %>%
+      group_by(YEAR) %>%
+      summarise(UHRSWORK = mean(UHRSWORK)) %>%
+      ggplot(aes(x=YEAR, y=UHRSWORK)) + geom_bar(fill = "deepskyblue", stat="identity") +
+      labs(x="Year", y= "Average Hours Worked per week", title="Average Hours of Work Per Week per Year") +
+      geom_vline(xintercept=2009, color="red") +
+      annotate("label", x=2008, y=40, label="Great Recession", hjust=0, fill="red", color="white")
+    ```
+
+    Overall, hours worked per week has remained fairly static, and only has subtly decreaseed over the past 40 years. 
 
 ### What types of jobs typically require longer commutes and longer work weeks?
+
+    We identified that there is a very clear divide in commute time and work time by jobs. Typically both federal and state governement employees seem to work the most on average, and commute the longest. This is sensible as there are a much more limited amount of governement offices. We first identified how many people work each job type, and found that most people work in private sector jobs. This is unsurprising. Examing commute time, as seen below, we discovered that most people's commutes have gotten longer.
+    
+    ```{r}
+    data %>%
+      filter(CLASSWKR > 0) %>%
+      mutate(CLASSWKRD = as_factor(CLASSWKRD)) %>%
+      group_by(YEAR, CLASSWKRD) %>%
+      summarise(TRANTIME = mean(TRANTIME)) %>%
+      ungroup() %>%
+      ggplot(aes(x=YEAR, y=TRANTIME, group=CLASSWKRD, color=CLASSWKRD)) + geom_line() +
+      labs(x="Job type", y= "Commute time (Minutes)", title="Commute time per job", fill="Job type")
+      
+    ```
+    
+    Similarly we have noticed a general decrease in hours worked across most job types. Notably, however, there was not a significant increase in hours worked for governement employees.
+    
+
+    ```{r}
+    data %>%
+      filter(CLASSWKR > 0) %>%
+      mutate(CLASSWKRD = as_factor(CLASSWKRD)) %>%
+      group_by(YEAR, CLASSWKRD) %>%
+      summarise(UHRSWORK = mean(UHRSWORK),
+                n = mean(n)) %>%
+      ungroup() %>%
+      ggplot(aes(x=YEAR, y=UHRSWORK, group=CLASSWKRD, color=CLASSWKRD)) + geom_line() +
+      labs(x="Job type", y= "Hours Worked", title="Hours worked per job", fill="Job type")
+      
+    ```
 
 ### How does the American work life balance change in regards to income, marriage rates, and kids or dependents?  
 ```{r}
