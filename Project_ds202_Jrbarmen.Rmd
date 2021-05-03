@@ -31,10 +31,10 @@ data2 <- data %>%
          dependants = NCHILD,
          incomesolo = INCTOT,
          incomefamily = FTOTINC,
-         marrital = MARST,
+         marital = MARST,
          year = YEAR)
 data2 <- na.omit(data2)
-data2$married <- ifelse(data2$marrital<=2, 1, 0) # 1 married, 0 not married
+data2$married <- ifelse(data2$marital<=2, 1, 0) # 1 married, 0 not married
 data2
 ```
 
@@ -93,11 +93,11 @@ data2 <- data %>%
          dependents = NCHILD,
          incomesolo = INCTOT,
          incomefamily = FTOTINC,
-         marrital = MARST,
+         marital = MARST,
          year = YEAR,
          traintime = TRANTIME)
 data2 <- na.omit(data2)
-data2$married <- ifelse(data2$marrital<=2, 1, 0) # 1 married, 0 not married
+data2$married <- ifelse(data2$marital<=2, 1, 0) # 1 married, 0 not married
 ```
 
 ```{r Explore3}
@@ -127,14 +127,14 @@ ggplot(data2, aes(y = hours, x = dependents, fill=factor(dependents)))+geom_boxp
 It appears that as the number of dependents increases there is a small increase in average hours worked a week, but then as we get to the extremely large family sizes the number of hours begin to dip slightly.  
 
 ```{r plot2}
-ggplot(data2, aes(y = hours, x = married, fill=factor(married)))+geom_boxplot()
-ggplot(data2, aes(y = hours, x = marrital, fill=factor(marrital)))+geom_boxplot()
+ggplot(data2, aes(y = hours, x = married, fill=as_factor(married)))+geom_boxplot()
+ggplot(data2, aes(y = hours, x = marital, fill=as_factor(marital)))+geom_boxplot()
 ```
   
 Married individuals seem to work more hours on average, but this could be skewed by marital status 5, widowers, who are made up in large part of retired individuals who no longer work.  
 
 ```{r plot3}
-ggplot(data2, aes(y = hours, x = year, fill=factor(year)))+geom_boxplot()
+ggplot(data2, aes(y = hours, x = year, fill=as_factor(year)))+geom_boxplot()
 ```
   
 Regardless of year the distance between Q1-Q3 seems to stay constant along with similar overall domains. The key difference is that of the median time worked. looking at after the year 2000 we can see there has been a steady decrease in the median with only a recent small bounce back.  
@@ -143,7 +143,7 @@ Regardless of year the distance between Q1-Q3 seems to stay constant along with 
 ggplot(data2, aes(y = hours, x = factor(traintime)))+geom_boxplot()
 ```
   
-Train time increases left to right, as the total train time increases the average work week decreases, but not universally. also regardless of trian commute times there is a strong centering on around 35-40 hours a week.  
+Train time increases left to right, as the total train time increases the average work week decreases, but not universally. also regardless of train commute times there is a strong centering on around 35-40 hours a week.  
 
 ```{r plot5}
 ggplot(data2, aes(factor(hours)))+geom_bar()
