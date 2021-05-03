@@ -1,6 +1,7 @@
 ---
 title: "DS 202 Final Project"
-output: html_notebook
+author: "John Barmen, Braedon Giblin, Yufei Huang, Emma Smykalski, Kerstin Swanson"
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -17,6 +18,9 @@ library(formattable)
 ddi <- read_ipums_ddi("usa_00002.xml")
 data <- read_ipums_micro(ddi)
 
+# Suppress warnings
+options(warn=-1)
+
 ```
 
 ## Introduction/Background:
@@ -27,33 +31,18 @@ We collected our data from the IPUMS database, which has a collection of America
 
 
 ## Data Collection:
-<<<<<<< HEAD
 
-On IPUMS database, we selected a subset of variables and then selected a sample of 15,000 households per census/survey. We narrowed our scope to be from 1980-now, to get a better look at the most recent changes in work-life balance.
 
-## Questions
-<> Start Example
-<> TODO: Remove this block
-    
-    ```{r}
-    data %>%
-      filter(CLASSWKR > 0) %>%
-      mutate(UHRSWORK = ifelse(YEAR == 2000, UHRSWORK / 2, UHRSWORK)) %>%
-      ggplot(aes(x=YEAR, y=UHRSWORK)) + geom_bar(fill = "deepskyblue", stat="identity") +
-      labs(x="Year", y= "Total Hours Worked per week", title="Hours of Work Per Week per Year") +
-      geom_vline(xintercept=2009, color="red") +
-      annotate("label", x=2008, y=7.5e5, label="Great Recession", hjust=0, fill="red", color="white")
-    ```
+We used IPUMS database, selecting a subset of variables and then selected a sample of 15,000 households per census/survey. We narrowed our scope to be from 1980-now, to get a better look at the most recent changes in work-life balance. Subsetting our dataframe was necessary in order to shrink the database to a reasonable size that would fit on github and allow us to perform analysis in a timely fashion.
 
-<> End Example
-=======
-On IPUMS database, we selected a subset of variables and then selected a sample of 15,000 households per census/survey. We narrowed our scope to be from 1980-now, to get a better look at the most recent changes in work-life balance.
 
 ## Questions
 
 ### How does gender play a role in work/life balance?
 
-```{r}
+Analysis:
+
+```{R}
 tbl <- data %>% 
   filter(EMPSTAT == 1) %>% 
    mutate(Sex = if_else(SEX==1, "Male", "Female")) %>% 
@@ -62,26 +51,25 @@ tbl <- data %>%
 formattable(tbl)
 ```
 
-
 To calculate average workweeks and commutes, we first removed all people of unemployed work status, so we would not be diluting our numbers with zeroes for hours worked per week and commute time. We can see that overall, on average men work more per week than women, with an average of about 42 hours per week as opposed to 36 hours per week. We can also see that men have slightly longer commutes, averaging about 25 minutes versus women’s average commutes of 21 minutes. 
 
 
 
-**How has workweek and commute changed over time?**
+### How has workweek and commute changed over time?
 
-
-```{r, message=FALSE}
-p_hours <- data %>% 
-  filter(EMPSTAT == 1) %>% 
-  group_by(YEAR, SEX) %>% 
-  summarise("Average Hours per Week" = mean(UHRSWORK), "Average Travel Time" = mean(TRANTIME)) %>% 
+Analysis:
+```{R, message=FALSE}
+p_hours <- data %>%
+  filter(EMPSTAT == 1) %>%
+  group_by(YEAR, SEX) %>%
+  summarise("Average Hours per Week" = mean(UHRSWORK), "Average Travel Time" = mean(TRANTIME)) %>%
   ggplot(aes(x=YEAR, y=`Average Hours per Week`, color= as.factor(SEX))) + geom_line() + labs(title = "Average Workweek by Sex over Time", x = "Year", y= "Average Hours/Week") +
   scale_color_manual(name="Sex", labels = c("Male","Female"), values=c('steelblue1','Pink'))
 
-p_travel <- data %>% 
-  filter(EMPSTAT == 1) %>% 
-  group_by(YEAR, SEX) %>% 
-  summarise("Average Hours per Week" = mean(UHRSWORK), "Average Travel Time" = mean(TRANTIME)) %>% 
+p_travel <- data %>%
+  filter(EMPSTAT == 1) %>%
+  group_by(YEAR, SEX) %>%
+  summarise("Average Hours per Week" = mean(UHRSWORK), "Average Travel Time" = mean(TRANTIME)) %>%
   ggplot(aes(x=YEAR, y=`Average Travel Time`, color= as.factor(SEX))) + geom_line() + labs(title = "Average Commute by Sex over Time", x = "Year", y="Travel Time (min)") + scale_color_manual(name="Sex",labels = c("Male", "Female"), values=c('steelblue1','Pink'))
 
 grid.arrange(p_hours, p_travel)
@@ -89,72 +77,71 @@ grid.arrange(p_hours, p_travel)
 
 
 
-Looking at workweek and commute over time based on sex, we can see that between 1980-present, men have always averaged a longer workweek and commute. Commute seems to have grown more steadily over time than workweek. There is also a larger gender gap in average hours worked per week than in average commute time. An interesting finding would be that, for both men and women, average workweek decreased after 2008 (the Great Recession), and it has yet to reach the same level it was at before 2008. 
-
-
+Looking at workweek and commute over time based on sex, we can see that between 1980-present, men have always averaged a longer workweek and commute. Commute seems to have grown more steadily over time than workweek. There is also a larger gender gap in average hours worked per week than in average commute time. An interesting finding would be that, for both men and women, average workweek decreased after 2008 (the Great Recession), and it has yet to reach the same level it was at before 2008.
 
 
 
 ### How many hours does the average American work per week? How as that changed over time?
-	
-	  We found that most people worked an average of about 33 hours per week. We examined how this number has changed over the past 40 years, and recognized that there has been a subtle down trend in the amount of hours people work. We noted this especially after the Great Recession, when many people lost there jobs or had hours reduced. The most any respondant worked in an average week was 99 hours. 
-	
-    Descriptive statistics of peoples 2019 Work habits:
-    ```{r}
-    data %>%
-      filter(CLASSWKR > 0 & YEAR == 2019) %>%
-      select(UHRSWORK) %>%
-      summary()
-    ```
-    
-    
-    Average work hours by year:
-    ```{r}
-    data %>%
-      filter(CLASSWKR > 0) %>%
-      group_by(YEAR) %>%
-      summarise(UHRSWORK = mean(UHRSWORK)) %>%
-      ggplot(aes(x=YEAR, y=UHRSWORK)) + geom_bar(fill = "deepskyblue", stat="identity") +
-      labs(x="Year", y= "Average Hours Worked per week", title="Average Hours of Work Per Week per Year") +
-      geom_vline(xintercept=2009, color="red") +
-      annotate("label", x=2008, y=40, label="Great Recession", hjust=0, fill="red", color="white")
-    ```
 
-    Overall, hours worked per week has remained fairly static, and only has subtly decreaseed over the past 40 years. 
+We found that most people worked an average of about 33 hours per week. We examined how this number has changed over the past 40 years, and recognized that there has been a subtle down trend in the amount of hours people work. We noted this especially after the Great Recession, when many people lost there jobs or had hours reduced. The most any respondant worked in an average week was 99 hours.
+
+Descriptive statistics of peoples 2019 Work habits:
+```{r}
+data %>%
+  filter(CLASSWKR > 0 & YEAR == 2019) %>%
+  select(UHRSWORK) %>%
+  summary()
+```
+
+
+Average work hours by year:
+```{r}
+data %>%
+  filter(CLASSWKR > 0) %>%
+  group_by(YEAR) %>%
+  summarise(UHRSWORK = mean(UHRSWORK)) %>%
+  ggplot(aes(x=YEAR, y=UHRSWORK)) + geom_bar(fill = "deepskyblue", stat="identity") +
+  labs(x="Year", y= "Average Hours Worked per week", title="Average Hours of Work Per Week per Year") +
+  geom_vline(xintercept=2009, color="red") +
+  annotate("label", x=2008, y=40, label="Great Recession", hjust=0, fill="red", color="white")
+```
+
+Overall, hours worked per week has remained fairly static, and only has subtly decreaseed over the past 40 years.
 
 ### What types of jobs typically require longer commutes and longer work weeks?
 
-    We identified that there is a very clear divide in commute time and work time by jobs. Typically both federal and state governement employees seem to work the most on average, and commute the longest. This is sensible as there are a much more limited amount of governement offices. We first identified how many people work each job type, and found that most people work in private sector jobs. This is unsurprising. Examing commute time, as seen below, we discovered that most people's commutes have gotten longer.
-    
-    ```{r}
-    data %>%
-      filter(CLASSWKR > 0) %>%
-      mutate(CLASSWKRD = as_factor(CLASSWKRD)) %>%
-      group_by(YEAR, CLASSWKRD) %>%
-      summarise(TRANTIME = mean(TRANTIME)) %>%
-      ungroup() %>%
-      ggplot(aes(x=YEAR, y=TRANTIME, group=CLASSWKRD, color=CLASSWKRD)) + geom_line() +
-      labs(x="Job type", y= "Commute time (Minutes)", title="Commute time per job", fill="Job type")
-      
-    ```
-    
-    Similarly we have noticed a general decrease in hours worked across most job types. Notably, however, there was not a significant increase in hours worked for governement employees.
-    
+We identified that there is a very clear divide in commute time and work time by jobs. Typically both federal and state governement employees seem to work the most on average, and commute the longest. This is sensible as there are a much more limited amount of governement offices. We first identified how many people work each job type, and found that most people work in private sector jobs. This is unsurprising. Examing commute time, as seen below, we discovered that most people's commutes have gotten longer.
 
-    ```{r}
-    data %>%
-      filter(CLASSWKR > 0) %>%
-      mutate(CLASSWKRD = as_factor(CLASSWKRD)) %>%
-      group_by(YEAR, CLASSWKRD) %>%
-      summarise(UHRSWORK = mean(UHRSWORK),
-                n = mean(n)) %>%
-      ungroup() %>%
-      ggplot(aes(x=YEAR, y=UHRSWORK, group=CLASSWKRD, color=CLASSWKRD)) + geom_line() +
-      labs(x="Job type", y= "Hours Worked", title="Hours worked per job", fill="Job type")
-      
-    ```
+```{r}
+data %>%
+  filter(CLASSWKR > 0) %>%
+  mutate(CLASSWKRD = as_factor(CLASSWKRD)) %>%
+  group_by(YEAR, CLASSWKRD) %>%
+  summarise(TRANTIME = mean(TRANTIME)) %>%
+  ungroup() %>%
+  ggplot(aes(x=YEAR, y=TRANTIME, group=CLASSWKRD, color=CLASSWKRD)) + geom_line() +
+  labs(x="Job type", y= "Commute time (Minutes)", title="Commute time per job", fill="Job type")
 
-### How does the American work life balance change in regards to income, marriage rates, and kids or dependents?  
+```
+
+Similarly we have noticed a general decrease in hours worked across most job types. Notably, however, there was not a significant increase in hours worked for governement employees.
+
+
+```{r}
+data %>%
+  filter(CLASSWKR > 0) %>%
+  mutate(CLASSWKRD = as_factor(CLASSWKRD)) %>%
+  group_by(YEAR, CLASSWKRD) %>%
+  summarise(UHRSWORK = mean(UHRSWORK),
+            n = mean(n)) %>%
+  ungroup() %>%
+  ggplot(aes(x=YEAR, y=UHRSWORK, group=CLASSWKRD, color=CLASSWKRD)) + geom_line() +
+  labs(x="Job type", y= "Hours Worked", title="Hours worked per job", fill="Job type")
+
+```
+
+### How does the American work life balance change in regards to income, marriage rates, and kids or dependents?
+
 ```{r}
 data2 <- data %>%
   select(UHRSWORK, NCHILD, INCTOT, FTOTINC,MARST, YEAR, TRANTIME) %>%
@@ -170,77 +157,64 @@ data2$married <- ifelse(data2$marital<=2, 1, 0) # 1 married, 0 not married
 ggplot(data2, aes(y = hours, x = marital, fill=as_factor(marital)))+geom_boxplot()
 ggplot(data2, aes(y = hours, x = dependents, fill=factor(dependents)))+geom_boxplot()
 ```
-  
+
 When we built the data set we initially tried to ad variables we thought would be important to determining work life balance, measured in hours worked per week. These included variables like marital status, family income, family size in regards to defendants, as well as other variables we thought may have been useful predictors. The two Plots I choose to explain this problem are above. These two plots are things that we thought would be very influential variables to determine work life balance but ended up having very little impact after all but ended up being less explanatory than we had predicted. They do a good job showing how little difference can be created as variables are changed. In the end we ended up finding that although the predictors we picked are valuable we discovered that they are not as valuable as we thought. There are probably many reliant predictors that we did not have access to that would have been more valuable but that is outside the scope of this analysis.
 
-### What variables in our data set are significantly changed overtime when we predict income or family income?
-
-### Are there any changes in the economic center cities and their proportion? Is this related to the changes in their life and work balance?
-
-## Conclusion
-
-
-## Contributions
-
-
-Kerstin - I searched the IPUMS database for variables related to our research topic, selected samples during our specified time period, and extracted the data into a new file that the team could work with. I looked into and wrote the background information, introduction, and data collection materials for our presentation and this report. I also took on the question "how does gender play a role in work/life balance?". 
-=======
-### How does gender play a role in work/life balance
-
-### How many hours does the average American work per week? How as that changed over time?
-
-### What types of jobs typically require longer commutes and longer work weeks?
-
-### How does the American work life balance change in regards to income, marriage rates, and kids or dependents?  
-
 ### What variables in our data set are significantly changed overtime when we predict or family income?
-a. divide data into 4 different time lines
-```{r}
-year80s = data %>%
-  filter(YEAR == c(1980,1981,1982,1983,1984,1985,1986,1987,1988,1989))
 
-year90s = data %>%
-  filter(YEAR == c(1990,1991,1992,1993,1994,1995,1996,1997,1998,1999))
+1. divide data into 4 different time lines
 
-year00s = data %>%
-  filter(YEAR == c(2000,2001,2002,2003,2004,2005,2006,2007,2008,2009))
+    ```{r}
+    year80s = data %>%
+      filter(YEAR == c(1980,1981,1982,1983,1984,1985,1986,1987,1988,1989))
 
-year10s = data %>%
-  filter(YEAR == c(2010,2011,2012,2013,2014,2015,2016,2017,2018,2019))
-```
+    year90s = data %>%
+      filter(YEAR == c(1990,1991,1992,1993,1994,1995,1996,1997,1998,1999))
 
-b. Hypothesis test for selected variables.
-```
-income.fit80 = lm(FTOTINC~SEX+AGE+MARST+EMPSTAT+CLASSWKR+UHRSWORK+PWSTATE2+PWCITY+TRANWORK+TRANTIME, data = year80s)
-summary(income.fit80)
+    year00s = data %>%
+      filter(YEAR == c(2000,2001,2002,2003,2004,2005,2006,2007,2008,2009))
 
-income.fit90 = lm(FTOTINC~SEX+AGE+MARST+EMPSTAT+CLASSWKR+UHRSWORK+PWSTATE2+PWCITY+TRANWORK+TRANTIME, data = year90s)
-summary(income.fit90)
+    year10s = data %>%
+      filter(YEAR == c(2010,2011,2012,2013,2014,2015,2016,2017,2018,2019))
+    ```
 
-income.fit00 = lm(FTOTINC~SEX+AGE+MARST+EMPSTAT+CLASSWKR+UHRSWORK+PWSTATE2+PWCITY+TRANWORK+TRANTIME, data = year00s)
-summary(income.fit00)
+2. Hypothesis test for selected variables.
 
-income.fit10 = lm(FTOTINC~SEX+AGE+MARST+EMPSTAT+CLASSWKR+UHRSWORK+PWSTATE2+PWCITY+TRANWORK+TRANTIME, data = year10s)
-summary(income.fit10)
-```
+    Analysis:
+    ```{r}
+    income.fit80 = lm(FTOTINC~SEX+AGE+MARST+EMPSTAT+CLASSWKR+UHRSWORK+PWSTATE2+PWCITY+TRANWORK+TRANTIME, data = year80s)
+    summary(income.fit80)
+
+    income.fit90 = lm(FTOTINC~SEX+AGE+MARST+EMPSTAT+CLASSWKR+UHRSWORK+PWSTATE2+PWCITY+TRANWORK+TRANTIME, data = year90s)
+    summary(income.fit90)
+
+    income.fit00 = lm(FTOTINC~SEX+AGE+MARST+EMPSTAT+CLASSWKR+UHRSWORK+PWSTATE2+PWCITY+TRANWORK+TRANTIME, data = year00s)
+    summary(income.fit00)
+
+    income.fit10 = lm(FTOTINC~SEX+AGE+MARST+EMPSTAT+CLASSWKR+UHRSWORK+PWSTATE2+PWCITY+TRANWORK+TRANTIME, data = year10s)
+    summary(income.fit10)
+    ```
 
 c. Final graph over time
-```{r}
-frame = data.frame("Variables" = c("SEX","SEX","SEX","SEX","AGE","AGE","AGE","AGE","MARST","MARST","MARST","MARST","EMPSTAT","EMPSTAT","EMPSTAT","EMPSTAT","CLASSWKR","CLASSWKR","CLASSWKR","CLASSWKR","UHRSWORK","UHRSWORK","UHRSWORK","UHRSWORK","PWSTATE2","PWSTATE2","PWSTATE2","PWSTATE2","PWCITY","PWCITY","PWCITY","PWCITY","TRANWORK","TRANWORK","TRANWORK","TRANWORK","TRANTIME","TRANTIME","TRANTIME","TRANTIME"),
-                   "TIME" = c("1980s","1990s","2000s","2010s","1980s","1990s","2000s","2010s","1980s","1990s","2000s","2010s","1980s","1990s","2000s","2010s","1980s","1990s","2000s","2010s","1980s","1990s","2000s","2010s","1980s","1990s","2000s","2010s","1980s","1990s","2000s","2010s","1980s","1990s","2000s","2010s","1980s","1990s","2000s","2010s"),
-                   "P-values" = c(0.00547,0.075393,0.000000000000169,0.0000000982,0.13155,0.262341,0.00000109,0.0000000886,0.0000000000000002,0.00000000000000722,0.0000000000000002,0.0000000000000002,0.0000000000000002,0.0000000025,0.0000000000000002,0.0000000000000002,0.00602,0.041115,0.00389,0.84879,0.08796,0.653650,0.80444,0.26091,0.73778,0.683581,0.30593,0.79777,0.73276,0.080681,0.08121,0.76926,0.0000766,0.000878,0.00000000000424,0.0000000000000477,0.05554,0.068192,0.15066,0.39587))
 
-frame$Variables = as.character(frame$Variables)
-frame$TIME = as.factor(frame$TIME)
-frame$P.values = as.numeric(frame$P.values)
+    ```{r}
+    frame = data.frame("Variables" = c("SEX","SEX","SEX","SEX","AGE","AGE","AGE","AGE","MARST","MARST","MARST","MARST","EMPSTAT","EMPSTAT","EMPSTAT","EMPSTAT","CLASSWKR","CLASSWKR","CLASSWKR","CLASSWKR","UHRSWORK","UHRSWORK","UHRSWORK","UHRSWORK","PWSTATE2","PWSTATE2","PWSTATE2","PWSTATE2","PWCITY","PWCITY","PWCITY","PWCITY","TRANWORK","TRANWORK","TRANWORK","TRANWORK","TRANTIME","TRANTIME","TRANTIME","TRANTIME"),
+                       "TIME" = c("1980s","1990s","2000s","2010s","1980s","1990s","2000s","2010s","1980s","1990s","2000s","2010s","1980s","1990s","2000s","2010s","1980s","1990s","2000s","2010s","1980s","1990s","2000s","2010s","1980s","1990s","2000s","2010s","1980s","1990s","2000s","2010s","1980s","1990s","2000s","2010s","1980s","1990s","2000s","2010s"),
+                       "P-values" = c(0.00547,0.075393,0.000000000000169,0.0000000982,0.13155,0.262341,0.00000109,0.0000000886,0.0000000000000002,0.00000000000000722,0.0000000000000002,0.0000000000000002,0.0000000000000002,0.0000000025,0.0000000000000002,0.0000000000000002,0.00602,0.041115,0.00389,0.84879,0.08796,0.653650,0.80444,0.26091,0.73778,0.683581,0.30593,0.79777,0.73276,0.080681,0.08121,0.76926,0.0000766,0.000878,0.00000000000424,0.0000000000000477,0.05554,0.068192,0.15066,0.39587))
 
-ggplot(frame, aes(x=TIME, y=P.values, group=Variables, color=Variables))+geom_line()+ggtitle("Time Series Plot of Predictors Used for Prediction Family Income")+geom_abline(slope=0,intercept = 0.05)
-```
+    frame$Variables = as.character(frame$Variables)
+    frame$TIME = as.factor(frame$TIME)
+    frame$P.values = as.numeric(frame$P.values)
 
-```
-After taking look of this time series plot, I figured out that some variables, such as Employment status, Marital status, and Travel time to work. Some variables' significant level have changed a lot over time, but they're still not as significant as the previous variables. Age is the one predictor that changed from not significant to significant by time passes.
-```
+    ggplot(frame, aes(x=TIME, y=P.values, group=Variables, color=Variables))+geom_line()+ggtitle("Time Series Plot of Predictors Used for Prediction Family Income")+geom_abline(slope=0,intercept = 0.05)
+    ```
+
+
+    After taking look of this time series plot, I figured out that some variables, such as Employment status, Marital status, and Travel time to work. Some variables' significant level have changed a lot over time, but they're still not as significant as the previous variables. Age is the one predictor that changed from not significant to significant by time passes.
+
+
 ### Are there any changes in the economic center cities and their proportion? Is this related to the changes in their life and work balance?
+
 Trying to figure out if there exsit any cities that would be a potential economic center city
 ```{r}
 table(year80s$PWCITY)
@@ -254,7 +228,9 @@ new80s = year80s%>%
 new80s %>%
   group_by(PWCITY) %>%
   summarize(meanINC =  mean(INCTOT)) %>%
-  arrange(desc(meanINC))
+  arrange(desc(meanINC)) %>%
+  head(3) %>%
+  formattable()
 
 new90s = year90s%>%
   filter(PWCITY!=0)
@@ -262,7 +238,9 @@ new90s = year90s%>%
 new90s %>%
   group_by(PWCITY) %>%
   summarize(meanINC =  mean(INCTOT)) %>%
-  arrange(desc(meanINC))
+  arrange(desc(meanINC)) %>%
+  head(3) %>%
+  formattable()
 
 new00s = year00s%>%
   filter(PWCITY!=0)
@@ -270,7 +248,9 @@ new00s = year00s%>%
 new00s %>%
   group_by(PWCITY) %>%
   summarize(meanINC =  mean(INCTOT)) %>%
-  arrange(desc(meanINC))
+  arrange(desc(meanINC)) %>%
+  head(3) %>%
+  formattable()
 
 new10s = year10s%>%
   filter(PWCITY!=0)
@@ -278,15 +258,31 @@ new10s = year10s%>%
 new10s %>%
   group_by(PWCITY) %>%
   summarize(meanINC =  mean(INCTOT)) %>%
-  arrange(desc(meanINC))
+  arrange(desc(meanINC)) %>%
+  head(3) %>%
+  formattable()
 ```
 
-```
+
 After finding the city codes and comparing with the city information from IPUMS, this data does not show a city pattern for us to come up a conclusion for this research question due to the lack of clear information, or missing values for both city and states variables.
-```
 
 
-### Contribution
-```
-Yufei Huang: I came up two research questions for our project, which are the significant predictors for family income overtime and the potential economic cities. Participaed in the analyzation and summarized my own part conclusion. Finished the PowerPoint, Presentation, and Final Report with my group members.
-```
+## Conclusion
+
+Our analysis provided us with lots of informative conclusions on the work/life balance in the United States. These conclusions include that states with larger cities and that are closer to the coast spend a larger proportion of their week in work including commuting. We found that males typically spend more time both working and commuting as opposed to females and have also made up the majority of the breadwinners throughout the years. We also established that in general, Americans are spending more of their time commuting and less time actually working, with Federal employees working the most and commuting the longest. We found that what leads to the hours worked each week is difficult to quantify and despite things like the number of dependents and type of job playing a role, there are many more unknown factors at play. Lastly, some predictors are always significant when trying to predict the family income such as employment status, marital status, and travel time to work but we found that age is the one predictor that changed from not significant to significant as time has passed.
+
+## Contributions
+
+
+-  Kerstin - I searched the IPUMS database for variables related to our research topic, selected samples during our specified time period, and extracted the data into a new file that the team could work with. I looked into and wrote the background information, introduction, and data collection materials for our presentation and this report. I also took on the question "how does gender play a role in work/life balance?".
+
+-  Yufei Huang: I came up two research questions for our project, which are the significant predictors for family income overtime and the potential economic cities. Participaed in the analyzation and summarized my own part conclusion. Finished the PowerPoint, Presentation, and Final Report with my group members.
+
+-  Emma Smykalski: I ran the analysis and produced the graphs for how the family breadwinner role has changed over time and how state affects the relationship between work/life balance. For the presentation I recorded the slides that corresponded to that analysis. In our final report, I produced my analysis and graphs and I wrote the paragraphs and about my analysis as well as the conclusion.
+
+-  Braedon Giblin: I did all of the analysis for our questions on time spent working per week and work / commute time and job type analysis. I also took charge of managing Git, editing and publishing our video, and assembling and compiling our final report.
+
+- John Barmen: I answered the questions on how American work/life balance changes as a result of several different independent variables. I also examined some commute time data. Finally, I setup and manged our group's primary communication channel.
+
+## Citations
+> Sarah Flood, Miriam King, Renae Rodgers, Steven Ruggles and J. Robert Warren. Integrated Public Use Microdata Series, Current Population Survey: Version 8.0 [dataset]. Minneapolis, MN: IPUMS, 2020. https://doi.org/10.18128/D030.V8.
