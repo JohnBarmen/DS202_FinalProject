@@ -12,6 +12,7 @@ library(dplyr)
 library(tidyverse)
 library(ggplot2)
 library(ggthemes)
+library(maps)
 library(ipumsr)
 library(gridExtra)
 library(formattable)
@@ -83,14 +84,16 @@ Looking at workweek and commute over time based on sex, we can see that between 
 
 ### How many hours does the average American work per week? How as that changed over time?
 
-We found that most people worked an average of about 33 hours per week. We examined how this number has changed over the past 40 years, and recognized that there has been a subtle down trend in the amount of hours people work. We noted this especially after the Great Recession, when many people lost there jobs or had hours reduced. The most any respondant worked in an average week was 99 hours.
+We found that most people worked an average of about 33 hours per week. We examined how this number has changed over the past 40 years, and recognized that there has been a subtle down trend in the amount of hours people work. We noted this especially after the Great Recession, when many people lost their jobs or had hours reduced. The most any respondant worked in an average week was 99 hours.
 
 Descriptive statistics of peoples 2019 Work habits:
 ```{r}
 data %>%
   filter(CLASSWKR > 0 & YEAR == 2019) %>%
   select(UHRSWORK) %>%
-  summary()
+  summary() %>%
+  tibble() %>%
+  formattable()
 ```
 
 
@@ -106,11 +109,11 @@ data %>%
   annotate("label", x=2008, y=40, label="Great Recession", hjust=0, fill="red", color="white")
 ```
 
-Overall, hours worked per week has remained fairly static, and only has subtly decreaseed over the past 40 years.
+Overall, hours worked per week has remained fairly static, and only has subtly decreased over the past 40 years.
 
 ### What types of jobs typically require longer commutes and longer work weeks?
 
-We identified that there is a very clear divide in commute time and work time by jobs. Typically both federal and state governement employees seem to work the most on average, and commute the longest. This is sensible as there are a much more limited amount of governement offices. We first identified how many people work each job type, and found that most people work in private sector jobs. This is unsurprising. Examing commute time, as seen below, we discovered that most people's commutes have gotten longer.
+We identified that there is a very clear divide in commute time and work time by jobs. Typically both federal and state government employees seem to work the most on average, and commute the longest. This is sensible as there are a much more limited amount of government offices. We first identified how many people work each job type, and found that most people work in private sector jobs. This is unsurprising. Examine commute time, as seen below, we discovered that most people's commutes have gotten longer.
 
 ```{r}
 data %>%
@@ -158,9 +161,9 @@ ggplot(data2, aes(y = hours, x = marital, fill=as_factor(marital)))+geom_boxplot
 ggplot(data2, aes(y = hours, x = dependents, fill=factor(dependents)))+geom_boxplot()
 ```
 
-When we built the data set we initially tried to ad variables we thought would be important to determining work life balance, measured in hours worked per week. These included variables like marital status, family income, family size in regards to defendants, as well as other variables we thought may have been useful predictors. The two Plots I choose to explain this problem are above. These two plots are things that we thought would be very influential variables to determine work life balance but ended up having very little impact after all but ended up being less explanatory than we had predicted. They do a good job showing how little difference can be created as variables are changed. In the end we ended up finding that although the predictors we picked are valuable we discovered that they are not as valuable as we thought. There are probably many reliant predictors that we did not have access to that would have been more valuable but that is outside the scope of this analysis.
+When we built the data set we initially tried to ad variables we thought would be important to determining work life balance, measured in hours worked per week. These included variables like marital status, family income, family size in regards to dependents, as well as other variables we thought may have been useful predictors. The two plots I choose to explain this problem are above. These two plots are things that we thought would be very influential variables to determine work life balance. However, the plots were less explanitory then previously predicted. They do a good job showing how little difference can be created as variables are changed. In the end we ended up finding that although the predictors we picked are valuable we discovered that they are not as valuable as we thought. There are probably many reliant predictors that we did not have access to that would have been more valuable but that is outside the scope of this analysis.
 
-### What variables in our data set are significantly changed overtime when we predict or family income?
+### What variables in our data set are significantly changed overtime when we predict family income?
 
 1. divide data into 4 different time lines
 
@@ -210,12 +213,12 @@ c. Final graph over time
     ```
 
 
-    After taking look of this time series plot, I figured out that some variables, such as Employment status, Marital status, and Travel time to work. Some variables' significant level have changed a lot over time, but they're still not as significant as the previous variables. Age is the one predictor that changed from not significant to significant by time passes.
+    After taking look of this time series plot, I figured out that some variables, such as Employment status, Marital status, and Travel time to work are statistically significant. Some variables' significant level have changed a lot over time, but they're still not as significant as the previous variables. Age is the one predictor that changed from not significant to significant by time passes.
 
 
 ### Are there any changes in the economic center cities and their proportion? Is this related to the changes in their life and work balance?
 
-Trying to figure out if there exsit any cities that would be a potential economic center city
+Trying to figure out if there exist any cities that would be a potential economic center city
 ```{r}
 table(year80s$PWCITY)
 table(year90s$PWCITY)
@@ -265,6 +268,58 @@ new10s %>%
 
 
 After finding the city codes and comparing with the city information from IPUMS, this data does not show a city pattern for us to come up a conclusion for this research question due to the lack of clear information, or missing values for both city and states variables.
+
+
+### How has the family breadwinner role changed over time?  
+To see how the average age of the breadwinner has changed over the years, we averaged out the age of all the breadwinners in one year to obtain the average age for that year. We then created a time series plot to express how the age has changed over time. The time series plot below shows that from 1980 to 2019 the average age of the household breadwinner has increased from under 30 years old in 1980 to almost 40 years old in 2019.  
+
+```{r, echo=FALSE, cache=FALSE, results='hide', warning=FALSE, comment=FALSE, warning=FALSE, message = FALSE}
+s <- sum(data$INCTOT)
+breadwinner <- data %>% group_by(SERIAL) %>%
+  select(INCTOT, SEX, AGE, YEAR) %>% 
+  mutate(proportion = INCTOT / s)  %>% group_by(SERIAL) %>% filter(proportion == max(proportion)) %>%
+  summarize(SERIAL, SEX, YEAR, AGE, proportion)
+
+together <- breadwinner %>% mutate(AGE = as.integer(AGE)) %>%
+  group_by(YEAR) %>% summarize(average_age = mean(AGE))
+  
+per_year_sex <- breadwinner %>% group_by(YEAR, SEX) %>%
+  summarize(totalinyear = n(), SEX, YEAR, AGE, proportion, SERIAL)
+total <- per_year_sex %>% select(YEAR, SEX, totalinyear) %>% distinct() %>% mutate(SEX = as.character(SEX)) %>% 
+  mutate(SEX = as.factor(SEX))
+total$SEX <- recode_factor(total$SEX, '1' = 'male', '2' = 'female' )
+total %>% ggplot(aes(x=YEAR, weight=totalinyear, fill=SEX)) + geom_bar(position = 'dodge', width = 1/2) + 
+  ylab('Breadwinners') + ggtitle('Number of Household Breadwinners Per Sex Each Year') + 
+  scale_fill_manual(name="SEX", labels = c("Male","Female"), values=c('steelblue1','pink')) + theme_bw()
+
+
+ggplot(together, aes(x=YEAR, y= average_age)) + geom_line() + ggtitle('Average Age of Breadwinner Over Time') + ylab('Average Age')
+```
+ 
+
+### How does state affect the relationship between work/life balance?
+
+Our next question we explored was how the state of which the respondents job was located in affected the work/life balance. In order to see the relationship between state and work/life balance we took the variable representing the amount of hours spent at work in the last week and added twice the variable indicating how long the respondents commute to work was to get the total time that work took up during the week. We then grouped by state and found the average work time for all the respondents working in those states. Then, we divided by the total hours in a week to see the percent of the week that each state spent for work. By combining this new data frame with the states data frame in the maps library, we could create a map showing the average percent of the week that each state spent on work visually. The map below shows the outcome of that. The darker blue states, indicating that the state had a high average percent of the week spent in work, include California, Illinois, New York, Washington DC, and Georgia with New York and Washington DC being the darkest. The lighter blue states, indicating that the state had a low average percent of the week spent in work, include Montana, North Dakota, South Dakota, Wyoming, and Idaho. These results make sense as the darker blue states have larger cities and the lighter colored states are known for their nature attractions and not as frequent big cities.  
+```{r, echo=FALSE, cache=FALSE, results='hide', warning=FALSE, comment=FALSE, warning=FALSE, message = FALSE}
+balance <- data %>% filter(UHRSWORK != 0) %>% mutate(both_ways = TRANTIME*2) %>% 
+  group_by(PWSTATE2) %>% summarize(time_at_work = mean(UHRSWORK), time_to_work = mean(both_ways)) %>%
+  mutate(State = as.integer(PWSTATE2))
+lab <- ipums_val_labels(balance$PWSTATE2) %>% rename(State = val, state_name = lbl)
+balance1 <- left_join(balance, lab, by = 'State') %>% select(-PWSTATE2) %>% group_by(State) %>%
+  mutate(work = time_at_work + time_to_work) %>% mutate(life = 168 - work) %>%
+  mutate(percent_of_week_in_work = work/168)
+balance1$state_name <- tolower(balance1$state_name)
+
+states <- map_data('state')
+
+balance2 <- balance1[c(2, 4:12, 14:52),] %>% rename(region = state_name)
+balancemap <- balance2 %>% inner_join(states, by = 'region')
+ggplot(balancemap, aes(x = long, y = lat, group=group, fill= percent_of_week_in_work)) + geom_polygon() +
+  coord_map() + ggtitle('Average Percent of Week Spent in Work by State') + 
+  scale_fill_distiller(palette = 'Blues', direction = 1) + theme_map()
+```
+
+
 
 
 ## Conclusion
